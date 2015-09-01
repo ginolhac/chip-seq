@@ -1,12 +1,12 @@
-## Chip-seq practical session
+# Chip-seq practical session
 
 Running all analyses is computationally intensive and despite the power of the current laptops, jobs should be run on high-performance-clusters (HPC).
 
-### log in `gaia`
+## log in `gaia`
 
 [`gaia`](https://hpc.uni.lu/systems/gaia/) is one of the [HPC of the UNI](https://hpc.uni.lu).
 
-#### connect to the frontend
+### connect to the frontend
 
 To connect to it, you need an account and an authorized ssh key. After the setting up of your account, the following should work:
 
@@ -29,7 +29,7 @@ The frontend is meant for browsing / transfer your files only and you **MUST** c
 
  Software are organized into modules that provide you with the binaries but also all the environment required for their running processes.
 
-#### connect to a node
+### connect to a node
 
 Connecting to a computing node is anyway required to use modules.
 
@@ -52,37 +52,46 @@ Once logged in, the prompt changes for:
 
 where you see the node you are logged to (here `gaia-66`), the job ID (3511326) and the time in minutes before your job will be killed (717 minutes).
 
-#### monitoring your the resources used
+## monitoring your the resources used
 
 On a shared cluster, you have to take of **three** things:
 1. memory usage
 2. cores used
 3. disk space
 
-##### memory
+### memory
 
 Each node has
 On a interactive session, use the command `htop` to see if the memory is not full. If the system is swapping (using hard drives for memory storage) it becomes super slow and eventually stalled.
 
 For passive sessions, you can use [ganglia](https://hpc.uni.lu/gaia/ganglia/) to check out the nodes you are using.
 
-##### cores
+### cores
 
 even if you book 10 cores, nothing will prevent you from starting 100 jobs. They will run but then tasks are distributed on the available resources. In this example, each task will use 1/10th of a core, then runs very slowly.  
 On a interactive session, use the command `htop` to see if a process is correctly using close to 100% of a core.
 
+### disk space
 
-##### disk space
+Like on your local machine, you need to check how much data you used.
+Using a command line, you could use
+```
+du -sh ~
+```
 
+to display your disk usage (`du`) for your home folder (`~`).
 
-### load necessary software as modules
+## load necessary software as modules
 
- 1. Add location of these modules
+### Add location of these modules
+
 ```
 module use $RESIF_ROOTINSTALL/lcsb/modules/all
 module use /home/users/aginolhac/.local/easybuild/modules/all/
 ```
- 2. Load the modules
+
+### Load the modules
+
 ```
 module load bio/FastQC
 module load bio/AdapterRemoval
@@ -92,8 +101,11 @@ module load bio/SAMtools/0.1.19-goolf-1.4.10
 module load bio/BWA
 module load bio/mapDamage
 ```
-3. Tweak for the `picard-tools`
+
+### Tweak for the `picard-tools`
+
 To get all jars available
+
 ```
 mkdir -p ~/install/jar_root/
 cp /opt/apps/sources/p/picard/picard-tools-1.100.zip ~/install/jar_root/
@@ -102,13 +114,16 @@ unzip picard-tools-1.100.zip
 mv  picard-tools-1.100/*.jar .
 cd
 ```
+
 you need to see `yes` to overwrite one file.
-4. Final tweak for `Gatk`
+
+#### Final tweak for `Gatk`
+
 ```
 cp /home/users/aginolhac/install/jar_root/GenomeAnalysisTK.jar ~/install/jar_root/
 ```
 
-### prepare your working environment
+## prepare your working environment
 
 go to your home directory:  
 `cd`
@@ -122,13 +137,13 @@ symbolic link:
 `ln -s /work/users/aginolhac/chip-seq/raw/C* .`
 
 
-#### check integrity of files
+## check integrity of files
 
 Just as a side note, such large files are usually a pain to download. Since they are the very raw files after the sequencer (despite basecalling) checking their integrity is worth doing. Computing the `md5um` ensure you have the same file as your sequence provider. Then `paleomix` will check the FASTQ is correct, *i. e* has 4 lines in a correct format.
 
 `md5sum -c C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.md5 `
 
-### FASTQ Quality controls
+## FASTQ Quality controls
 
 Using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/) you can perform the necessary controls over fastq files.
 
@@ -136,7 +151,7 @@ Using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/) you ca
 fastqc C51C3ACXX_TC1-H3K4-A-D3_14s006647-1-1_Sinkkonen_lane514s006647_sequence.txt.gz
 ```
 
-#### running serial
+### running serial
 
 A tidy bit of `bash` programming to do it for all files
 ```
@@ -145,7 +160,7 @@ for f in *.gz
 done
 ```
 
-#### running in parallel
+### running in parallel
 
 If you have booked **2** nodes, otherwise updae the `-j` option:
 
@@ -155,13 +170,13 @@ parallel -j 2 "fastqc {}" ::: *.gz
 
 the `{}` instruction will be replaced by all occurences of the pattern `*.gz`, everything that ends by `.gz`. [`parallel`](http://www.gnu.org/software/parallel/) takes care of submitting a new job so the number of parallel remains the same.
 
-#### visualize the results
+### visualize the results
 
 collect the `html` files using either `rsync`, `scp` for command lines or [FileZilla](https://filezilla-project.org/download.php?type=client) for  GUI tool.
 
 You should observe some issues that needs to be solve.
 
-### paleomix
+## paleomix, Next-Generation Sequencing wrapper
 
 this framework is open-source and available at [GitHub](https://github.com/MikkelSchubert/paleomix) and wrap all steps from `fastq` to `bam` files. Actually, this tol can do much more but the rest is out of scope.
 
@@ -170,26 +185,29 @@ check if paleomix is available
 paleomix -h
 ```
 
-#### test your install
+### test your install
 
-clone Mikkel's repository
+fetch the example, reference is the human mitochondrial genome
 ```
-git clone https://github.com/MikkelSchubert/paleomix.git ~/install/paleomix
-cd ~/install/paleomix/examples/bam_pipeline
+mkdir ~/install/paleomix/example
+cp -r /work/users/aginolhac/chip-seq/paleomix/examples/bam_pipeline/00* ~/install/paleomix/example
+cd ~/install/paleomix/example
 ```
-run the example, start by a `dry-run`
+run the example, start by a `dry-run`, adjust the number of threads accordingly.
 ```
 paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=2 --dry-run 000_makefile.yaml
 ```
 
+If all fine, re-rerun the command without the `--dry-run` option
 
+### Generate a makefile
 
-#### Generate a makefile
-
-Trimming, mapping imply a lot of steps and it is hard to be sure that everything goes well. Paleomix works in temporary folder, check the data produced and then copy back files that are complete. Plus, you want to test different parameters, add a new reference without having to redo earlier steps while being sure that all files are up-to-date. This goes thourgh a `YAML` makefile. The syntax is pretty forward.
+Trimming, mapping imply a lot of steps and it is hard to be sure that everything goes well. Paleomix works in temporary folder, check the data produced and then copy back files that are complete. Plus, you want to test different parameters, add a new reference without having to redo earlier steps while being sure that all files are up-to-date. This goes through a `YAML` makefile. The syntax is pretty forward.
 
 Create a generic makefile
 ```
 cd ..
 paleomix bam_pipeline mkfile > mouse.makefile
 ```
+
+### Edit the makefile
