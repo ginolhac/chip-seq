@@ -78,22 +78,34 @@ On a interactive session, use the command `htop` to see if a process is correctl
 ### load necessary software as modules
 
  1. Add location of these modules
-
 ```
 module use $RESIF_ROOTINSTALL/lcsb/modules/all
 module use /home/users/aginolhac/.local/easybuild/modules/all/
 ```
-
  2. Load the modules
-
 ```
 module load bio/FastQC
 module load bio/AdapterRemoval
 module load bio/pysam
 module load bio/paleomix
-module load bio/SAMtools
+module load bio/SAMtools/0.1.19-goolf-1.4.10
 module load bio/BWA
 module load bio/mapDamage
+```
+3. Tweak for the `picard-tools`
+To get all jars available
+```
+mkdir -p ~/install/jar_root/
+cp /opt/apps/sources/p/picard/picard-tools-1.100.zip ~/install/jar_root/
+cd ~/install/jar_root/
+unzip picard-tools-1.100.zip
+mv  picard-tools-1.100/*.jar .
+cd
+```
+you need to see `yes` to overwrite one file.
+4. Final tweak for `Gatk`
+```
+cp /home/users/aginolhac/install/jar_root/GenomeAnalysisTK.jar ~/install/jar_root/
 ```
 
 ### prepare your working environment
@@ -157,6 +169,20 @@ check if paleomix is available
 ```
 paleomix -h
 ```
+
+#### test your install
+
+clone Mikkel's repository
+```
+git clone https://github.com/MikkelSchubert/paleomix.git ~/install/paleomix
+cd ~/install/paleomix/examples/bam_pipeline
+```
+run the example, start by a `dry-run`
+```
+paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=2 --dry-run 000_makefile.yaml
+```
+
+
 
 #### Generate a makefile
 
