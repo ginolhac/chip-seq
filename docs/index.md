@@ -206,8 +206,55 @@ Trimming, mapping imply a lot of steps and it is hard to be sure that everything
 
 Create a generic makefile
 ```
-cd ..
+cd ~/chip-seq
 paleomix bam_pipeline mkfile > mouse.makefile
 ```
 
 ### Edit the makefile
+
+using your favorite editor, edit the `mouse.makefile`. For example `vim mouse.makefile` or `kate` or `nano`.
+
+#### Features
+
+Under the `Features` section, comment with a `#` the part that should be run to fit the following
+```
+Features:
+  - Raw BAM        # Generate BAM from the raw libraries (no indel realignment)
+                   #   Location: {Destination}/{Target}.{Genome}.bam
+#    - Realigned BAM  # Generate indel-realigned BAM using the GATK Indel realigner
+                   #   Location: {Destination}/{Target}.{Genome}.realigned.bam
+#    - mapDamage      # Generate mapDamage plot for each (unrealigned) library
+                   #   Location: {Destination}/{Target}.{Genome}.mapDamage/{Library}/
+  - Coverage       # Generate coverage information for the raw BAM (wo/ indel realignment)
+                   #   Location: {Destination}/{Target}.{Genome}.coverage
+#    - Depths         # Generate histogram of number of sites with a given read-depth
+                   #   Location: {Destination}/{Target}.{Genome}.depths
+  - Summary        # Generate target summary (uses statistics from raw BAM)
+                   #   Location: {Destination}/{Target}.summary
+```
+
+#### Prefixes
+
+These are the references to align read to.
+
+```
+Prefixes:
+  # Name of the prefix; is used as part of the output filenames
+  mouse_nuclear:
+    # Path to .fasta file containg a set of reference sequences.
+    Path: Path: /work/users/aginolhac/chip-seq/references/GRCm38.p3.fasta
+```
+
+
+#### Samples
+
+enter at the end of the makefile, the following lines, according to your login.  
+Do use **spaces** and not tabs for the indentation.
+
+```
+TC1-I-A-D3:
+  TC1-I-A-D3:
+    TC1-I-A-D3:
+      "14s006680-1-1":
+        /home/users/student01/chip-seq/raw/C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.gz
+```
