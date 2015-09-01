@@ -253,11 +253,47 @@ cd ~/install/paleomix/example
 <h3 id="generate-a-makefile">Generate a makefile</h3>
 <p>Trimming, mapping imply a lot of steps and it is hard to be sure that everything goes well. Paleomix works in temporary folder, check the data produced and then copy back files that are complete. Plus, you want to test different parameters, add a new reference without having to redo earlier steps while being sure that all files are up-to-date. This goes through a <code>YAML</code> makefile. The syntax is pretty forward.</p>
 <p>Create a generic makefile</p>
-<pre><code>cd ..
+<pre><code>cd ~/chip-seq
 paleomix bam_pipeline mkfile &gt; mouse.makefile
 </code></pre>
 
 <h3 id="edit-the-makefile">Edit the makefile</h3>
+<p>using your favorite editor, edit the <code>mouse.makefile</code>. For example <code>vim mouse.makefile</code> or <code>kate</code> or <code>nano</code>.</p>
+<h4 id="features">Features</h4>
+<p>Under the <code>Features</code> section, comment with a <code>#</code> the part that should be run to fit the following</p>
+<pre><code>Features:
+  - Raw BAM        # Generate BAM from the raw libraries (no indel realignment)
+                   #   Location: {Destination}/{Target}.{Genome}.bam
+#    - Realigned BAM  # Generate indel-realigned BAM using the GATK Indel realigner
+                   #   Location: {Destination}/{Target}.{Genome}.realigned.bam
+#    - mapDamage      # Generate mapDamage plot for each (unrealigned) library
+                   #   Location: {Destination}/{Target}.{Genome}.mapDamage/{Library}/
+  - Coverage       # Generate coverage information for the raw BAM (wo/ indel realignment)
+                   #   Location: {Destination}/{Target}.{Genome}.coverage
+#    - Depths         # Generate histogram of number of sites with a given read-depth
+                   #   Location: {Destination}/{Target}.{Genome}.depths
+  - Summary        # Generate target summary (uses statistics from raw BAM)
+                   #   Location: {Destination}/{Target}.summary
+</code></pre>
+
+<h4 id="prefixes">Prefixes</h4>
+<p>These are the references to align read to.</p>
+<pre><code>Prefixes:
+  # Name of the prefix; is used as part of the output filenames
+  mouse_nuclear:
+    # Path to .fasta file containg a set of reference sequences.
+    Path: Path: /work/users/aginolhac/chip-seq/references/GRCm38.p3.fasta
+</code></pre>
+
+<h4 id="samples">Samples</h4>
+<p>enter at the end of the makefile, the following lines, according to your login.<br />
+Do use <strong>spaces</strong> and not tabs for the indentation.</p>
+<pre><code>TC1-I-A-D3:
+  TC1-I-A-D3:
+    TC1-I-A-D3:
+      &quot;14s006680-1-1&quot;:
+        /home/users/student01/chip-seq/raw/C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.gz
+</code></pre>
               
             </div>
           </div>
@@ -294,5 +330,5 @@ paleomix bam_pipeline mkfile &gt; mouse.makefile
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2015-09-01 14:59:27.027182
+Build Date UTC : 2015-09-01 15:18:11.237947
 -->
