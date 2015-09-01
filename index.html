@@ -59,13 +59,17 @@
                 
                     <li><a class="toctree-l4" href="#log-in-gaia">log in gaia</a></li>
                 
+                    <li><a class="toctree-l4" href="#monitoring-your-the-resources-used">monitoring your the resources used</a></li>
+                
                     <li><a class="toctree-l4" href="#load-necessary-software-as-modules">load necessary software as modules</a></li>
                 
                     <li><a class="toctree-l4" href="#prepare-your-working-environment">prepare your working environment</a></li>
                 
+                    <li><a class="toctree-l4" href="#check-integrity-of-files">check integrity of files</a></li>
+                
                     <li><a class="toctree-l4" href="#fastq-quality-controls">FASTQ Quality controls</a></li>
                 
-                    <li><a class="toctree-l4" href="#paleomix">paleomix</a></li>
+                    <li><a class="toctree-l4" href="#paleomix-next-generation-sequencing-wrapper">paleomix, Next-Generation Sequencing wrapper</a></li>
                 
             
             </ul>
@@ -105,11 +109,11 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="chip-seq-practical-session">Chip-seq practical session</h2>
+                <h1 id="chip-seq-practical-session">Chip-seq practical session</h1>
 <p>Running all analyses is computationally intensive and despite the power of the current laptops, jobs should be run on high-performance-clusters (HPC).</p>
-<h3 id="log-in-gaia">log in <code>gaia</code></h3>
+<h2 id="log-in-gaia">log in <code>gaia</code></h2>
 <p><a href="https://hpc.uni.lu/systems/gaia/"><code>gaia</code></a> is one of the <a href="https://hpc.uni.lu">HPC of the UNI</a>.</p>
-<h4 id="connect-to-the-frontend">connect to the frontend</h4>
+<h3 id="connect-to-the-frontend">connect to the frontend</h3>
 <p>To connect to it, you need an account and an authorized ssh key. After the setting up of your account, the following should work:</p>
 <pre><code>ssh gaia-cluster
 </code></pre>
@@ -126,7 +130,7 @@ Linux access.gaia-cluster.uni.lux 3.2.0-4-amd64 unknown
 <p>Note that your are on the <code>access</code> frontend.</p>
 <p>The frontend is meant for browsing / transfer your files only and you <strong>MUST</strong> connect to a node for any computational work using the utility <code>oarsub</code> described <a href="https://hpc.uni.lu/users/docs/oar.html">here</a>. This program managed the queuing system and dispatch jobs among the resources according to the demands.</p>
 <p>Software are organized into modules that provide you with the binaries but also all the environment required for their running processes.</p>
-<h4 id="connect-to-a-node">connect to a node</h4>
+<h3 id="connect-to-a-node">connect to a node</h3>
 <p>Connecting to a computing node is anyway required to use modules.</p>
 <p>For Thursday:<br />
 <code>oarsub -I -t inner=3505160 -l nodes=1,walltime=10</code></p>
@@ -143,30 +147,32 @@ Linux access.gaia-cluster.uni.lux 3.2.0-4-amd64 unknown
 </code></pre>
 
 <p>where you see the node you are logged to (here <code>gaia-66</code>), the job ID (3511326) and the time in minutes before your job will be killed (717 minutes).</p>
-<h4 id="monitoring-your-the-resources-used">monitoring your the resources used</h4>
+<h2 id="monitoring-your-the-resources-used">monitoring your the resources used</h2>
 <p>On a shared cluster, you have to take of <strong>three</strong> things:
 1. memory usage
 2. cores used
 3. disk space</p>
-<h5 id="memory">memory</h5>
+<h3 id="memory">memory</h3>
 <p>Each node has
 On a interactive session, use the command <code>htop</code> to see if the memory is not full. If the system is swapping (using hard drives for memory storage) it becomes super slow and eventually stalled.</p>
 <p>For passive sessions, you can use <a href="https://hpc.uni.lu/gaia/ganglia/">ganglia</a> to check out the nodes you are using.</p>
-<h5 id="cores">cores</h5>
+<h3 id="cores">cores</h3>
 <p>even if you book 10 cores, nothing will prevent you from starting 100 jobs. They will run but then tasks are distributed on the available resources. In this example, each task will use 1/10th of a core, then runs very slowly.<br />
 On a interactive session, use the command <code>htop</code> to see if a process is correctly using close to 100% of a core.</p>
-<h5 id="disk-space">disk space</h5>
-<h3 id="load-necessary-software-as-modules">load necessary software as modules</h3>
-<ol>
-<li>Add location of these modules</li>
-</ol>
+<h3 id="disk-space">disk space</h3>
+<p>Like on your local machine, you need to check how much data you used.
+Using a command line, you could use</p>
+<pre><code>du -sh ~
+</code></pre>
+
+<p>to display your disk usage (<code>du</code>) for your home folder (<code>~</code>).</p>
+<h2 id="load-necessary-software-as-modules">load necessary software as modules</h2>
+<h3 id="add-location-of-these-modules">Add location of these modules</h3>
 <pre><code>module use $RESIF_ROOTINSTALL/lcsb/modules/all
 module use /home/users/aginolhac/.local/easybuild/modules/all/
 </code></pre>
 
-<ol>
-<li>Load the modules</li>
-</ol>
+<h3 id="load-the-modules">Load the modules</h3>
 <pre><code>module load bio/FastQC
 module load bio/AdapterRemoval
 module load bio/pysam
@@ -176,10 +182,8 @@ module load bio/BWA
 module load bio/mapDamage
 </code></pre>
 
-<ol>
-<li>Tweak for the <code>picard-tools</code>
-To get all jars available</li>
-</ol>
+<h3 id="tweak-for-the-picard-tools">Tweak for the <code>picard-tools</code></h3>
+<p>To get all jars available</p>
 <pre><code>mkdir -p ~/install/jar_root/
 cp /opt/apps/sources/p/picard/picard-tools-1.100.zip ~/install/jar_root/
 cd ~/install/jar_root/
@@ -188,12 +192,12 @@ mv  picard-tools-1.100/*.jar .
 cd
 </code></pre>
 
-<p>you need to see <code>yes</code> to overwrite one file.
-4. Final tweak for <code>Gatk</code></p>
+<p>you need to see <code>yes</code> to overwrite one file.</p>
+<h4 id="final-tweak-for-gatk">Final tweak for <code>Gatk</code></h4>
 <pre><code>cp /home/users/aginolhac/install/jar_root/GenomeAnalysisTK.jar ~/install/jar_root/
 </code></pre>
 
-<h3 id="prepare-your-working-environment">prepare your working environment</h3>
+<h2 id="prepare-your-working-environment">prepare your working environment</h2>
 <p>go to your home directory:<br />
 <code>cd</code>
 create a new folder to work in:<br />
@@ -204,52 +208,56 @@ create and go in a sub-folder:
 <code>mkdir raw ; cd raw</code>
 symbolic link:
 <code>ln -s /work/users/aginolhac/chip-seq/raw/C* .</code></p>
-<h4 id="check-integrity-of-files">check integrity of files</h4>
+<h2 id="check-integrity-of-files">check integrity of files</h2>
 <p>Just as a side note, such large files are usually a pain to download. Since they are the very raw files after the sequencer (despite basecalling) checking their integrity is worth doing. Computing the <code>md5um</code> ensure you have the same file as your sequence provider. Then <code>paleomix</code> will check the FASTQ is correct, <em>i. e</em> has 4 lines in a correct format.</p>
 <p><code>md5sum -c C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.md5</code></p>
-<h3 id="fastq-quality-controls">FASTQ Quality controls</h3>
+<h2 id="fastq-quality-controls">FASTQ Quality controls</h2>
 <p>Using <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> you can perform the necessary controls over fastq files.</p>
 <pre><code>fastqc C51C3ACXX_TC1-H3K4-A-D3_14s006647-1-1_Sinkkonen_lane514s006647_sequence.txt.gz
 </code></pre>
 
-<h4 id="running-serial">running serial</h4>
+<h3 id="running-serial">running serial</h3>
 <p>A tidy bit of <code>bash</code> programming to do it for all files</p>
 <pre><code>for f in *.gz
   do fastqc $f
 done
 </code></pre>
 
-<h4 id="running-in-parallel">running in parallel</h4>
+<h3 id="running-in-parallel">running in parallel</h3>
 <p>If you have booked <strong>2</strong> nodes, otherwise updae the <code>-j</code> option:</p>
 <pre><code>parallel -j 2 &quot;fastqc {}&quot; ::: *.gz
 </code></pre>
 
 <p>the <code>{}</code> instruction will be replaced by all occurences of the pattern <code>*.gz</code>, everything that ends by <code>.gz</code>. <a href="http://www.gnu.org/software/parallel/"><code>parallel</code></a> takes care of submitting a new job so the number of parallel remains the same.</p>
-<h4 id="visualize-the-results">visualize the results</h4>
+<h3 id="visualize-the-results">visualize the results</h3>
 <p>collect the <code>html</code> files using either <code>rsync</code>, <code>scp</code> for command lines or <a href="https://filezilla-project.org/download.php?type=client">FileZilla</a> for  GUI tool.</p>
 <p>You should observe some issues that needs to be solve.</p>
-<h3 id="paleomix">paleomix</h3>
+<h2 id="paleomix-next-generation-sequencing-wrapper">paleomix, Next-Generation Sequencing wrapper</h2>
 <p>this framework is open-source and available at <a href="https://github.com/MikkelSchubert/paleomix">GitHub</a> and wrap all steps from <code>fastq</code> to <code>bam</code> files. Actually, this tol can do much more but the rest is out of scope.</p>
 <p>check if paleomix is available</p>
 <pre><code>paleomix -h
 </code></pre>
 
-<h4 id="test-your-install">test your install</h4>
-<p>clone Mikkel's repository</p>
-<pre><code>git clone https://github.com/MikkelSchubert/paleomix.git ~/install/paleomix
-cd ~/install/paleomix/examples/bam_pipeline
+<h3 id="test-your-install">test your install</h3>
+<p>fetch the example, reference is the human mitochondrial genome</p>
+<pre><code>mkdir ~/install/paleomix/example
+cp -r /work/users/aginolhac/chip-seq/paleomix/examples/bam_pipeline/00* ~/install/paleomix/example
+cd ~/install/paleomix/example
 </code></pre>
 
-<p>run the example, start by a <code>dry-run</code></p>
+<p>run the example, start by a <code>dry-run</code>, adjust the number of threads accordingly.</p>
 <pre><code>paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=2 --dry-run 000_makefile.yaml
 </code></pre>
 
-<h4 id="generate-a-makefile">Generate a makefile</h4>
-<p>Trimming, mapping imply a lot of steps and it is hard to be sure that everything goes well. Paleomix works in temporary folder, check the data produced and then copy back files that are complete. Plus, you want to test different parameters, add a new reference without having to redo earlier steps while being sure that all files are up-to-date. This goes thourgh a <code>YAML</code> makefile. The syntax is pretty forward.</p>
+<p>If all fine, re-rerun the command without the <code>--dry-run</code> option</p>
+<h3 id="generate-a-makefile">Generate a makefile</h3>
+<p>Trimming, mapping imply a lot of steps and it is hard to be sure that everything goes well. Paleomix works in temporary folder, check the data produced and then copy back files that are complete. Plus, you want to test different parameters, add a new reference without having to redo earlier steps while being sure that all files are up-to-date. This goes through a <code>YAML</code> makefile. The syntax is pretty forward.</p>
 <p>Create a generic makefile</p>
 <pre><code>cd ..
 paleomix bam_pipeline mkfile &gt; mouse.makefile
 </code></pre>
+
+<h3 id="edit-the-makefile">Edit the makefile</h3>
               
             </div>
           </div>
@@ -286,5 +294,5 @@ paleomix bam_pipeline mkfile &gt; mouse.makefile
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2015-09-01 14:41:13.938024
+Build Date UTC : 2015-09-01 14:58:27.808922
 -->
