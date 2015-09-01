@@ -240,9 +240,9 @@ These are the references to align read to.
 ```
 Prefixes:
   # Name of the prefix; is used as part of the output filenames
-  mouse_nuclear:
+  mouse_19:
     # Path to .fasta file containg a set of reference sequences.
-    Path: Path: /work/users/aginolhac/chip-seq/references/GRCm38.p3.fasta
+    Path: Path: /work/users/aginolhac/chip-seq/references/chr19.fasta
 ```
 
 
@@ -257,4 +257,28 @@ TC1-I-A-D3:
     TC1-I-A-D3:
       "14s006680-1-1":
         /home/users/student01/chip-seq/raw/C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.gz
+
+TC1-H3K4-A-D3:
+  TC1-H3K4-A-D3:
+    TC1-H3K4-A-D3:
+      "14s006647-1-1":
+        /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-H3K4-A-D3_14s006647-1-1_Sinkkonen_lane514s006647_sequence.txt.gz
+
+TC1-I-ST2-D0:
+  TC1-I-ST2-D0:
+    TC1-I-ST2-D0:
+      "14s006677-1-1":
+        /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-I-ST2-D0_14s006677-1-1_Sinkkonen_lane814s006677_sequence.txt.gz  
+
+TC1-H3K4-ST2-D0:
+  TC1-H3K4-ST2-D0:
+    TC1-H3K4-ST2-D0:
+      "14s006644":
+        /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-H3K4-ST2-D0_14s006644-1-1_Sinkkonen_lane514s006644_sequence.txt.gz  
+```
+
+### Perform the trimming / mapping
+
+```
+paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=12 --dry-run mouse.makefile
 ```
