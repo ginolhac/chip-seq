@@ -171,9 +171,28 @@ module use /home/users/aginolhac/.local/easybuild/modules/all/
 module load bio/AdapterRemoval
 module load bio/pysam
 module load bio/paleomix
-module load bio/SAMtools
+module load bio/SAMtools/0.1.19-goolf-1.4.10
 module load bio/BWA
 module load bio/mapDamage
+</code></pre>
+
+<ol>
+<li>Tweak for the <code>picard-tools</code></li>
+</ol>
+<p>To get all jars available</p>
+<pre><code>mkdir -p ~/install/jar_root/
+cp /opt/apps/sources/p/picard/picard-tools-1.100.zip ~/install/jar_root/
+cd ~/install/jar_root/
+unzip picard-tools-1.100.zip
+mv  picard-tools-1.100/*.jar .
+cd
+</code></pre>
+
+<p>you need to see <code>yes</code> to overwrite one file.</p>
+<ol>
+<li>Final tweak for <code>Gatk</code></li>
+</ol>
+<pre><code>cp /home/users/aginolhac/install/jar_root/GenomeAnalysisTK.jar ~/install/jar_root/
 </code></pre>
 
 <h3 id="prepare-your-working-environment">prepare your working environment</h3>
@@ -215,6 +234,16 @@ done
 <p>this framework is open-source and available at <a href="https://github.com/MikkelSchubert/paleomix">GitHub</a> and wrap all steps from <code>fastq</code> to <code>bam</code> files. Actually, this tol can do much more but the rest is out of scope.</p>
 <p>check if paleomix is available</p>
 <pre><code>paleomix -h
+</code></pre>
+
+<h4 id="test-your-install">test your install</h4>
+<p>clone Mikkel's repository</p>
+<pre><code>git clone https://github.com/MikkelSchubert/paleomix.git ~/install/paleomix
+cd ~/install/paleomix/examples/bam_pipeline
+</code></pre>
+
+<p>run the example, start by a <code>dry-run</code></p>
+<pre><code>paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=2 --dry-run 000_makefile.yaml
 </code></pre>
 
 <h4 id="generate-a-makefile">Generate a makefile</h4>
@@ -259,5 +288,5 @@ paleomix bam_pipeline mkfile &gt; mouse.makefile
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2015-09-01 14:11:41.256234
+Build Date UTC : 2015-09-01 14:39:03.810020
 -->
