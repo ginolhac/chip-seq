@@ -94,7 +94,7 @@ module load bio/paleomix
 module load bio/SAMtools
 module load bio/BWA
 module load bio/mapDamage
- ```
+```
 
 ### prepare your working environment
 
