@@ -1,0 +1,5 @@
+
+site_name: chip-seq tutorials
+pages:
+- ['index.md', 'Home']
+theme: readthedocs
