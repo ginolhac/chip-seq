@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Chip-seq practical session &mdash; Python  documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Python  documentation" href="contents.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9">
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="chip-seq-practical-session">
+<span id="chip-seq-practical-session"></span><h1>Chip-seq practical session<a class="headerlink" href="#chip-seq-practical-session" title="Permalink to this headline">¶</a></h1>
+<p>Running all analyses is computationally intensive and despite the power of the current laptops, jobs should be run on high-performance-clusters (HPC).</p>
+<div class="section" id="log-in-gaia">
+<span id="log-in-gaia"></span><h2>log in <code class="docutils literal"><span class="pre">gaia</span></code><a class="headerlink" href="#log-in-gaia" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://hpc.uni.lu/systems/gaia/"><code class="docutils literal"><span class="pre">gaia</span></code></a> is one of the <a class="reference external" href="https://hpc.uni.lu">HPC of the UNI</a>.</p>
+<div class="section" id="connect-to-the-frontend">
+<span id="connect-to-the-frontend"></span><h3>connect to the frontend<a class="headerlink" href="#connect-to-the-frontend" title="Permalink to this headline">¶</a></h3>
+<p>To connect to it, you need an account and an authorized ssh key. After the setting up of your account, the following should work:</p>
+<pre class="literal-block">
+ssh gaia-cluster
+</pre>
+<p>You should the prompt of the gaia frontend:</p>
+<pre class="literal-block">
+===============================================================================
+ /!\ NEVER COMPILE OR RUN YOUR PROGRAMS FROM THIS FRONTEND !
+     First reserve your nodes (using oarsub(1))
+Linux access.gaia-cluster.uni.lux 3.2.0-4-amd64 unknown
+ 16:45:49 up 126 days,  1:28, 34 users,  load average: 0.96, 1.58, 1.73
+0 16:45:49 your_login&#64;access(gaia-cluster) ~ $
+</pre>
+<p>Note that your are on the <code class="docutils literal"><span class="pre">access</span></code> frontend.</p>
+<p>The frontend is meant for browsing / transfer your files only and you <strong>MUST</strong> connect to a node for any computational work using the utility <code class="docutils literal"><span class="pre">oarsub</span></code> described <a class="reference external" href="https://hpc.uni.lu/users/docs/oar.html">here</a>. This program managed the queuing system and dispatch jobs among the resources according to the demands.</p>
+<p>Software are organized into modules that provide you with the binaries but also all the environment required for their running processes.</p>
+</div>
+<div class="section" id="connect-to-a-node">
+<span id="connect-to-a-node"></span><h3>connect to a node<a class="headerlink" href="#connect-to-a-node" title="Permalink to this headline">¶</a></h3>
+<p>Connecting to a computing node is anyway required to use modules.</p>
+<p>For Thursday:<code class="docutils literal"><span class="pre">oarsub</span> <span class="pre">-I</span> <span class="pre">-t</span> <span class="pre">inner=3505160</span> <span class="pre">-l</span> <span class="pre">nodes=1,walltime=10</span></code></p>
+<p>For Friday:<code class="docutils literal"><span class="pre">oarsub</span> <span class="pre">-I</span> <span class="pre">-t</span> <span class="pre">inner=3505161</span> <span class="pre">-l</span> <span class="pre">nodes=1,walltime=10</span></code></p>
+<p>Without entering into the details of <a class="reference external" href="https://hpc.uni.lu/users/docs/oar.html#request-hierarchical-resources-with-oarsub">submitting a job</a>, here is the explanation for the above command:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-I</span></code> is for interactive, default is passive</li>
+<li><code class="docutils literal"><span class="pre">-t</span> <span class="pre">inner=xxx</span></code>, connect to a <code class="docutils literal"><span class="pre">container</span></code>, specific for today because we booked resources for the course</li>
+<li><code class="docutils literal"><span class="pre">-l</span></code> define the resources you need. The less you ask for, the more high up you are in the queue. A <code class="docutils literal"><span class="pre">node</span></code> is composed of 12 <code class="docutils literal"><span class="pre">cores</span></code>, so 12 tasks could be run in parallel. <code class="docutils literal"><span class="pre">walltime</span></code> define for how long in hours your job will last.</li>
+</ul>
+<p>Once logged in, the prompt changes for:</p>
+<pre class="literal-block">
+09:14:48 your_login&#64;gaia-66(gaia-cluster)[OAR3511326-&gt;717]
+</pre>
+<p>where you see the node you are logged to (here <code class="docutils literal"><span class="pre">gaia-66</span></code>), the job ID (3511326) and the time in minutes before your job will be killed (717 minutes).</p>
+</div>
+<div class="section" id="monitoring-your-the-resources-used">
+<span id="monitoring-your-the-resources-used"></span><h3>monitoring your the resources used<a class="headerlink" href="#monitoring-your-the-resources-used" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="load-necessary-software-as-modules">
+<span id="load-necessary-software-as-modules"></span><h2>load necessary software as modules<a class="headerlink" href="#load-necessary-software-as-modules" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li>Add location of these modules</li>
+</ol>
+<pre class="literal-block">
+module use $RESIF_ROOTINSTALL/lcsb/modules/all
+module use /home/users/aginolhac/.local/easybuild/modules/all/
+</pre>
+<ol class="simple">
+<li>Load the modules</li>
+</ol>
+<pre class="literal-block">
+module load bio/FastQC
+module load bio/AdapterRemoval
+module load bio/pysam
+module load bio/paleomix
+module load bio/SAMtools
+module load bio/BWA
+module load bio/mapDamage
+</pre>
+</div>
+<div class="section" id="prepare-your-working-environment">
+<span id="prepare-your-working-environment"></span><h2>prepare your working environment<a class="headerlink" href="#prepare-your-working-environment" title="Permalink to this headline">¶</a></h2>
+<p>go to your working directory:<code class="docutils literal"><span class="pre">cdw</span></code>
+create a new folder to work in:<code class="docutils literal"><span class="pre">mkdir</span> <span class="pre">chip-seq</span></code>
+go inside:<code class="docutils literal"><span class="pre">cd</span> <span class="pre">chip-seq</span></code>
+create a sub-folder:
+<code class="docutils literal"><span class="pre">mkdir</span> <span class="pre">raw</span></code></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Chip-seq practical session</a><ul>
+<li><a class="reference internal" href="#log-in-gaia">log in <code class="docutils literal"><span class="pre">gaia</span></code></a><ul>
+<li><a class="reference internal" href="#connect-to-the-frontend">connect to the frontend</a></li>
+<li><a class="reference internal" href="#connect-to-a-node">connect to a node</a></li>
+<li><a class="reference internal" href="#monitoring-your-the-resources-used">monitoring your the resources used</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#load-necessary-software-as-modules">load necessary software as modules</a></li>
+<li><a class="reference internal" href="#prepare-your-working-environment">prepare your working environment</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="contents.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/README.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.6</a>
+      
+      |
+      <a href="_sources/README.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
