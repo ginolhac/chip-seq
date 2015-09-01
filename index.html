@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>chip-seq tutorials</title>
+  
+
+  <link rel="shortcut icon" href="./img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "None";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script>
+  <script src="./js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> chip-seq tutorials</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Home</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#chip-seq-practical-session">Chip-seq practical session</a></li>
+                
+                    <li><a class="toctree-l4" href="#log-in-gaia">log in gaia</a></li>
+                
+                    <li><a class="toctree-l4" href="#load-necessary-software-as-modules">load necessary software as modules</a></li>
+                
+                    <li><a class="toctree-l4" href="#prepare-your-working-environment">prepare your working environment</a></li>
+                
+                    <li><a class="toctree-l4" href="#fastq-quality-controls">FASTQ Quality controls</a></li>
+                
+                    <li><a class="toctree-l4" href="#paleomix">paleomix</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">chip-seq tutorials</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="chip-seq-practical-session">Chip-seq practical session</h2>
+<p>Running all analyses is computationally intensive and despite the power of the current laptops, jobs should be run on high-performance-clusters (HPC).</p>
+<h3 id="log-in-gaia">log in <code>gaia</code></h3>
+<p><a href="https://hpc.uni.lu/systems/gaia/"><code>gaia</code></a> is one of the <a href="https://hpc.uni.lu">HPC of the UNI</a>.</p>
+<h4 id="connect-to-the-frontend">connect to the frontend</h4>
+<p>To connect to it, you need an account and an authorized ssh key. After the setting up of your account, the following should work:</p>
+<pre><code>ssh gaia-cluster
+</code></pre>
+
+<p>You should the prompt of the gaia frontend:</p>
+<pre><code>===============================================================================
+ /!\ NEVER COMPILE OR RUN YOUR PROGRAMS FROM THIS FRONTEND !
+     First reserve your nodes (using oarsub(1))
+Linux access.gaia-cluster.uni.lux 3.2.0-4-amd64 unknown
+ 16:45:49 up 126 days,  1:28, 34 users,  load average: 0.96, 1.58, 1.73
+0 16:45:49 your_login@access(gaia-cluster) ~ $
+</code></pre>
+
+<p>Note that your are on the <code>access</code> frontend.</p>
+<p>The frontend is meant for browsing / transfer your files only and you <strong>MUST</strong> connect to a node for any computational work using the utility <code>oarsub</code> described <a href="https://hpc.uni.lu/users/docs/oar.html">here</a>. This program managed the queuing system and dispatch jobs among the resources according to the demands.</p>
+<p>Software are organized into modules that provide you with the binaries but also all the environment required for their running processes.</p>
+<h4 id="connect-to-a-node">connect to a node</h4>
+<p>Connecting to a computing node is anyway required to use modules.</p>
+<p>For Thursday:<br />
+<code>oarsub -I -t inner=3505160 -l nodes=1,walltime=10</code></p>
+<p>For Friday:<br />
+<code>oarsub -I -t inner=3505161 -l nodes=1,walltime=10</code></p>
+<p>Without entering into the details of <a href="https://hpc.uni.lu/users/docs/oar.html#request-hierarchical-resources-with-oarsub">submitting a job</a>, here is the explanation for the above command:</p>
+<ul>
+<li><code>-I</code> is for interactive, default is passive</li>
+<li><code>-t inner=xxx</code>, connect to a <code>container</code>, specific for today because we booked resources for the course</li>
+<li><code>-l</code> define the resources you need. The less you ask for, the more high up you are in the queue. A <code>node</code> is composed of 12 <code>cores</code>, so 12 tasks could be run in parallel. <code>walltime</code> define for how long in hours your job will last.</li>
+</ul>
+<p>Once logged in, the prompt changes for:</p>
+<pre><code>09:14:48 your_login@gaia-66(gaia-cluster)[OAR3511326-&gt;717]
+</code></pre>
+
+<p>where you see the node you are logged to (here <code>gaia-66</code>), the job ID (3511326) and the time in minutes before your job will be killed (717 minutes).</p>
+<h4 id="monitoring-your-the-resources-used">monitoring your the resources used</h4>
+<p>On a shared cluster, you have to take of <strong>three</strong> things:
+1. memory usage
+2. cores used
+3. disk space</p>
+<h5 id="memory">memory</h5>
+<p>Each node has
+On a interactive session, use the command <code>htop</code> to see if the memory is not full. If the system is swapping (using hard drives for memory storage) it becomes super slow and eventually stalled.</p>
+<p>For passive sessions, you can use <a href="https://hpc.uni.lu/gaia/ganglia/">ganglia</a> to check out the nodes you are using.</p>
+<h5 id="cores">cores</h5>
+<p>even if you book 10 cores, nothing will prevent you from starting 100 jobs. They will run but then tasks are distributed on the available resources. In this example, each task will use 1/10th of a core, then runs very slowly.<br />
+On a interactive session, use the command <code>htop</code> to see if a process is correctly using close to 100% of a core.</p>
+<h5 id="disk-space">disk space</h5>
+<h3 id="load-necessary-software-as-modules">load necessary software as modules</h3>
+<ol>
+<li>Add location of these modules</li>
+</ol>
+<pre><code>module use $RESIF_ROOTINSTALL/lcsb/modules/all
+module use /home/users/aginolhac/.local/easybuild/modules/all/
+</code></pre>
+
+<ol>
+<li>Load the modules</li>
+</ol>
+<pre><code>module load bio/FastQC
+module load bio/AdapterRemoval
+module load bio/pysam
+module load bio/paleomix
+module load bio/SAMtools
+module load bio/BWA
+module load bio/mapDamage
+</code></pre>
+
+<h3 id="prepare-your-working-environment">prepare your working environment</h3>
+<p>go to your home directory:<br />
+<code>cd</code>
+create a new folder to work in:<br />
+<code>mkdir chip-seq</code>
+go inside:<br />
+<code>cd chip-seq</code>
+create and go in a sub-folder:
+<code>mkdir raw ; cd raw</code>
+symbolic link:
+<code>ln -s /work/users/aginolhac/chip-seq/raw/C* .</code></p>
+<h4 id="check-integrity-of-files">check integrity of files</h4>
+<p>Just as a side note, such large files are usually a pain to download. Since they are the very raw files after the sequencer (despite basecalling) checking their integrity is worth doing. Computing the <code>md5um</code> ensure you have the same file as your sequence provider. Then <code>paleomix</code> will check the FASTQ is correct, <em>i. e</em> has 4 lines in a correct format.</p>
+<p><code>md5sum -c C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.md5</code></p>
+<h3 id="fastq-quality-controls">FASTQ Quality controls</h3>
+<p>Using <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> you can perform the necessary controls over fastq files.</p>
+<pre><code>fastqc C51C3ACXX_TC1-H3K4-A-D3_14s006647-1-1_Sinkkonen_lane514s006647_sequence.txt.gz
+</code></pre>
+
+<h4 id="running-serial">running serial</h4>
+<p>A tidy bit of <code>bash</code> programming to do it for all files</p>
+<pre><code>for f in *.gz
+  do fastqc $f
+done
+</code></pre>
+
+<h4 id="running-in-parallel">running in parallel</h4>
+<p>If you have booked <strong>2</strong> nodes, otherwise updae the <code>-j</code> option:</p>
+<pre><code>parallel -j 2 &quot;fastqc {}&quot; ::: *.gz
+</code></pre>
+
+<p>the <code>{}</code> instruction will be replaced by all occurences of the pattern <code>*.gz</code>, everything that ends by <code>.gz</code>. <a href="http://www.gnu.org/software/parallel/"><code>parallel</code></a> takes care of submitting a new job so the number of parallel remains the same.</p>
+<h4 id="visualize-the-results">visualize the results</h4>
+<p>collect the <code>html</code> files using either <code>rsync</code>, <code>scp</code> for command lines or <a href="https://filezilla-project.org/download.php?type=client">FileZilla</a> for  GUI tool.</p>
+<p>You should observe some issues that needs to be solve.</p>
+<h3 id="paleomix">paleomix</h3>
+<p>this framework is open-source and available at <a href="https://github.com/MikkelSchubert/paleomix">GitHub</a> and wrap all steps from <code>fastq</code> to <code>bam</code> files. Actually, this tol can do much more but the rest is out of scope.</p>
+<p>check if paleomix is available</p>
+<pre><code>paleomix -h
+</code></pre>
+
+<h4 id="generate-a-makefile">Generate a makefile</h4>
+<p>Trimming, mapping imply a lot of steps and it is hard to be sure that everything goes well. Paleomix works in temporary folder, check the data produced and then copy back files that are complete. Plus, you want to test different parameters, add a new reference without having to redo earlier steps while being sure that all files are up-to-date. This goes thourgh a <code>YAML</code> makefile. The syntax is pretty forward.</p>
+<p>Create a generic makefile</p>
+<pre><code>cd ..
+paleomix bam_pipeline mkfile &gt; mouse.makefile
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.14.0
+Build Date UTC : 2015-09-01 14:11:41.256234
+-->
