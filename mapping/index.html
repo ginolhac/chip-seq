@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Mapping - chip-seq tutorials</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Mapping";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> chip-seq tutorials</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Introduction</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../install/">Set-up</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../fastqc/">sequence QC</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Mapping</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#paleomix-next-generation-sequencing-wrapper">paleomix, Next-Generation Sequencing wrapper</a></li>
+                
+                    <li><a class="toctree-l4" href="#test-your-install">test your install</a></li>
+                
+                    <li><a class="toctree-l4" href="#generate-a-makefile">Generate a makefile</a></li>
+                
+                    <li><a class="toctree-l4" href="#edit-the-makefile">Edit the makefile</a></li>
+                
+                    <li><a class="toctree-l4" href="#perform-the-trimming-mapping">Perform the trimming / mapping</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../contact/">Contact</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">chip-seq tutorials</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Mapping</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="paleomix-next-generation-sequencing-wrapper">paleomix, Next-Generation Sequencing wrapper</h2>
+<p>this framework is open-source and available at <a href="https://github.com/MikkelSchubert/paleomix">GitHub</a> and wrap all steps from <code>fastq</code> to <code>bam</code> files. Actually, this tol can do much more but the rest is out of scope.</p>
+<p>check if paleomix is available</p>
+<pre><code>paleomix -h
+</code></pre>
+
+<h3 id="test-your-install">test your install</h3>
+<p>fetch the example, reference is the human mitochondrial genome</p>
+<pre><code>mkdir ~/install/paleomix/example
+cp -r /work/users/aginolhac/chip-seq/paleomix/examples/bam_pipeline/00* ~/install/paleomix/example
+cd ~/install/paleomix/example
+</code></pre>
+
+<p>run the example, start by a <code>dry-run</code>, adjust the number of threads accordingly.</p>
+<pre><code>paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=2 --dry-run 000_makefile.yaml
+</code></pre>
+
+<p>If all fine, re-rerun the command without the <code>--dry-run</code> option</p>
+<h3 id="generate-a-makefile">Generate a makefile</h3>
+<p>Trimming, mapping imply a lot of steps and it is hard to be sure that everything goes well. Paleomix works in temporary folder, check the data produced and then copy back files that are complete. Plus, you want to test different parameters, add a new reference without having to redo earlier steps while being sure that all files are up-to-date. This goes through a <code>YAML</code> makefile. The syntax is pretty forward.</p>
+<p>Create a generic makefile</p>
+<pre><code>cd ~/chip-seq
+paleomix bam_pipeline mkfile &gt; mouse.makefile
+</code></pre>
+
+<h3 id="edit-the-makefile">Edit the makefile</h3>
+<p>using your favorite editor, edit the <code>mouse.makefile</code>. For example <code>vim mouse.makefile</code> or <code>kate</code> or <code>nano</code>.</p>
+<h4 id="features">Features</h4>
+<p>Under the <code>Features</code> section, comment with a <code>#</code> the part that should be run to fit the following</p>
+<pre><code>Features:
+  - Raw BAM        # Generate BAM from the raw libraries (no indel realignment)
+                   #   Location: {Destination}/{Target}.{Genome}.bam
+#    - Realigned BAM  # Generate indel-realigned BAM using the GATK Indel realigner
+                   #   Location: {Destination}/{Target}.{Genome}.realigned.bam
+#    - mapDamage      # Generate mapDamage plot for each (unrealigned) library
+                   #   Location: {Destination}/{Target}.{Genome}.mapDamage/{Library}/
+  - Coverage       # Generate coverage information for the raw BAM (wo/ indel realignment)
+                   #   Location: {Destination}/{Target}.{Genome}.coverage
+#    - Depths         # Generate histogram of number of sites with a given read-depth
+                   #   Location: {Destination}/{Target}.{Genome}.depths
+  - Summary        # Generate target summary (uses statistics from raw BAM)
+                   #   Location: {Destination}/{Target}.summary
+</code></pre>
+
+<h4 id="prefixes">Prefixes</h4>
+<p>These are the references to align read to.</p>
+<pre><code>Prefixes:
+  # Name of the prefix; is used as part of the output filenames
+  mouse_19:
+    # Path to .fasta file containg a set of reference sequences.
+    Path: Path: /work/users/aginolhac/chip-seq/references/chr19.fasta
+</code></pre>
+
+<h4 id="samples">Samples</h4>
+<p>enter at the end of the makefile, the following lines, according to your login.
+Do use <strong>spaces</strong> and not tabs for the indentation.</p>
+<pre><code>TC1-I-A-D3:
+  TC1-I-A-D3:
+    TC1-I-A-D3:
+      &quot;14s006680-1-1&quot;:
+        /home/users/student01/chip-seq/raw/C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.gz
+
+TC1-H3K4-A-D3:
+  TC1-H3K4-A-D3:
+    TC1-H3K4-A-D3:
+      &quot;14s006647-1-1&quot;:
+        /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-H3K4-A-D3_14s006647-1-1_Sinkkonen_lane514s006647_sequence.txt.gz
+
+TC1-I-ST2-D0:
+  TC1-I-ST2-D0:
+    TC1-I-ST2-D0:
+      &quot;14s006677-1-1&quot;:
+        /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-I-ST2-D0_14s006677-1-1_Sinkkonen_lane814s006677_sequence.txt.gz
+
+TC1-H3K4-ST2-D0:
+  TC1-H3K4-ST2-D0:
+    TC1-H3K4-ST2-D0:
+      &quot;14s006644&quot;:
+        /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-H3K4-ST2-D0_14s006644-1-1_Sinkkonen_lane514s006644_sequence.txt.gz
+</code></pre>
+
+<h3 id="perform-the-trimming-mapping">Perform the trimming / mapping</h3>
+<pre><code>paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=12 --dry-run mouse.makefile
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../contact/" class="btn btn-neutral float-right" title="Contact"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../fastqc/" class="btn btn-neutral" title="sequence QC"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../fastqc/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../contact/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
