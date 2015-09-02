@@ -8,11 +8,13 @@ Running all analyses is computationally intensive and despite the power of the c
 
 ### connect to the frontend
 
-To connect to it, you need an account and an authorized ssh key. After the setting up of your account, the following should work:
+To connect to it, you need an account and an authorized ssh key. After the setting up of your account, the following should work fi you are using mac or GNU/Lunix:
 
 ```
 ssh gaia-cluster
 ```
+
+Otherwise on Windows, right-click on `pageant` in system tray and load a saved session `gaia`. Log as you username.
 
 You should the prompt of the gaia frontend:
 ```
@@ -43,7 +45,7 @@ Without entering into the details of [submitting a job](https://hpc.uni.lu/users
 
 - `-I` is for interactive, default is passive
 - `-t inner=xxx`, connect to a `container`, specific for today because we booked resources for the course
-- `-l` define the resources you need. The less you ask for, the more high up you are in the queue. A `node` is composed of 12 `cores`, so 12 tasks could be run in parallel. `walltime` define for how long in hours your job will last.
+- `-l` define the resources you need. The less you ask for, the more high up you are in the queue. A `node` is usually composed of 12 `cores`, so 12 tasks could be run in parallel. `walltime` define for how long in hours your job will last.
 
 Once logged in, the prompt changes for:
 ```

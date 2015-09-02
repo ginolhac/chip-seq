@@ -1,6 +1,6 @@
 ## paleomix, Next-Generation Sequencing wrapper
 
-this framework is open-source and available at [GitHub](https://github.com/MikkelSchubert/paleomix) and wrap all steps from `fastq` to `bam` files. Actually, this tol can do much more but the rest is out of scope.
+this framework is open-source and available at [GitHub](https://github.com/MikkelSchubert/paleomix) and wrap all steps from `fastq` to `bam` files. Actually, this tool can do much more but the rest is out of scope. Its major drawback is that it is dedicated to one machine. For clusters, you are then limited to one node since memory are not shared by default.
 
 check if paleomix is available
 ```
@@ -35,6 +35,13 @@ paleomix bam_pipeline mkfile > mouse.makefile
 ### Edit the makefile
 
 using your favorite editor, edit the `mouse.makefile`. For example `vim mouse.makefile` or `kate` or `nano`.
+
+#### Options
+
+For duplicates, change the default behaviour from `filter` to `mark`  
+```
+  PCRDuplicates: mark
+```
 
 #### Features
 
@@ -104,3 +111,28 @@ TC1-H3K4-ST2-D0:
 ```
 paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=12 --dry-run mouse.makefile
 ```
+
+## check trimming
+
+First of all, check using `fastqc` that the trimming did remove the adapters that were contaminated the reads.
+
+## filter for unique reads
+
+*Uniqueness* of reads refers to mappability. The less locations a read has in a genome, the higher is mappability will be.
+A common filter is to use **30** as a threshold for filtering reads:
+
+```
+samtools view -b -q 30 file.bam > file.q30.bam
+```
+
+Filter in parallel
+```
+parallel "samtools view -b -q 30 {} > {.}.q30.bam" ::: *.bam
+```
+
+Since we are using only the chr19 for this tutorial, do you think the mappability score is correct? Why?
+
+## filter for duplicates?
+
+A duplicate is a bias that comes from PCR amplification. Reads then stack at the same location and create artificial high coverages. Duplicates have a unclear definition in a mapped file. Usually, single-end reads that are mapped at the same 5' end are considered as duplicates. External coordinate are used for paired-end reads.  
+For regular NGS, filtering for duplicates is mandatory. However, for chip-seq since the reads are by nature clustered location this is not recommended. If duplication is observed at the reads level, such as in `fastqc` output, then filtering may be necessary. Marking duplicates allows to keep track of them without losing them.
