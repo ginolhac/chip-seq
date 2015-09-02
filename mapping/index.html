@@ -58,6 +58,13 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="../cli/">command line, basics</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="../install/">Setup</a>
         
     </li>
@@ -87,7 +94,23 @@
                     <li><a class="toctree-l4" href="#perform-the-trimming-mapping">Perform the trimming / mapping</a></li>
                 
             
+                <li class="toctree-l3"><a href="#check-trimming">check trimming</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#filter-for-unique-reads">filter for unique reads</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#filter-for-duplicates">filter for duplicates?</a></li>
+                
+            
             </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../peak/">Peak calling</a>
         
     </li>
 <li>
@@ -132,7 +155,7 @@
             <div class="section">
               
                 <h2 id="paleomix-next-generation-sequencing-wrapper">paleomix, Next-Generation Sequencing wrapper</h2>
-<p>this framework is open-source and available at <a href="https://github.com/MikkelSchubert/paleomix">GitHub</a> and wrap all steps from <code>fastq</code> to <code>bam</code> files. Actually, this tol can do much more but the rest is out of scope.</p>
+<p>this framework is open-source and available at <a href="https://github.com/MikkelSchubert/paleomix">GitHub</a> and wrap all steps from <code>fastq</code> to <code>bam</code> files. Actually, this tool can do much more but the rest is out of scope. Its major drawback is that it is dedicated to one machine. For clusters, you are then limited to one node since memory are not shared by default.</p>
 <p>check if paleomix is available</p>
 <pre><code>paleomix -h
 </code></pre>
@@ -158,6 +181,11 @@ paleomix bam_pipeline mkfile &gt; mouse.makefile
 
 <h3 id="edit-the-makefile">Edit the makefile</h3>
 <p>using your favorite editor, edit the <code>mouse.makefile</code>. For example <code>vim mouse.makefile</code> or <code>kate</code> or <code>nano</code>.</p>
+<h4 id="options">Options</h4>
+<p>For duplicates, change the default behaviour from <code>filter</code> to <code>mark</code>  </p>
+<pre><code>  PCRDuplicates: mark
+</code></pre>
+
 <h4 id="features">Features</h4>
 <p>Under the <code>Features</code> section, comment with a <code>#</code> the part that should be run to fit the following</p>
 <pre><code>Features:
@@ -215,6 +243,23 @@ TC1-H3K4-ST2-D0:
 <h3 id="perform-the-trimming-mapping">Perform the trimming / mapping</h3>
 <pre><code>paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=12 --dry-run mouse.makefile
 </code></pre>
+
+<h2 id="check-trimming">check trimming</h2>
+<p>First of all, check using <code>fastqc</code> that the trimming did remove the adapters that were contaminated the reads.</p>
+<h2 id="filter-for-unique-reads">filter for unique reads</h2>
+<p><em>Uniqueness</em> of reads refers to mappability. The less locations a read has in a genome, the higher is mappability will be.
+A common filter is to use <strong>30</strong> as a threshold for filtering reads:</p>
+<pre><code>samtools view -b -q 30 file.bam &gt; file.q30.bam
+</code></pre>
+
+<p>Filter in parallel</p>
+<pre><code>parallel &quot;samtools view -b -q 30 {} &gt; {.}.q30.bam&quot; ::: *.bam
+</code></pre>
+
+<p>Since we are using only the chr19 for this tutorial, do you think the mappability score is correct? Why?</p>
+<h2 id="filter-for-duplicates">filter for duplicates?</h2>
+<p>A duplicate is a bias that comes from PCR amplification. Reads then stack at the same location and create artificial high coverages. Duplicates have a unclear definition in a mapped file. Usually, single-end reads that are mapped at the same 5' end are considered as duplicates. External coordinate are used for paired-end reads.<br />
+For regular NGS, filtering for duplicates is mandatory. However, for chip-seq since the reads are by nature clustered location this is not recommended. If duplication is observed at the reads level, such as in <code>fastqc</code> output, then filtering may be necessary. Marking duplicates allows to keep track of them without losing them.</p>
               
             </div>
           </div>
@@ -222,7 +267,7 @@ TC1-H3K4-ST2-D0:
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../contact/" class="btn btn-neutral float-right" title="Contact"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../peak/" class="btn btn-neutral float-right" title="Peak calling"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../fastqc/" class="btn btn-neutral" title="sequence QC"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -254,7 +299,7 @@ TC1-H3K4-ST2-D0:
         <span><a href="../fastqc/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../contact/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../peak/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

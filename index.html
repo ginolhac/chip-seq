@@ -69,6 +69,13 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="cli/">command line, basics</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="install/">Setup</a>
         
     </li>
@@ -84,6 +91,13 @@
             <li>
     <li class="toctree-l1 ">
         <a class="" href="mapping/">Mapping</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="peak/">Peak calling</a>
         
     </li>
 <li>
@@ -132,10 +146,11 @@
 <h2 id="log-in-gaia">log in <code>gaia</code></h2>
 <p><a href="https://hpc.uni.lu/systems/gaia/"><code>gaia</code></a> is one of the <a href="https://hpc.uni.lu">HPC of the UNI</a>.</p>
 <h3 id="connect-to-the-frontend">connect to the frontend</h3>
-<p>To connect to it, you need an account and an authorized ssh key. After the setting up of your account, the following should work:</p>
+<p>To connect to it, you need an account and an authorized ssh key. After the setting up of your account, the following should work fi you are using mac or GNU/Lunix:</p>
 <pre><code>ssh gaia-cluster
 </code></pre>
 
+<p>Otherwise on Windows, right-click on <code>pageant</code> in system tray and load a saved session <code>gaia</code>. Log as you username.</p>
 <p>You should the prompt of the gaia frontend:</p>
 <pre><code>===============================================================================
  /!\ NEVER COMPILE OR RUN YOUR PROGRAMS FROM THIS FRONTEND !
@@ -158,7 +173,7 @@ Linux access.gaia-cluster.uni.lux 3.2.0-4-amd64 unknown
 <ul>
 <li><code>-I</code> is for interactive, default is passive</li>
 <li><code>-t inner=xxx</code>, connect to a <code>container</code>, specific for today because we booked resources for the course</li>
-<li><code>-l</code> define the resources you need. The less you ask for, the more high up you are in the queue. A <code>node</code> is composed of 12 <code>cores</code>, so 12 tasks could be run in parallel. <code>walltime</code> define for how long in hours your job will last.</li>
+<li><code>-l</code> define the resources you need. The less you ask for, the more high up you are in the queue. A <code>node</code> is usually composed of 12 <code>cores</code>, so 12 tasks could be run in parallel. <code>walltime</code> define for how long in hours your job will last.</li>
 </ul>
 <p>Once logged in, the prompt changes for:</p>
 <pre><code>09:14:48 your_login@gaia-66(gaia-cluster)[OAR3511326-&gt;717]
@@ -191,7 +206,7 @@ Using a command line, you could use</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="install/" class="btn btn-neutral float-right" title="Setup"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="cli/" class="btn btn-neutral float-right" title="command line, basics"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
     </div>
@@ -219,7 +234,7 @@ Using a command line, you could use</p>
       
       
       
-        <span style="margin-left: 15px"><a href="install/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="cli/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
@@ -229,5 +244,5 @@ Using a command line, you could use</p>
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2015-09-02 09:04:58.193639
+Build Date UTC : 2015-09-02 12:23:14.037978
 -->

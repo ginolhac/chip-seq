@@ -57,6 +57,13 @@
 <li>
           
             <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../cli/">command line, basics</a>
+        
+    </li>
+<li>
+          
+            <li>
     <li class="toctree-l1 current">
         <a class="current" href="./">Setup</a>
         
@@ -92,6 +99,13 @@
             <li>
     <li class="toctree-l1 ">
         <a class="" href="../mapping/">Mapping</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../peak/">Peak calling</a>
         
     </li>
 <li>
@@ -175,10 +189,10 @@ go inside:
 <code>cd chip-seq</code>
 create and go in a sub-folder:
 <code>mkdir raw ; cd raw</code>
-symbolic link:
+symbolic link the fastq files:
 <code>ln -s /work/users/aginolhac/chip-seq/raw/C* .</code></p>
 <h2 id="check-integrity-of-files">check integrity of files</h2>
-<p>Just as a side note, such large files are usually a pain to download. Since they are the very raw files after the sequencer (despite basecalling) checking their integrity is worth doing. Computing the <code>md5um</code> ensure you have the same file as your sequence provider. Then <code>paleomix</code> will check the FASTQ is correct, <em>i. e</em> has 4 lines in a correct format.</p>
+<p>Just as a side note, such large files are usually a pain to download. Since they are the very raw files after the sequencer (despite basecalling) checking their integrity is worth doing. Computing the <code>md5um</code> ensure you have the same file as your sequence provider. Then <code>paleomix</code> will check the FASTQ are correct, <em>i. e</em> have 4 lines in a correct format.</p>
 <p><code>md5sum -c C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.md5</code></p>
               
             </div>
@@ -190,7 +204,7 @@ symbolic link:
         <a href="../fastqc/" class="btn btn-neutral float-right" title="sequence QC"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href=".." class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cli/" class="btn btn-neutral" title="command line, basics"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -216,7 +230,7 @@ symbolic link:
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../cli/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../fastqc/" style="color: #fcfcfc">Next &raquo;</a></span>
