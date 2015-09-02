@@ -1,5 +1,9 @@
 
 site_name: chip-seq tutorials
 pages:
-- ['index.md', 'Home']
+- Introduction: 'index.md'
+- Set-up: 'install.md'
+- sequence QC: 'fastqc.md'
+- Mapping: 'mapping.md'
+- Contact: 'contact.md'
 theme: readthedocs
