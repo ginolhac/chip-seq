@@ -11,7 +11,7 @@ paleomix -h
 
 fetch the example, reference is the human mitochondrial genome
 ```
-mkdir ~/install/paleomix/example
+mkdir -p ~/install/paleomix/example
 cp -r /work/users/aginolhac/chip-seq/paleomix/examples/bam_pipeline/00* ~/install/paleomix/example
 cd ~/install/paleomix/example
 ```

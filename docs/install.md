@@ -57,6 +57,6 @@ symbolic link the fastq files:
 
 ## check integrity of files
 
-Just as a side note, such large files are usually a pain to download. Since they are the very raw files after the sequencer (despite basecalling) checking their integrity is worth doing. Computing the `md5um` ensure you have the same file as your sequence provider. Then `paleomix` will check the FASTQ are correct, *i. e* have 4 lines in a correct format.
+Just as a side note, such large files are usually a pain to download. Since they are the very raw files after the sequencer (despite basecalling) checking their integrity is worth doing. Computing the `md5sum` ensure you have the same file as your sequence provider. Then `paleomix` will check the FASTQ are correct, *i. e* have 4 lines in a correct format.
 
 `md5sum -c C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.md5 `
