@@ -17,6 +17,7 @@ module load bio/paleomix
 module load bio/SAMtools/0.1.19-goolf-1.4.10
 module load bio/BWA
 module load bio/mapDamage
+module load bio/MACS2
 ```
 
 ### Tweak for the `picard-tools`

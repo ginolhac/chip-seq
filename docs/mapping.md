@@ -116,6 +116,14 @@ paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=12 --dry-run mouse.m
 
 First of all, check using `fastqc` that the trimming did remove the adapters that were contaminated the reads.
 
+```
+find . -name "reads.truncated.bz2" | parallel "fastqc {}" &
+```
+
+using the character `&` tells the shell that we want the processes to run in the background. Meaning that you can still run more things while the 4 tasks are running. Check them using `htop`.
+
+check especially, the input for ST2, day0 before and after trimming. Did it solve the issue with adapters?
+
 ## filter for unique reads
 
 *Uniqueness* of reads refers to mappability. The less locations a read has in a genome, the higher is mappability will be.

@@ -118,7 +118,7 @@ Think of piping `head` and `tail`
 
 #### Extra questions
 
-* there is a empty file after each sequence. Try to remove them (my favorite is `sed`)
+* there is a empty file after each sequence. Try to remove them (my favorite is `sed`, but check the `-v` option of grep)
 
 * Extract all headers (start with `>`) then the *gi number* (see `cut`). Redirect to a file.
 
