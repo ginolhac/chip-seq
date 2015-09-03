@@ -98,6 +98,10 @@
                 
                     <li><a class="toctree-l4" href="#check-model-inferred-by-macs2">check model inferred by MACS2</a></li>
                 
+                    <li><a class="toctree-l4" href="#sort-per-chromosomes-and-coordinates">sort per chromosomes and coordinates</a></li>
+                
+                    <li><a class="toctree-l4" href="#convert-to-bigwig">convert to bigwig</a></li>
+                
                     <li><a class="toctree-l4" href="#fetch-the-files-and-display-them-in-igv">Fetch the files and display them in IGV</a></li>
                 
             
@@ -170,25 +174,22 @@ macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
 </code></pre>
 
 <h3 id="check-model-inferred-by-macs2">check model inferred by MACS2</h3>
-<pre><code> module load lang/R
- Rscript TC1-A-H3K4/TC1-A-H3K4_model.r
- Rscript TC1-ST2-H3K4/TC1_ST2_H3K4_model.r
- ```
-
-fetch the pdf produced.
-
-### sort per chr and coordinates
-
+<p>first load R as a module and execute R script.</p>
+<pre><code>module load lang/R
+Rscript TC1-A-H3K4/TC1-A-H3K4_model.r
+Rscript TC1-ST2-H3K4/TC1_ST2_H3K4_model.r
 </code></pre>
 
-<p>find TC<em> -name '</em>.bdg' | parallel "sort -k1,1 -k2,2n {} &gt; {.}.sort.bdg"</p>
-<pre><code>
-### convert to bigwig
-
+<p>fetch the pdf produced.</p>
+<h3 id="sort-per-chromosomes-and-coordinates">sort per chromosomes and coordinates</h3>
+<pre><code>find TC* -name '*.bdg' | parallel &quot;sort -k1,1 -k2,2n {} &gt; {.}.sort.bdg&quot;
 </code></pre>
 
-<p>find TC<em> -name '</em>sort.bdg' | parallel -j 1 "/work/users/aginolhac/chip-seq/bedGraphToBigWig {} /work/users/aginolhac/chip-seq/references/GRCm38.p3.chom.sizes {.}.bigwig"
-```</p>
+<h3 id="convert-to-bigwig">convert to bigwig</h3>
+<p>in order to get smaller files</p>
+<pre><code>find TC* -name '*sort.bdg' | parallel -j 1 &quot;/work/users/aginolhac/chip-seq/bedGraphToBigWig {} /work/users/aginolhac/chip-seq/references/GRCm38.p3.chom.sizes {.}.bigwig&quot;
+</code></pre>
+
 <h3 id="fetch-the-files-and-display-them-in-igv">Fetch the files and display them in IGV</h3>
               
             </div>
