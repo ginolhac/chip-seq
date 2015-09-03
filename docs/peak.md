@@ -23,11 +23,21 @@ ln -s /work/users/aginolhac/chip-seq/data/*.bam .
 ```
 macs2 callpeak -t TC1-H3K4-ST2-D0.GRCm38.p3.q30.bam \
                -c TC1-I-ST2-D0.GRCm38.p3.q30.bam \
-               -f BAM -g mm -n TC1-ST2-H3K4 -B -q 0.01 --outdir TC1-ST2-H3K4
+               -f BAM -g mm -n TC1-ST2-H3K4-D0 -B -q 0.01 --outdir TC1-ST2-H3K4-D0 &
 macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
                -c TC1-I-A-D3.GRCm38.p3.q30.bam \
-               -f BAM -g mm -n TC1-A-H3K4 -B -q 0.01 --outdir TC1-A-H3K4
+               -f BAM -g mm -n TC1-A-H3K4-D3 -B -q 0.01 --outdir TC1-A-H3K4-D3
 ```
+
+### check model inferred by MACS2
+
+```
+ module load lang/R
+ Rscript TC1-A-H3K4/TC1-A-H3K4_model.r
+ Rscript TC1-ST2-H3K4/TC1_ST2_H3K4_model.r
+ ```
+
+fetch the pdf produced.
 
 ### sort per chr and coordinates
 
