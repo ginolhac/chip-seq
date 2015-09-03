@@ -31,21 +31,25 @@ macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
 
 ### check model inferred by MACS2
 
+first load R as a module and execute R script.
+
 ```
- module load lang/R
- Rscript TC1-A-H3K4/TC1-A-H3K4_model.r
- Rscript TC1-ST2-H3K4/TC1_ST2_H3K4_model.r
- ```
+module load lang/R
+Rscript TC1-A-H3K4/TC1-A-H3K4_model.r
+Rscript TC1-ST2-H3K4/TC1_ST2_H3K4_model.r
+```
 
 fetch the pdf produced.
 
-### sort per chr and coordinates
+### sort per chromosomes and coordinates
 
 ```
 find TC* -name '*.bdg' | parallel "sort -k1,1 -k2,2n {} > {.}.sort.bdg"
 ```
 
 ### convert to bigwig
+
+in order to get smaller files
 
 ```
 find TC* -name '*sort.bdg' | parallel -j 1 "/work/users/aginolhac/chip-seq/bedGraphToBigWig {} /work/users/aginolhac/chip-seq/references/GRCm38.p3.chom.sizes {.}.bigwig"
