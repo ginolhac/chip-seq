@@ -61,9 +61,11 @@ find TC* -name '*sort.bdg' | parallel -j 1 "/work/users/aginolhac/chip-seq/bedGr
 
 The website [GREAT](http://bejerano.stanford.edu/great/public/html/) allows to paste bed regions of enriched regions.
 
-### TC1-A-H3K4_peaks.narrowPeak
+### predict functions of cis-regulatory regions
 
-This file has the different fields
+Using the `TC1-A-H3K4_peaks.narrowPeak` file produced by MACS2.
+
+This file has the different fields:
 
 1. chromosome
 2. start
