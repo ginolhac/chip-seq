@@ -193,7 +193,7 @@ create and go in a sub-folder:
 symbolic link the fastq files:
 <code>ln -s /work/users/aginolhac/chip-seq/raw/C* .</code></p>
 <h2 id="check-integrity-of-files">check integrity of files</h2>
-<p>Just as a side note, such large files are usually a pain to download. Since they are the very raw files after the sequencer (despite basecalling) checking their integrity is worth doing. Computing the <code>md5um</code> ensure you have the same file as your sequence provider. Then <code>paleomix</code> will check the FASTQ are correct, <em>i. e</em> have 4 lines in a correct format.</p>
+<p>Just as a side note, such large files are usually a pain to download. Since they are the very raw files after the sequencer (despite basecalling) checking their integrity is worth doing. Computing the <code>md5sum</code> ensure you have the same file as your sequence provider. Then <code>paleomix</code> will check the FASTQ are correct, <em>i. e</em> have 4 lines in a correct format.</p>
 <p><code>md5sum -c C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.md5</code></p>
               
             </div>
