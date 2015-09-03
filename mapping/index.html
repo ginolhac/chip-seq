@@ -246,6 +246,11 @@ TC1-H3K4-ST2-D0:
 
 <h2 id="check-trimming">check trimming</h2>
 <p>First of all, check using <code>fastqc</code> that the trimming did remove the adapters that were contaminated the reads.</p>
+<pre><code>find . -name &quot;reads.truncated.bz2&quot; | parallel &quot;fastqc {}&quot; &amp;
+</code></pre>
+
+<p>using the character <code>&amp;</code> tells the shell that we want the processes to run in the background. Meaning that you can still run more things while the 4 tasks are running. Check them using <code>htop</code>.</p>
+<p>check especially, the input for ST2, day0 before and after trimming. Did it solve the issue with adapters?</p>
 <h2 id="filter-for-unique-reads">filter for unique reads</h2>
 <p><em>Uniqueness</em> of reads refers to mappability. The less locations a read has in a genome, the higher is mappability will be.
 A common filter is to use <strong>30</strong> as a threshold for filtering reads:</p>

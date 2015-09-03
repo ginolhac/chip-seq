@@ -96,6 +96,12 @@
                 
                     <li><a class="toctree-l4" href="#perform-peak-calling">Perform peak calling</a></li>
                 
+                    <li><a class="toctree-l4" href="#sort-per-chr-and-coordinates">sort per chr and coordinates</a></li>
+                
+                    <li><a class="toctree-l4" href="#convert-to-bigwig">convert to bigwig</a></li>
+                
+                    <li><a class="toctree-l4" href="#fetch-the-files-and-display-them-in-igv">Fetch the files and display them in IGV</a></li>
+                
             
             </ul>
         
@@ -157,16 +163,23 @@ ln -s /work/users/aginolhac/chip-seq/data/*.bam .
 </code></pre>
 
 <h3 id="perform-peak-calling">Perform peak calling</h3>
-<pre><code>macs2 callpeak -t ../TC1_ST2_H3K4_D0.GRCm38.p3.q30.bam \
-               -c ../TC1_ST2_I_D0.GRCm38.p3.q30.bam \
-               -f BAM -g mm -n TC1_ST2_H3K4 -B -q 0.01 --outdir TC1_ST2_H3K4
-# sort per chr and coordinates
-find TC* -name '*.bdg' | parallel &quot;sort -k1,1 -k2,2n {} &gt; {.}.sort.bdg&quot;
-# create chr sizes
-find TC* -name '*.bdg' | parallel &quot;sort -k1,1 -k2,2n {} &gt; {.}.sort.bdg&quot;
-# convert to bigwig
-find TC* -name '*sort.bdg' | parallel -j 1 &quot;bedGraphToBigWig {} ../../references/GRCm38.p3.chom.sizes {.}.bigwig&quot;
+<pre><code>macs2 callpeak -t TC1-H3K4-ST2-D0.GRCm38.p3.q30.bam \
+               -c TC1-I-ST2-D0.GRCm38.p3.q30.bam \
+               -f BAM -g mm -n TC1-ST2-H3K4 -B -q 0.01 --outdir TC1-ST2-H3K4
+macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
+               -c TC1-I-A-D3.GRCm38.p3.q30.bam \
+               -f BAM -g mm -n TC1-A-H3K4 -B -q 0.01 --outdir TC1-A-H3K4
 </code></pre>
+
+<h3 id="sort-per-chr-and-coordinates">sort per chr and coordinates</h3>
+<pre><code>find TC* -name '*.bdg' | parallel &quot;sort -k1,1 -k2,2n {} &gt; {.}.sort.bdg&quot;
+</code></pre>
+
+<h3 id="convert-to-bigwig">convert to bigwig</h3>
+<pre><code>find TC* -name '*sort.bdg' | parallel -j 1 &quot;/work/users/aginolhac/chip-seq/bedGraphToBigWig {} /work/users/aginolhac/chip-seq/references/GRCm38.p3.chom.sizes {.}.bigwig&quot;
+</code></pre>
+
+<h3 id="fetch-the-files-and-display-them-in-igv">Fetch the files and display them in IGV</h3>
               
             </div>
           </div>
