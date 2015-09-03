@@ -56,3 +56,34 @@ find TC* -name '*sort.bdg' | parallel -j 1 "/work/users/aginolhac/chip-seq/bedGr
 ```
 
 ### Fetch the files and display them in IGV
+
+## GREAT analysis
+
+The website [GREAT](http://bejerano.stanford.edu/great/public/html/) allows to paste bed regions of enriched regions.
+
+### TC1-A-H3K4_peaks.narrowPeak
+
+This file has the different fields
+
+1. chromosome
+2. start
+3. end
+4. peak name
+5. integer score for display
+6. strand
+7. fold-change
+8. -log10pvalue
+9. -log10qvalue
+10. relative summit position to peak start
+
+Let's format the file as a 3 fields BED file and focus on more significant peaks filtering on *q-values*.
+
+```
+awk '$9>40' TC1-A-H3K4_peaks.narrowPeak | cut -f 1-3 | sed 's/^/chr/' > TC1-A-H3K4_peaks.bed
+```
+
+then  
+
+* load the BED in [GREAT](http://bejerano.stanford.edu/great/public/html/)  
+* for the relevant genome, `mm10`  
+* association rule: single nearest gene
