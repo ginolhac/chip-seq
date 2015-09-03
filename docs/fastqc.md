@@ -17,13 +17,13 @@ done
 
 ### running in parallel
 
-If you have booked **2** nodes, otherwise updae the `-j` option:
+If you have booked **2** nodes, otherwise update the `-j` option:
 
 ```
 parallel -j 2 "fastqc {}" ::: *.gz
 ```
 
-the `{}` instruction will be replaced by all occurences of the pattern `*.gz`, everything that ends by `.gz`. [`parallel`](http://www.gnu.org/software/parallel/) takes care of submitting a new job so the number of parallel remains the same.
+the `{}` instruction will be replaced by all occurrences of the pattern `*.gz`, everything that ends by `.gz`. [`parallel`](http://www.gnu.org/software/parallel/) takes care of submitting a new job so the number of parallel remains the same.
 
 ### visualize the results
 
