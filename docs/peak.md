@@ -108,9 +108,9 @@ then
 
 A command line looks like
 ```
-rgt-ODIN  --input-1=../TC1-I-A-D5.GRCm38.p3.q30.bam \
-          --input-2=../TC1-I-A-D5.GRCm38.p3.q30.bam \
+rgt-ODIN  --input-1=../TC1-I-ST2-D0.GRCm38.p3.q30.bam \
+          --input-2=../TC1-I-A-D3.GRCm38.p3.q30.bam \
           -m -n TC1-I-A-D0vsD15 -v \
-          TC1-H3K4-ST2-D0.GRCm38.p3.q30.bam TC1-H3K4-A-D15.GRCm38.p3.q30.bam \
+          TC1-H3K4-ST2-D0.GRCm38.p3.q30.bam TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
           ../references/GRCm38.p3.fasta ../references/GRCm38.p3.chom.sizes
 ```
