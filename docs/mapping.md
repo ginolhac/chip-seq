@@ -71,7 +71,7 @@ Prefixes:
   # Name of the prefix; is used as part of the output filenames
   mouse_19:
     # Path to .fasta file containg a set of reference sequences.
-    Path: Path: /work/users/aginolhac/chip-seq/references/chr19.fasta
+    Path: /work/users/aginolhac/chip-seq/references/chr19.fasta
 ```
 
 
