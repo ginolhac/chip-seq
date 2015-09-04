@@ -57,6 +57,18 @@ find TC* -name '*sort.bdg' | parallel -j 1 "/work/users/aginolhac/chip-seq/bedGr
 
 ### Fetch the files and display them in IGV
 
+### Perform peak calling with broad option
+
+```
+macs2 callpeak -t TC1-H3K4-ST2-D0.GRCm38.p3.q30.bam \
+               -c TC1-I-ST2-D0.GRCm38.p3.q30.bam \
+               -f BAM --broad -g mm -n TC1-ST2-H3K4-D0-broad -B -q 0.01 --outdir TC1-ST2-H3K4-D0-broad &
+macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
+               -c TC1-I-A-D3.GRCm38.p3.q30.bam \
+               -f BAM --broad -g mm -n TC1-A-H3K4-D3-broad -B -q 0.01 --outdir TC1-A-H3K4-D3-broad
+```
+
+
 ## GREAT analysis
 
 The website [GREAT](http://bejerano.stanford.edu/great/public/html/) allows to paste bed regions of enriched regions.
