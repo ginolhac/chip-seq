@@ -109,7 +109,7 @@ TC1-H3K4-ST2-D0:
 ### Perform the trimming / mapping
 
 ```
-paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=12 --dry-run mouse.makefile
+paleomix bam_pipeline run --bwa-max-threads=2 --max-threads=12 --dry-run mouse.makefile
 ```
 
 ## check trimming
