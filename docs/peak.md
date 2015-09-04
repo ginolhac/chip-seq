@@ -36,7 +36,7 @@ first load R as a module and execute R script.
 ```
 module load lang/R
 Rscript TC1-A-H3K4-D3/TC1-A-H3K4-D3_model.r
-Rscript TC1-ST2-H3K4-D0/TC1-ST2-D0-H3K4_model.r
+Rscript TC1-ST2-H3K4-D0/TC1-ST2-H3K4-D0_model.r
 ```
 
 fetch the pdf produced.
