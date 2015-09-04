@@ -111,6 +111,8 @@
                 
                     <li><a class="toctree-l4" href="#predict-functions-of-cis-regulatory-regions">predict functions of cis-regulatory regions</a></li>
                 
+                    <li><a class="toctree-l4" href="#differential-peak-calling">Differential peak calling</a></li>
+                
             
             </ul>
         
@@ -232,8 +234,17 @@ macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
 <ul>
 <li>load the BED in <a href="http://bejerano.stanford.edu/great/public/html/">GREAT</a>  </li>
 <li>for the relevant genome, <code>mm10</code>  </li>
-<li>association rule: single nearest gene</li>
+<li>association rule: single nearest genome</li>
 </ul>
+<h3 id="differential-peak-calling">Differential peak calling</h3>
+<p><a href="http://www.regulatory-genomics.org/odin-2/basic-introduction/">ODIN</a> allows to compare two conditions associated with their own controls.</p>
+<p>A command line looks like</p>
+<pre><code>rgt-ODIN  --input-1=../TC1-I-A-D5.GRCm38.p3.q30.bam \
+          --input-2=../TC1-I-A-D5.GRCm38.p3.q30.bam \
+          -m -n TC1-I-A-D0vsD15 -v \
+          TC1-H3K4-ST2-D0.GRCm38.p3.q30.bam TC1-H3K4-A-D15.GRCm38.p3.q30.bam \
+          ../references/GRCm38.p3.fasta ../references/GRCm38.p3.chom.sizes
+</code></pre>
               
             </div>
           </div>
