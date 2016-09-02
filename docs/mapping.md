@@ -1,6 +1,11 @@
 ## paleomix, Next-Generation Sequencing wrapper
 
-this framework is open-source and available at [GitHub](https://github.com/MikkelSchubert/paleomix) and wrap all steps from `fastq` to `bam` files. Actually, this tool can do much more but the rest is out of scope. Its major drawback is that it is dedicated to one machine. For clusters, you are then limited to one node since memory are not shared by default.
+this framework is open-source and available at [GitHub](https://github.com/MikkelSchubert/paleomix) and 
+wrap all steps from `fastq` to `bam` files. 
+Actually, this tool can do much more but the rest is out of scope. 
+Its major drawback is that it is dedicated to one machine. For clusters, you are then limited to one node since memory are not shared by default.
+Full documentation available [here](http://paleomix.readthedocs.io/en/latest/)
+
 
 check if paleomix is available
 ```
@@ -22,9 +27,15 @@ paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=2 --dry-run 000_make
 
 If all fine, re-rerun the command without the `--dry-run` option
 
+Of note, calling `mapDamage` was disabled to limit the computation time (~ 35 min when included).
+Anyway, this tool is not used for ChIP-seq analysis.
+
 ### Generate a makefile
 
-Trimming, mapping imply a lot of steps and it is hard to be sure that everything goes well. Paleomix works in temporary folder, check the data produced and then copy back files that are complete. Plus, you want to test different parameters, add a new reference without having to redo earlier steps while being sure that all files are up-to-date. This goes through a `YAML` makefile. The syntax is pretty forward.
+Trimming, mapping imply a lot of steps and it is hard to be sure that everything goes well. 
+Paleomix works in temporary folder, check the data produced and then copy back files that are complete. 
+Plus, you want to test different parameters, add a new reference without having to redo earlier steps while being sure that all files are up-to-date. 
+This goes through a `YAML` makefile. The syntax is pretty straight-forward.
 
 Create a generic makefile
 ```
@@ -34,7 +45,7 @@ paleomix bam_pipeline mkfile > mouse.makefile
 
 ### Edit the makefile
 
-using your favorite editor, edit the `mouse.makefile`. For example `vim mouse.makefile` or `kate` or `nano`.
+using your favorite text editor, edit the `mouse.makefile`. For example `vim mouse.makefile` or `kate` or `nano`.
 
 #### Options
 

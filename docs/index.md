@@ -1,4 +1,4 @@
-# Chip-seq practical session
+# ChIP-seq practical session
 
 Running all analyses is computationally intensive and despite the power of the current laptops, jobs should be run on high-performance-clusters (HPC).
 
