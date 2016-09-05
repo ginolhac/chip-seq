@@ -161,7 +161,7 @@ Actually, this tool can do much more but the rest is out of scope.
 Its major drawback is that it is dedicated to one machine. For clusters, you are then limited to one node since memory are not shared by default.
 Full documentation available <a href="http://paleomix.readthedocs.io/en/latest/">here</a></p>
 <p>check if paleomix is available</p>
-<pre><code>paleomix -h
+<pre><code>paleomix
 </code></pre>
 
 <h3 id="test-your-install">test your install</h3>
@@ -182,10 +182,11 @@ Anyway, this tool is not used for ChIP-seq analysis.</p>
 <p>Trimming, mapping imply a lot of steps and it is hard to be sure that everything goes well. 
 Paleomix works in temporary folder, check the data produced and then copy back files that are complete. 
 Plus, you want to test different parameters, add a new reference without having to redo earlier steps while being sure that all files are up-to-date. 
-This goes through a <code>YAML</code> makefile. The syntax is pretty straight-forward.</p>
-<p>Create a generic makefile</p>
+This goes through a <code>YAML</code> makefile. The syntax is pretty straight-forward.
+What matters is, that you use <strong>SPACES</strong> and not TABS.</p>
+<p>Create a generic makefile (extension, <code>yml</code> or <code>yaml</code> to get syntax highlights)</p>
 <pre><code>cd ~/chip-seq
-paleomix bam_pipeline mkfile &gt; mouse.makefile
+paleomix bam_pipeline mkfile &gt; mouse.yaml
 </code></pre>
 
 <h3 id="edit-the-makefile">Edit the makefile</h3>
@@ -196,34 +197,41 @@ paleomix bam_pipeline mkfile &gt; mouse.makefile
 </code></pre>
 
 <h4 id="features">Features</h4>
-<p>Under the <code>Features</code> section, comment with a <code>#</code> the part that should be run to fit the following</p>
-<pre><code>Features:
-  - Raw BAM        # Generate BAM from the raw libraries (no indel realignment)
-                   #   Location: {Destination}/{Target}.{Genome}.bam
-#    - Realigned BAM  # Generate indel-realigned BAM using the GATK Indel realigner
-                   #   Location: {Destination}/{Target}.{Genome}.realigned.bam
-#    - mapDamage      # Generate mapDamage plot for each (unrealigned) library
-                   #   Location: {Destination}/{Target}.{Genome}.mapDamage/{Library}/
-  - Coverage       # Generate coverage information for the raw BAM (wo/ indel realignment)
-                   #   Location: {Destination}/{Target}.{Genome}.coverage
-#    - Depths         # Generate histogram of number of sites with a given read-depth
-                   #   Location: {Destination}/{Target}.{Genome}.depths
-  - Summary        # Generate target summary (uses statistics from raw BAM)
-                   #   Location: {Destination}/{Target}.summary
+<p>Under the <code>Features</code> section, update the feature that need to be performed.
+Change <code>yes/no</code> to match the following:</p>
+<pre><code>  Features:
+    RawBAM: yes         # Generate BAM from the raw libraries (no indel realignment)
+                        #   Location: {Destination}/{Target}.{Genome}.bam
+    RealignedBAM: no    # Generate indel-realigned BAM using the GATK Indel realigner
+                        #   Location: {Destination}/{Target}.{Genome}.realigned.bam
+    mapDamage: no       # Generate mapDamage plot for each (unrealigned) library
+                        #   Location: {Destination}/{Target}.{Genome}.mapDamage/{Library}/
+    Coverage: yes       # Generate coverage information for the raw BAM (wo/ indel realignment)
+                        #   Location: {Destination}/{Target}.{Genome}.coverage
+    Depths: no          # Generate histogram of number of sites with a given read-depth
+                        #   Location: {Destination}/{Target}.{Genome}.depths
+    Summary: yes        # Generate summary table for each target
+                        #   Location: {Destination}/{Target}.summary
+    DuplicateHist: no   # Generate histogram of PCR duplicates, for use with PreSeq
+                        #   Location: {Destination}/{Target}.{Genome}.duphist/{Library}/
 </code></pre>
 
+<p>In detail, the <code>RealignedBAM</code> are important for calling variants, we only need to <code>RawBAM</code>.
+Moreover, the <code>Depths</code> also help to define which upper limit could be used for variant calling.
+This is not in the scope of ChIP-seq analysis. Same for mapDamage, only relevant for ancient DNA.</p>
 <h4 id="prefixes">Prefixes</h4>
-<p>These are the references to align read to.</p>
+<p>These are the references to align read to. You could notice that we are going to use only one chromosome
+to save computational time.</p>
 <pre><code>Prefixes:
-  # Name of the prefix; is used as part of the output filenames
   mouse_19:
-    # Path to .fasta file containg a set of reference sequences.
-    Path: /work/users/aginolhac/chip-seq/references/chr19.fasta
+    Path: /work/users/aginolhac/chip-seq/doctoral_school/references/chr19.fasta
 </code></pre>
 
 <h4 id="samples">Samples</h4>
 <p>enter at the end of the makefile, the following lines, according to your login.
-Do use <strong>spaces</strong> and not tabs for the indentation.</p>
+Again, do use <strong>spaces</strong> and not tabs for the indentation. For those who are lazy and use copy/paste in <code>vim</code>
+ use the trick to <code>:set paste</code> to avoid extra spaces, comment hashes etc to be automatically add.</p>
+<p>Be careful to <strong>replace</strong> <code>student01</code> by the relevant username</p>
 <pre><code>TC1-I-A-D3:
   TC1-I-A-D3:
     TC1-I-A-D3:
@@ -250,12 +258,16 @@ TC1-H3K4-ST2-D0:
 </code></pre>
 
 <h3 id="perform-the-trimming-mapping">Perform the trimming / mapping</h3>
-<pre><code>paleomix bam_pipeline run --bwa-max-threads=2 --max-threads=12 --dry-run mouse.makefile
+<p>First use the option <code>--dry-run</code> to spot mistakes.</p>
+<p>Please <strong>adapt</strong> the <code>--max-threads</code> option to the #cpus actually booked</p>
+<pre><code>paleomix bam_pipeline run --bwa-max-threads=2 --max-threads=12 --dry-run mouse.yaml
 </code></pre>
 
+<p>when all green lights are on, remove the <code>dry-run</code> and perform the mapping.</p>
 <h2 id="check-trimming">check trimming</h2>
 <p>First of all, check using <code>fastqc</code> that the trimming did remove the adapters that were contaminated the reads.</p>
-<pre><code>find . -name &quot;reads.truncated.bz2&quot; | parallel &quot;fastqc {}&quot; &amp;
+<p>Again, with <code>parallel</code> specify the <strong>max</strong> number of jobs with the option <code>-j</code> to fit the #cpus booked</p>
+<pre><code>find . -name &quot;reads.truncated.bz2&quot; | parallel -j 12 &quot;fastqc {}&quot; &amp;
 </code></pre>
 
 <p>using the character <code>&amp;</code> tells the shell that we want the processes to run in the background. Meaning that you can still run more things while the 4 tasks are running. Check them using <code>htop</code>.</p>
@@ -272,8 +284,12 @@ A common filter is to use <strong>30</strong> as a threshold for filtering reads
 
 <p>Since we are using only the chr19 for this tutorial, do you think the mappability score is correct? Why?</p>
 <h2 id="filter-for-duplicates">filter for duplicates?</h2>
-<p>A duplicate is a bias that comes from PCR amplification. Reads then stack at the same location and create artificial high coverages. Duplicates have a unclear definition in a mapped file. Usually, single-end reads that are mapped at the same 5' end are considered as duplicates. External coordinate are used for paired-end reads.<br />
-For regular NGS, filtering for duplicates is mandatory. However, for chip-seq since the reads are by nature clustered location this is not recommended. If duplication is observed at the reads level, such as in <code>fastqc</code> output, then filtering may be necessary. Marking duplicates allows to keep track of them without losing them.</p>
+<p>A duplicate is a bias that comes from PCR amplification. Reads then stack at the same location and create artificial high coverages.
+Duplicates have a unclear definition in a mapped file. Usually, single-end reads that are mapped
+at the same 5' end are considered as duplicates. External coordinate are used for paired-end reads.<br />
+For regular NGS, filtering for duplicates is mandatory. However, for chip-seq since the reads are
+by nature clustered location this is not recommended. If duplication is observed at the reads level, 
+such as in <code>fastqc</code> output, then filtering may be necessary. Marking duplicates allows to keep track of them without losing them.</p>
               
             </div>
           </div>
