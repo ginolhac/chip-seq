@@ -44,9 +44,11 @@ create a new folder to work in:
 go inside:
 `cd chip-seq`
 create and go in a sub-folder:
-`mkdir raw ; cd raw`
+`mkdir raw`
+go inside:
+`cd raw`
 symbolic link the fastq files:
-`ln -s /work/users/aginolhac/chip-seq/raw/C* .`
+`ln -s /work/users/aginolhac/chip-seq/doctoral_school/raw/C* .`
 
 
 ## check integrity of files

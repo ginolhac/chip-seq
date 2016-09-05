@@ -1,3 +1,5 @@
 *.jpg
 *.swp
 *.pdf
+DS_Store
+*.pptx

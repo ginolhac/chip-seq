@@ -88,3 +88,8 @@ Job id     Name           User           Submission Date     S Queue
 ```
 
 
+### Test from a student account
+
+using the `ssh` keys provided by Sarah Diehl
+
+`ssh -p 8022 -i ./student06.key student06@access-gaia.uni.lu`
