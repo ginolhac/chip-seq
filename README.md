@@ -39,3 +39,9 @@ then fetch and compress
 
 `parallel -j 6 --progress "fastq-dump --gzip {}" :::: SRR_Acc_List.txt`
 
+mapped with paleomix
+
+`paleomix bam_pipeline --bwa-max-threads=4 --max-threads=12 mikkelsen.yml`
+
+last for ~ 3 hours 30 minutes
+
