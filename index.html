@@ -146,11 +146,12 @@
 <h2 id="log-in-gaia">log in <code>gaia</code></h2>
 <p><a href="https://hpc.uni.lu/systems/gaia/"><code>gaia</code></a> is one of the <a href="https://hpc.uni.lu">HPC of the UNI</a>.</p>
 <h3 id="connect-to-the-frontend">connect to the frontend</h3>
-<p>To connect to it, you need an account and an authorized ssh key. After the setting up of your account, the following should work fi you are using mac or GNU/Lunix:</p>
+<p>To connect to it, you need an account and an authorized ssh key. 
+After the setting up of your account, the following should work if you are using mac or GNU/Linux:</p>
 <pre><code>ssh gaia-cluster
 </code></pre>
 
-<p>Otherwise on Windows, right-click on <code>pageant</code> in system tray and load a saved session <code>gaia</code>. Log as you username.</p>
+<p>Otherwise on Windows, right-click on <code>pageant</code> in the system tray and load a saved session <code>gaia</code>. In the terminal, log as you username, such as <code>student01</code>.</p>
 <p>You should the prompt of the gaia frontend:</p>
 <pre><code>===============================================================================
  /!\ NEVER COMPILE OR RUN YOUR PROGRAMS FROM THIS FRONTEND !
@@ -161,7 +162,8 @@ Linux access.gaia-cluster.uni.lux 3.2.0-4-amd64 unknown
 </code></pre>
 
 <p>Note that your are on the <code>access</code> frontend.</p>
-<p>The frontend is meant for browsing / transfer your files only and you <strong>MUST</strong> connect to a node for any computational work using the utility <code>oarsub</code> described <a href="https://hpc.uni.lu/users/docs/oar.html">here</a>. This program managed the queuing system and dispatch jobs among the resources according to the demands.</p>
+<p>The frontend is meant for browsing / transfer your files only and you <strong>MUST</strong> connect to a node for any computational work 
+using the utility <code>oarsub</code> described <a href="https://hpc.uni.lu/users/docs/oar.html">here</a>. This program managed the queuing system and dispatch jobs among the resources according to the demands.</p>
 <p>Software are organized into modules that provide you with the binaries but also all the environment required for their running processes.</p>
 <h3 id="connect-to-a-node">connect to a node</h3>
 <p>Connecting to a computing node is anyway required to use modules.</p>
@@ -169,11 +171,13 @@ Linux access.gaia-cluster.uni.lux 3.2.0-4-amd64 unknown
 <code>oarsub -I -t inner=3505160 -l nodes=1,walltime=10</code></p>
 <p>For Friday:<br />
 <code>oarsub -I -t inner=3505161 -l nodes=1,walltime=10</code></p>
-<p>Without entering into the details of <a href="https://hpc.uni.lu/users/docs/oar.html#request-hierarchical-resources-with-oarsub">submitting a job</a>, here is the explanation for the above command:</p>
+<p>Without entering into the details of <a href="https://hpc.uni.lu/users/docs/oar.html#request-hierarchical-resources-with-oarsub">submitting a job</a>,
+here is the explanation for the above command:</p>
 <ul>
 <li><code>-I</code> is for interactive, default is passive</li>
 <li><code>-t inner=xxx</code>, connect to a <code>container</code>, specific for today because we booked resources for the course</li>
-<li><code>-l</code> define the resources you need. The less you ask for, the more high up you are in the queue. A <code>node</code> is usually composed of 12 <code>cores</code>, so 12 tasks could be run in parallel. <code>walltime</code> define for how long in hours your job will last.</li>
+<li><code>-l</code> define the resources you need. The less you ask for, the more high up you are in the queue. A <code>node</code> is usually composed of 12 <code>cores</code>, 
+so 12 tasks could be run in parallel. <code>walltime</code> define for how long in hours your job will last.</li>
 </ul>
 <p>Once logged in, the prompt changes for:</p>
 <pre><code>09:14:48 your_login@gaia-66(gaia-cluster)[OAR3511326-&gt;717]
@@ -181,16 +185,20 @@ Linux access.gaia-cluster.uni.lux 3.2.0-4-amd64 unknown
 
 <p>where you see the node you are logged to (here <code>gaia-66</code>), the job ID (3511326) and the time in minutes before your job will be killed (717 minutes).</p>
 <h2 id="monitoring-your-the-resources-used">monitoring your the resources used</h2>
-<p>On a shared cluster, you have to take of <strong>three</strong> things:
-1. memory usage
-2. cores used
-3. disk space</p>
+<p>On a shared cluster, you have to take of <strong>three</strong> things:</p>
+<ol>
+<li>memory usage</li>
+<li>cores used</li>
+<li>disk space</li>
+</ol>
 <h3 id="memory">memory</h3>
 <p>Each node has
-On a interactive session, use the command <code>htop</code> to see if the memory is not full. If the system is swapping (using hard drives for memory storage) it becomes super slow and eventually stalled.</p>
+On a interactive session, use the command <code>htop</code> to see if the memory is not full. If the system is swapping (using hard drives for memory storage)
+it becomes super slow and eventually stalled.</p>
 <p>For passive sessions, you can use <a href="https://hpc.uni.lu/gaia/ganglia/">ganglia</a> to check out the nodes you are using.</p>
 <h3 id="cores">cores</h3>
-<p>even if you book 10 cores, nothing will prevent you from starting 100 jobs. They will run but then tasks are distributed on the available resources. In this example, each task will use 1/10th of a core, then runs very slowly.<br />
+<p>even if you book 10 cores, nothing will prevent you from starting 100 jobs. They will run but then tasks are distributed on the available resources.
+In this example, each task will use 1/10th of a core, then runs very slowly.<br />
 On a interactive session, use the command <code>htop</code> to see if a process is correctly using close to 100% of a core.</p>
 <h3 id="disk-space">disk space</h3>
 <p>Like on your local machine, you need to check how much data you used.
@@ -244,5 +252,5 @@ Using a command line, you could use</p>
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2016-09-05 14:33:48.266260
+Build Date UTC : 2016-09-06 13:25:44.857457
 -->
