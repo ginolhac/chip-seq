@@ -79,15 +79,15 @@ Using the `TC1-A-H3K4_peaks.narrowPeak` file produced by MACS2.
 This file has the different fields:
 
 1. chromosome
-2. start
-3. end
-4. peak name
-5. integer score for display
-6. strand
-7. fold-change
-8. -log10pvalue
-9. -log10qvalue
-10. relative summit position to peak start
+1. start
+1. end
+1. peak name
+1. integer score for display
+1. strand
+1. fold-change
+1. -log<sub>10</sub> pvalue
+1. -log<sub>10</sub> qvalue
+1. relative summit position to peak start
 
 Let's format the file as a 3 fields BED file and focus on more significant peaks filtering on *q-values*.
 
