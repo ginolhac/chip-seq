@@ -156,7 +156,7 @@ Prefixes:
        # to be trimmed and mapped for this lane (may include wildcards).
 #      NAME_OF_LANE: PATH_WITH_WILDCARDS
 
-Mikkelsen:
+Mikkelsen_3T3L1_WCE:
   SAMN00011733:
     3T3L1_WCE:
       SRR040087: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040087.fastq.gz
@@ -168,21 +168,25 @@ Mikkelsen:
       SRR040093: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040093.fastq.gz
       SRR040094: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040094.fastq.gz
       SRR040095: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040095.fastq.gz
+Mikkelsen_3T3L1_t2_H3K4me3:
   SAMN00011741:
     3T3L1_t2_H3K4me3:
       SRR040113: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040113.fastq.gz
       SRR040114: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040114.fastq.gz
       SRR040115: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040115.fastq.gz
       SRR040116: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040116.fastq.gz
+Mikkelsen_3T3L1_t2_H3K27ac:
   SAMN00011744:
     3T3L1_t2_H3K27ac:
       SRR040121: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040121.fastq.gz
       SRR040122: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040122.fastq.gz
+Mikkelsen_3T3L1_t3_H3K4me3:
   SAMN00011748:
     3T3L1_t3_H3K4me3:
       SRR040131: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040131.fastq.gz
       SRR040132: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040132.fastq.gz
       SRR040133: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040133.fastq.gz
+Mikkelsen_3T3L1_t3_H3K27ac:
   SAMN00011751:
     3T3L1_t3_H3K27ac:
       SRR040140: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040140.fastq.gz
