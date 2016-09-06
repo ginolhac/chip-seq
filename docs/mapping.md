@@ -172,9 +172,9 @@ Since we are using only the chr19 for this tutorial, do you think the mappabilit
 
 ## filter for duplicates?
 
-A duplicate is a bias that comes from PCR amplification. Reads then stack at the same location and create artificial high coverages.
+Duplication is a bias that comes from PCR amplification. Reads then stack at the same location and create artificial high depth of coverage.
 Duplicates have a unclear definition in a mapped file. Usually, single-end reads that are mapped
 at the same 5' end are considered as duplicates. External coordinate are used for paired-end reads.  
-For regular NGS, filtering for duplicates is mandatory. However, for chip-seq since the reads are
-by nature clustered location this is not recommended. If duplication is observed at the reads level, 
+For regular NGS, filtering for duplicates is mandatory. However, for ChIP-seq since the reads are,
+by nature, clustered at one location this is not recommended. If duplication is observed at the reads level, 
 such as in `fastqc` output, then filtering may be necessary. Marking duplicates allows to keep track of them without losing them.

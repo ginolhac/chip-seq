@@ -87,9 +87,31 @@ Job id     Name           User           Submission Date     S Queue
 3950995                   aginolhac      2016-08-26 11:26:09 W default
 ```
 
+## set-up ssh keys on Windows
+
+download `putty`, `puttygen` and `pageant` [here](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
+
+1. Open `puttygen` to convert keys to `.ppk` format. 
+    * load private key, should say imported with success
+    * save private key with `.ppk` extension
+1. Open `pageant` and open the ssh key in `ppk` format
+1. Open `putty` with a new session
+    * host: `access-gaia.uni.lu
+    * port: `8022`
+    * save as `gaia`
+1. load the `gaia` session, a prompt asks for the login `student??` and should do
 
 ### Test from a student account
 
 using the `ssh` keys provided by Sarah Diehl
 
 `ssh -p 8022 -i ./student06.key student06@access-gaia.uni.lu`
+
+student01 = Jonathan
+student02 = Julia
+student03 = Daniela
+student04 = Xiabong
+student05 = Turkan
+student06 = test
+student07 = Jonas
+student08 = Nicolas
