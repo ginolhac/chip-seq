@@ -34,7 +34,6 @@ macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
 first load R as a module and execute R script.
 
 ```
-module load lang/R
 Rscript TC1-A-H3K4-D3/TC1-A-H3K4-D3_model.r
 Rscript TC1-ST2-H3K4-D0/TC1-ST2-H3K4-D0_model.r
 ```
@@ -52,7 +51,7 @@ find TC* -name '*.bdg' | parallel "sort -k1,1 -k2,2n {} > {.}.sort.bdg"
 in order to get smaller files
 
 ```
-find TC* -name '*sort.bdg' | parallel -j 1 "/work/users/aginolhac/chip-seq/bedGraphToBigWig {} /work/users/aginolhac/chip-seq/references/GRCm38.p3.chom.sizes {.}.bigwig"
+find TC* -name '*sort.bdg' | parallel -j 1 "/work/users/aginolhac/chip-seq/doctoral_school/bedGraphToBigWig {} /work/users/aginolhac/chip-seq/doctoral_school/references/GRCm38.p3.chom.sizes {.}.bigwig"
 ```
 
 ### Fetch the files and display them in IGV

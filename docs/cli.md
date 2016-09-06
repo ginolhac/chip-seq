@@ -2,8 +2,21 @@
 
 The programs you call on a terminal are not so different from their graphical interface you are used to on windows/mac.
 
-You need to know these commands:  
-`pwd more less cp mv mkdir ls cd chmod find`
+You need to know these commands: 
+
+```
+pwd
+more
+less
+cp
+mv
+mkdir
+ls
+cd
+chmod
+rm
+find
+```
 
 #### Two useful tips:
 
@@ -42,7 +55,8 @@ now we have the same file, with same name, one in the TEST folder, one in the cu
 use the up arrow, you should see 'cp TEST/test .'
 and change it for  
 `cp TEST/test test2`  
-the first and last field of `ls -l` should provide  
+the first and last field of `ls -l` should provide
+
 ```
 drwxr-xr-x TEST
 -rw-r--r-- test

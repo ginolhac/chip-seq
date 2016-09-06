@@ -1,8 +1,10 @@
 ## Chip-seq practical session
 
 
-### Public data
+### Public data, Mikkelsen et al.
 
+
+#### Fetch fastq
 
 
 Go on [NCBI GEO](http://www.ncbi.nlm.nih.gov/sra?linkname=bioproject_sra_all&from_uid=125035)
@@ -39,9 +41,35 @@ then fetch and compress
 
 `parallel -j 6 --progress "fastq-dump --gzip {}" :::: SRR_Acc_List.txt`
 
-mapped with paleomix
+#### mapped with paleomix
 
 `paleomix bam_pipeline --bwa-max-threads=4 --max-threads=12 mikkelsen.yml`
 
 last for ~ 3 hours 30 minutes
+
+
+
+#### peak calling
+
+H3K4
+
+```
+macs2 callpeak -tMikkelsen_3T3L1_t2_H3K4me3.GRCm38.p3.bam \
+               -c Mikkelsen_3T3L1_WCE.GRCm38.p3.bam \
+               -f BAM -g mm -n 3T3L1_t2_H3K4 -B -q 0.01 --outdir 3T3L1_t2_H3K4 &
+macs2 callpeak -t Mikkelsen_3T3L1_t3_H3K4me3.GRCm38.p3.bam \
+               -c Mikkelsen_3T3L1_WCE.GRCm38.p3.bam \
+               -f BAM -g mm -n3T3L1_t3_H3K4 -B -q 0.01 --outdir 3T3L1_t3_H3K4
+```
+
+H3K27
+
+```
+macs2 callpeak -tMikkelsen_3T3L1_t2_H3K27ac.GRCm38.p3.bam \
+               -c Mikkelsen_3T3L1_WCE.GRCm38.p3.bam --broad  \
+               -f BAM -g mm -n 3T3L1_t2_H3K27ac -B -q 0.01 --outdir 3T3L1_t2_H3K27ac &
+macs2 callpeak -t Mikkelsen_3T3L1_t3_H3K27ac.GRCm38.p3.bam \
+               -c Mikkelsen_3T3L1_WCE.GRCm38.p3.bam --broad \
+               -f BAM -g mm -n3T3L1_t3_H3K27ac -B -q 0.01 --outdir 3T3L1_t3_H3K27ac
+```
 

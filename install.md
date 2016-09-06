@@ -115,3 +115,12 @@ student05 = Turkan
 student06 = test
 student07 = Jonas
 student08 = Nicolas
+
+## mkdocs
+
+set-up done in `mkdocs.yml`
+
+publish on [github](http://ginolhac.github.io/chip-seq/)
+```
+mkdocs gh-deploy
+```
