@@ -195,7 +195,7 @@ see if present in the folder<br />
 copy it in the current folder<br />
 <code>cp TEST/test .</code><br />
 <code>.</code> is the current folder, <code>..</code> is the folder one level close to the root <code>/</code>
-now we have the same file, with same name, one in the TEST folder, one in the current.
+now we have the same file, with the same name, one in the TEST folder, one in the current.
 use the up arrow, you should see 'cp TEST/test .'
 and change it for<br />
 <code>cp TEST/test test2</code><br />
@@ -208,7 +208,7 @@ the first and last field of <code>ls -l</code> should provide</p>
 <p>trash test<br />
 <code>rm test</code><br />
 if this command doesn't ask for confirmation, let me know we may change this behavior.</p>
-<p><code>chmod</code> allows to change permissions</p>
+<p><code>chmod</code> allows changing permissions</p>
 <p>try to read the file <code>test</code> after<br />
 <code>chmod 222 test</code></p>
 <p><code>r</code> stands for read, <code>w</code> for write and <code>x</code> for execution for files and browsing for folders.<br />
@@ -231,7 +231,7 @@ you have two modes</p>
 </ul>
 <p>By default you are in the command mode, let's enter in the editor mode with either <code>i</code> or <code>insert</code> on your keyboard.
 You should see<code>--INSERT--</code> at the bottom.
-Now you can edit you file.
+Now you can edit your file.
 When its finished, press <code>ECHAP</code> to return in the command mode. You must enter <code>:</code> for each command.
 The useful ones  </p>
 <ul>
@@ -240,7 +240,7 @@ The useful ones  </p>
 <li><code>:wq</code> write and quit</li>
 </ul>
 <h3 id="exercise-2">Exercise 2</h3>
-<p><code>find</code>is great but not at all user-friendly.
+<p><code>find</code> is great but not at all user-friendly.
 Try to find all your files which are bigger than 1 Go.
 then which are older than 1 year.
 Imagine doing this with windows...</p>
@@ -271,7 +271,7 @@ Think of piping <code>head</code> and <code>tail</code></p>
 <h4 id="extra-questions">Extra questions</h4>
 <ul>
 <li>
-<p>there is a empty file after each sequence. Try to remove them (my favorite is <code>sed</code>, but check the <code>-v</code> option of grep)</p>
+<p>there is an empty file after each sequence. Try to remove them (my favorite is <code>sed</code>, but check the <code>-v</code> option of grep)</p>
 </li>
 <li>
 <p>Extract all headers (start with <code>&gt;</code>) then the <em>gi number</em> (see <code>cut</code>). Redirect to a file.</p>

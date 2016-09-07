@@ -183,7 +183,7 @@ macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
 </code></pre>
 
 <h3 id="check-model-inferred-by-macs2">check model inferred by MACS2</h3>
-<p>first load R as a module and execute R script.</p>
+<p>execute R script.</p>
 <pre><code>Rscript TC1-A-H3K4-D3/TC1-A-H3K4-D3_model.r
 Rscript TC1-ST2-H3K4-D0/TC1-ST2-H3K4-D0_model.r
 </code></pre>
@@ -209,7 +209,7 @@ macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
 </code></pre>
 
 <h2 id="great-analysis">GREAT analysis</h2>
-<p>The website <a href="http://bejerano.stanford.edu/great/public/html/">GREAT</a> allows to paste bed regions of enriched regions.</p>
+<p>The website <a href="http://bejerano.stanford.edu/great/public/html/">GREAT</a> allows pasting bed regions of enriched regions.</p>
 <h3 id="predict-functions-of-cis-regulatory-regions">predict functions of cis-regulatory regions</h3>
 <p>Using the <code>TC1-A-H3K4_peaks.narrowPeak</code> file produced by MACS2.</p>
 <p>This file has the different fields:</p>
@@ -236,7 +236,7 @@ macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
 <li>association rule: single nearest genome</li>
 </ul>
 <h3 id="differential-peak-calling">Differential peak calling</h3>
-<p><a href="http://www.regulatory-genomics.org/odin-2/basic-introduction/">ODIN</a> allows to compare two conditions associated with their own controls.</p>
+<p><a href="http://www.regulatory-genomics.org/odin-2/basic-introduction/">ODIN</a> allows comparing two conditions associated with their own controls.</p>
 <p>A command line looks like</p>
 <pre><code>rgt-ODIN  --input-1=../TC1-I-ST2-D0.GRCm38.p3.q30.bam \
           --input-2=../TC1-I-A-D3.GRCm38.p3.q30.bam \

@@ -155,10 +155,11 @@
             <div class="section">
               
                 <h2 id="paleomix-next-generation-sequencing-wrapper">paleomix, Next-Generation Sequencing wrapper</h2>
-<p>this framework is open-source and available at <a href="https://github.com/MikkelSchubert/paleomix">GitHub</a> and 
-wrap all steps from <code>fastq</code> to <code>bam</code> files. 
+<p>this framework is open-source and available on <a href="https://github.com/MikkelSchubert/paleomix">GitHub</a> and 
+wraps all steps from <code>fastq</code> to <code>bam</code> files. 
 Actually, this tool can do much more but the rest is out of scope. 
 Its major drawback is that it is dedicated to one machine. For clusters, you are then limited to one node since memory are not shared by default.
+Actually, not entirely true since independent tasks can be spawn on a separate machine.
 Full documentation available <a href="http://paleomix.readthedocs.io/en/latest/">here</a></p>
 <p>check if paleomix is available</p>
 <pre><code>paleomix
@@ -180,7 +181,7 @@ cd ~/install/paleomix/example
 Anyway, this tool is not used for ChIP-seq analysis.</p>
 <h3 id="generate-a-makefile">Generate a makefile</h3>
 <p>Trimming, mapping imply a lot of steps and it is hard to be sure that everything goes well. 
-Paleomix works in temporary folder, check the data produced and then copy back files that are complete. 
+Paleomix works in temporary folders, check the data produced and then copy back files that are complete. 
 Plus, you want to test different parameters, add a new reference without having to redo earlier steps while being sure that all files are up-to-date. 
 This goes through a <code>YAML</code> makefile. The syntax is pretty straight-forward.
 What matters is, that you use <strong>SPACES</strong> and not TABS.</p>
@@ -192,12 +193,12 @@ paleomix bam_pipeline mkfile &gt; mouse.yaml
 <h3 id="edit-the-makefile">Edit the makefile</h3>
 <p>using your favorite text editor, edit the <code>mouse.makefile</code>. For example <code>vim mouse.makefile</code> or <code>kate</code> or <code>nano</code>.</p>
 <h4 id="options">Options</h4>
-<p>For duplicates, change the default behaviour from <code>filter</code> to <code>mark</code>  </p>
+<p>For duplicates, change the default behavior from <code>filter</code> to <code>mark</code>  </p>
 <pre><code>  PCRDuplicates: mark
 </code></pre>
 
 <h4 id="features">Features</h4>
-<p>Under the <code>Features</code> section, update the feature that need to be performed.
+<p>Under the <code>Features</code> section, update the featurse that need to be performed.
 Change <code>yes/no</code> to match the following:</p>
 <pre><code>  Features:
     RawBAM: yes         # Generate BAM from the raw libraries (no indel realignment)
@@ -230,7 +231,7 @@ to save computational time.</p>
 <h4 id="samples">Samples</h4>
 <p>enter at the end of the makefile, the following lines, according to your login.
 Again, do use <strong>spaces</strong> and not tabs for the indentation. For those who are lazy and use copy/paste in <code>vim</code>
- use the trick to <code>:set paste</code> to avoid extra spaces, comment hashes etc to be automatically add.</p>
+ use the trick to <code>:set paste</code> to avoid extra spaces, comment hashes etc to be automatically added.</p>
 <p>Be careful to <strong>replace</strong> <code>student01</code> by the relevant username</p>
 <pre><code>TC1-I-A-D3:
   TC1-I-A-D3:
@@ -273,7 +274,7 @@ TC1-H3K4-ST2-D0:
 <p>using the character <code>&amp;</code> tells the shell that we want the processes to run in the background. Meaning that you can still run more things while the 4 tasks are running. Check them using <code>htop</code>.</p>
 <p>check especially, the input for ST2, day0 before and after trimming. Did it solve the issue with adapters?</p>
 <h2 id="filter-for-unique-reads">filter for unique reads</h2>
-<p><em>Uniqueness</em> of reads refers to mappability. The less locations a read has in a genome, the higher is mappability will be.
+<p><em>Uniqueness</em> of reads refers to mappability. The fewer locations a read has in a genome, the higher is mappability will be.
 A common filter is to use <strong>30</strong> as a threshold for filtering reads:</p>
 <pre><code>samtools view -b -q 30 file.bam &gt; file.q30.bam
 </code></pre>
@@ -285,11 +286,11 @@ A common filter is to use <strong>30</strong> as a threshold for filtering reads
 <p>Since we are using only the chr19 for this tutorial, do you think the mappability score is correct? Why?</p>
 <h2 id="filter-for-duplicates">filter for duplicates?</h2>
 <p>Duplication is a bias that comes from PCR amplification. Reads then stack at the same location and create artificial high depth of coverage.
-Duplicates have a unclear definition in a mapped file. Usually, single-end reads that are mapped
-at the same 5' end are considered as duplicates. External coordinate are used for paired-end reads.<br />
+Duplicates have an unclear definition in a mapped file. Usually, single-end reads that are mapped
+at the same 5' end are considered as duplicates. External coordinates are used for paired-end reads.<br />
 For regular NGS, filtering for duplicates is mandatory. However, for ChIP-seq since the reads are,
 by nature, clustered at one location this is not recommended. If duplication is observed at the reads level, 
-such as in <code>fastqc</code> output, then filtering may be necessary. Marking duplicates allows to keep track of them without losing them.</p>
+such as in <code>fastqc</code> output, then filtering may be necessary. Marking duplicates allow keeping track of them without losing them.</p>
               
             </div>
           </div>

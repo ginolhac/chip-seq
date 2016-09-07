@@ -59,7 +59,7 @@
                 
                     <li><a class="toctree-l4" href="#log-in-gaia">log in gaia</a></li>
                 
-                    <li><a class="toctree-l4" href="#monitoring-your-the-resources-used">monitoring your the resources used</a></li>
+                    <li><a class="toctree-l4" href="#monitoring-the-resources-used">monitoring the resources used</a></li>
                 
             
             </ul>
@@ -142,17 +142,19 @@
             <div class="section">
               
                 <h1 id="chip-seq-practical-session">ChIP-seq practical session</h1>
-<p>Running all analyses is computationally intensive and despite the power of the current laptops, jobs should be run on high-performance-clusters (HPC).</p>
+<p>Running all analyses is computationally intensive and despite the power of the current laptops, jobs should be run on high-performance clusters (HPC).</p>
 <h2 id="log-in-gaia">log in <code>gaia</code></h2>
 <p><a href="https://hpc.uni.lu/systems/gaia/"><code>gaia</code></a> is one of the <a href="https://hpc.uni.lu">HPC of the UNI</a>.</p>
 <h3 id="connect-to-the-frontend">connect to the frontend</h3>
-<p>To connect to it, you need an account and an authorized ssh key. 
-After the setting up of your account, the following should work if you are using mac or GNU/Linux:</p>
+<p>To connect to it, you need an account and an authorized ssh key. Actually, a pair of keys, one public and one private.
+The public key is sent over when connecting to the remote and compared to the authorized private key.
+A match allows the sender to log in. No password required.</p>
+<p>After the setting up of your account, the following should work if you are using mac or GNU/Linux:</p>
 <pre><code>ssh gaia-cluster
 </code></pre>
 
-<p>Otherwise on Windows, right-click on <code>pageant</code> in the system tray and load a saved session <code>gaia</code>. In the terminal, log as you username, such as <code>student01</code>.</p>
-<p>You should the prompt of the gaia frontend:</p>
+<p>Otherwise, on Windows, right-click on <code>pageant</code> in the system tray and load a saved session <code>gaia</code>. In the terminal, log as your username, such as <code>student01</code>.</p>
+<p>You should see the following prompt of the gaia frontend:</p>
 <pre><code>===============================================================================
  /!\ NEVER COMPILE OR RUN YOUR PROGRAMS FROM THIS FRONTEND !
      First reserve your nodes (using oarsub(1))
@@ -161,10 +163,10 @@ Linux access.gaia-cluster.uni.lux 3.2.0-4-amd64 unknown
 0 16:45:49 your_login@access(gaia-cluster) ~ $
 </code></pre>
 
-<p>Note that your are on the <code>access</code> frontend.</p>
-<p>The frontend is meant for browsing / transfer your files only and you <strong>MUST</strong> connect to a node for any computational work 
+<p>Note that you are on the <code>access</code> frontend.</p>
+<p>The frontend is meant for browsing / transferring your files only and you <strong>MUST</strong> connect to a node for any computational work 
 using the utility <code>oarsub</code> described <a href="https://hpc.uni.lu/users/docs/oar.html">here</a>. This program managed the queuing system and dispatch jobs among the resources according to the demands.</p>
-<p>Software are organized into modules that provide you with the binaries but also all the environment required for their running processes.</p>
+<p>Softwares are organized into modules that provide you with the binaries but also all the environment required for their running processes.</p>
 <h3 id="connect-to-a-node">connect to a node</h3>
 <p>Connecting to a computing node is anyway required to use modules.</p>
 <p>For Thursday:<br />
@@ -184,7 +186,7 @@ so 12 tasks could be run in parallel. <code>walltime</code> define for how long 
 </code></pre>
 
 <p>where you see the node you are logged to (here <code>gaia-66</code>), the job ID (3511326) and the time in minutes before your job will be killed (717 minutes).</p>
-<h2 id="monitoring-your-the-resources-used">monitoring your the resources used</h2>
+<h2 id="monitoring-the-resources-used">monitoring the resources used</h2>
 <p>On a shared cluster, you have to take of <strong>three</strong> things:</p>
 <ol>
 <li>memory usage</li>
@@ -193,13 +195,13 @@ so 12 tasks could be run in parallel. <code>walltime</code> define for how long 
 </ol>
 <h3 id="memory">memory</h3>
 <p>Each node has
-On a interactive session, use the command <code>htop</code> to see if the memory is not full. If the system is swapping (using hard drives for memory storage)
+On an interactive session, use the command <code>htop</code> to see if the memory is not full. If the system is swapping (using hard drives for memory storage)
 it becomes super slow and eventually stalled.</p>
 <p>For passive sessions, you can use <a href="https://hpc.uni.lu/gaia/ganglia/">ganglia</a> to check out the nodes you are using.</p>
 <h3 id="cores">cores</h3>
 <p>even if you book 10 cores, nothing will prevent you from starting 100 jobs. They will run but then tasks are distributed on the available resources.
 In this example, each task will use 1/10th of a core, then runs very slowly.<br />
-On a interactive session, use the command <code>htop</code> to see if a process is correctly using close to 100% of a core.</p>
+On an interactive session, use the command <code>htop</code> to see if a process is correctly using close to 100% of a core.</p>
 <h3 id="disk-space">disk space</h3>
 <p>Like on your local machine, you need to check how much data you used.
 Using a command line, you could use</p>
@@ -252,5 +254,5 @@ Using a command line, you could use</p>
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2016-09-06 14:29:46.887990
+Build Date UTC : 2016-09-07 07:43:29.878198
 -->

@@ -156,11 +156,12 @@ done
 </code></pre>
 
 <h3 id="running-in-parallel">running in parallel</h3>
-<p>If you have booked <strong>2</strong> nodes, otherwise update the <code>-j</code> option:</p>
+<p>If you have booked <strong>2</strong> cores, otherwise update the <code>-j</code> option:</p>
 <pre><code>parallel -j 2 &quot;fastqc {}&quot; ::: *.gz
 </code></pre>
 
-<p>the <code>{}</code> instruction will be replaced by all occurrences of the pattern <code>*.gz</code>, everything that ends by <code>.gz</code>. <a href="http://www.gnu.org/software/parallel/"><code>parallel</code></a> takes care of submitting a new job so the number of parallel remains the same.</p>
+<p>the <code>{}</code> instruction will be replaced by all occurrences of the pattern <code>*.gz</code>, everything that ends by <code>.gz</code>. <a href="http://www.gnu.org/software/parallel/"><code>parallel</code></a> 
+takes care of submitting a new job so the number of parallel remains the same.</p>
 <h3 id="visualize-the-results">visualize the results</h3>
 <p>collect the <code>html</code> files using either <code>rsync</code>, <code>scp</code> for command lines or <a href="https://filezilla-project.org/download.php?type=client">FileZilla</a> for  GUI tool.</p>
 <p>You should observe some issues that needs to be solve.</p>
