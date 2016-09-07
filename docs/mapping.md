@@ -1,9 +1,10 @@
 ## paleomix, Next-Generation Sequencing wrapper
 
-this framework is open-source and available at [GitHub](https://github.com/MikkelSchubert/paleomix) and 
-wrap all steps from `fastq` to `bam` files. 
+this framework is open-source and available on [GitHub](https://github.com/MikkelSchubert/paleomix) and 
+wraps all steps from `fastq` to `bam` files. 
 Actually, this tool can do much more but the rest is out of scope. 
 Its major drawback is that it is dedicated to one machine. For clusters, you are then limited to one node since memory are not shared by default.
+Actually, not entirely true since independent tasks can be spawn on a separate machine.
 Full documentation available [here](http://paleomix.readthedocs.io/en/latest/)
 
 
@@ -33,7 +34,7 @@ Anyway, this tool is not used for ChIP-seq analysis.
 ### Generate a makefile
 
 Trimming, mapping imply a lot of steps and it is hard to be sure that everything goes well. 
-Paleomix works in temporary folder, check the data produced and then copy back files that are complete. 
+Paleomix works in temporary folders, check the data produced and then copy back files that are complete. 
 Plus, you want to test different parameters, add a new reference without having to redo earlier steps while being sure that all files are up-to-date. 
 This goes through a `YAML` makefile. The syntax is pretty straight-forward.
 What matters is, that you use **SPACES** and not TABS.
@@ -50,14 +51,14 @@ using your favorite text editor, edit the `mouse.makefile`. For example `vim mou
 
 #### Options
 
-For duplicates, change the default behaviour from `filter` to `mark`  
+For duplicates, change the default behavior from `filter` to `mark`  
 ```
   PCRDuplicates: mark
 ```
 
 #### Features
 
-Under the `Features` section, update the feature that need to be performed.
+Under the `Features` section, update the featurse that need to be performed.
 Change `yes/no` to match the following:
 
 ```
@@ -98,7 +99,7 @@ Prefixes:
 
 enter at the end of the makefile, the following lines, according to your login.
 Again, do use **spaces** and not tabs for the indentation. For those who are lazy and use copy/paste in `vim`
- use the trick to `:set paste` to avoid extra spaces, comment hashes etc to be automatically add.
+ use the trick to `:set paste` to avoid extra spaces, comment hashes etc to be automatically added.
 
  Be careful to **replace** `student01` by the relevant username
 
@@ -156,7 +157,7 @@ check especially, the input for ST2, day0 before and after trimming. Did it solv
 
 ## filter for unique reads
 
-*Uniqueness* of reads refers to mappability. The less locations a read has in a genome, the higher is mappability will be.
+*Uniqueness* of reads refers to mappability. The fewer locations a read has in a genome, the higher is mappability will be.
 A common filter is to use **30** as a threshold for filtering reads:
 
 ```
@@ -164,6 +165,7 @@ samtools view -b -q 30 file.bam > file.q30.bam
 ```
 
 Filter in parallel
+
 ```
 parallel "samtools view -b -q 30 {} > {.}.q30.bam" ::: *.bam
 ```
@@ -173,8 +175,8 @@ Since we are using only the chr19 for this tutorial, do you think the mappabilit
 ## filter for duplicates?
 
 Duplication is a bias that comes from PCR amplification. Reads then stack at the same location and create artificial high depth of coverage.
-Duplicates have a unclear definition in a mapped file. Usually, single-end reads that are mapped
-at the same 5' end are considered as duplicates. External coordinate are used for paired-end reads.  
+Duplicates have an unclear definition in a mapped file. Usually, single-end reads that are mapped
+at the same 5' end are considered as duplicates. External coordinates are used for paired-end reads.  
 For regular NGS, filtering for duplicates is mandatory. However, for ChIP-seq since the reads are,
 by nature, clustered at one location this is not recommended. If duplication is observed at the reads level, 
-such as in `fastqc` output, then filtering may be necessary. Marking duplicates allows to keep track of them without losing them.
+such as in `fastqc` output, then filtering may be necessary. Marking duplicates allow keeping track of them without losing them.

@@ -51,7 +51,7 @@ see if present in the folder
 copy it in the current folder  
 `cp TEST/test .`  
  `.` is the current folder, `..` is the folder one level close to the root `/`
-now we have the same file, with same name, one in the TEST folder, one in the current.
+now we have the same file, with the same name, one in the TEST folder, one in the current.
 use the up arrow, you should see 'cp TEST/test .'
 and change it for  
 `cp TEST/test test2`  
@@ -67,7 +67,7 @@ trash test
 `rm test`  
 if this command doesn't ask for confirmation, let me know we may change this behavior.
 
-`chmod` allows to change permissions
+`chmod` allows changing permissions
 
 try to read the file `test` after  
 `chmod 222 test`
@@ -94,7 +94,7 @@ you have two modes
 
 By default you are in the command mode, let's enter in the editor mode with either `i` or `insert` on your keyboard.
 You should see` --INSERT--` at the bottom.
-Now you can edit you file.
+Now you can edit your file.
 When its finished, press `ECHAP` to return in the command mode. You must enter `:` for each command.
 The useful ones  
 
@@ -104,7 +104,7 @@ The useful ones
 
 ### Exercise 2
 
-`find `is great but not at all user-friendly.
+`find` is great but not at all user-friendly.
 Try to find all your files which are bigger than 1 Go.
 then which are older than 1 year.
 Imagine doing this with windows...
@@ -132,7 +132,7 @@ Think of piping `head` and `tail`
 
 #### Extra questions
 
-* there is a empty file after each sequence. Try to remove them (my favorite is `sed`, but check the `-v` option of grep)
+* there is an empty file after each sequence. Try to remove them (my favorite is `sed`, but check the `-v` option of grep)
 
 * Extract all headers (start with `>`) then the *gi number* (see `cut`). Redirect to a file.
 

@@ -31,7 +31,7 @@ macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
 
 ### check model inferred by MACS2
 
-first load R as a module and execute R script.
+execute R script.
 
 ```
 Rscript TC1-A-H3K4-D3/TC1-A-H3K4-D3_model.r
@@ -70,7 +70,7 @@ macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
 
 ## GREAT analysis
 
-The website [GREAT](http://bejerano.stanford.edu/great/public/html/) allows to paste bed regions of enriched regions.
+The website [GREAT](http://bejerano.stanford.edu/great/public/html/) allows pasting bed regions of enriched regions.
 
 ### predict functions of cis-regulatory regions
 
@@ -103,7 +103,7 @@ then
 
 ### Differential peak calling
 
-[ODIN](http://www.regulatory-genomics.org/odin-2/basic-introduction/) allows to compare two conditions associated with their own controls.
+[ODIN](http://www.regulatory-genomics.org/odin-2/basic-introduction/) allows comparing two conditions associated with their own controls.
 
 A command line looks like
 ```
