@@ -47,7 +47,7 @@ paleomix bam_pipeline mkfile > mouse.yaml
 
 ### Edit the makefile
 
-using your favorite text editor, edit the `mouse.makefile`. For example `vim mouse.makefile` or `kate` or `nano`.
+using your favorite text editor, edit the `mouse.yaml`. For example `vim mouse.yaml` or `kate` or `nano`.
 
 #### Options
 
@@ -136,7 +136,7 @@ First use the option `--dry-run` to spot mistakes.
 Please **adapt** the `--max-threads` option to the #cpus actually booked
 
 ```
-paleomix bam_pipeline run --bwa-max-threads=2 --max-threads=12 --dry-run mouse.yaml
+paleomix bam_pipeline run --bwa-max-threads=4 --max-threads=12 --dry-run mouse.yaml
 ```
 
 when all green lights are on, remove the `dry-run` and perform the mapping.
