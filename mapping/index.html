@@ -191,7 +191,7 @@ paleomix bam_pipeline mkfile &gt; mouse.yaml
 </code></pre>
 
 <h3 id="edit-the-makefile">Edit the makefile</h3>
-<p>using your favorite text editor, edit the <code>mouse.makefile</code>. For example <code>vim mouse.makefile</code> or <code>kate</code> or <code>nano</code>.</p>
+<p>using your favorite text editor, edit the <code>mouse.yaml</code>. For example <code>vim mouse.yaml</code> or <code>kate</code> or <code>nano</code>.</p>
 <h4 id="options">Options</h4>
 <p>For duplicates, change the default behavior from <code>filter</code> to <code>mark</code>  </p>
 <pre><code>  PCRDuplicates: mark
@@ -261,7 +261,7 @@ TC1-H3K4-ST2-D0:
 <h3 id="perform-the-trimming-mapping">Perform the trimming / mapping</h3>
 <p>First use the option <code>--dry-run</code> to spot mistakes.</p>
 <p>Please <strong>adapt</strong> the <code>--max-threads</code> option to the #cpus actually booked</p>
-<pre><code>paleomix bam_pipeline run --bwa-max-threads=2 --max-threads=12 --dry-run mouse.yaml
+<pre><code>paleomix bam_pipeline run --bwa-max-threads=4 --max-threads=12 --dry-run mouse.yaml
 </code></pre>
 
 <p>when all green lights are on, remove the <code>dry-run</code> and perform the mapping.</p>
