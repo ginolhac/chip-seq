@@ -16,6 +16,7 @@ cd ~/chip-seq
 mkdir bams
 cd bams
 ln -s /work/users/aginolhac/chip-seq/doctoral_school/data/*.bam .
+
 ```
 
 ### Perform peak calling
@@ -27,6 +28,7 @@ macs2 callpeak -t TC1-H3K4-ST2-D0.GRCm38.p3.q30.bam \
 macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
                -c TC1-I-A-D3.GRCm38.p3.q30.bam \
                -f BAM -g mm -n TC1-A-H3K4-D3 -B -q 0.01 --outdir TC1-A-H3K4-D3
+
 ```
 
 ### check model inferred by MACS2
@@ -36,6 +38,7 @@ execute R script.
 ```
 Rscript TC1-A-H3K4-D3/TC1-A-H3K4-D3_model.r
 Rscript TC1-ST2-H3K4-D0/TC1-ST2-H3K4-D0_model.r
+
 ```
 
 fetch the pdf produced.
@@ -44,6 +47,7 @@ fetch the pdf produced.
 
 ```
 find TC* -name '*.bdg' | parallel "sort -k1,1 -k2,2n {} > {.}.sort.bdg"
+
 ```
 
 ### convert to bigwig
@@ -51,7 +55,9 @@ find TC* -name '*.bdg' | parallel "sort -k1,1 -k2,2n {} > {.}.sort.bdg"
 in order to get smaller files
 
 ```
-find TC* -name '*sort.bdg' | parallel -j 1 "/work/users/aginolhac/chip-seq/doctoral_school/bedGraphToBigWig {} /work/users/aginolhac/chip-seq/doctoral_school/references/GRCm38.p3.chom.sizes {.}.bigwig"
+find TC* -name '*sort.bdg' | parallel -j 1 "/work/users/aginolhac/chip-seq/doctoral_school/bedGraphToBigWig {} \
+  /work/users/aginolhac/chip-seq/doctoral_school/references/GRCm38.p3.chom.sizes {.}.bigwig"
+
 ```
 
 ### Fetch the files and display them in IGV
@@ -65,6 +71,7 @@ macs2 callpeak -t TC1-H3K27-ST2-D0.GRCm38.p3.q30.bam \
 macs2 callpeak -t TC1-H3K27-A-D3.GRCm38.p3.q30.bam \
                -c TC1-I-A-D3.GRCm38.p3.q30.bam \
                -f BAM --broad -g mm -n TC1-A-H3K27-D3-broad -B -q 0.01 --outdir TC1-A-H3K27-D3-broad
+
 ```
 
 
@@ -92,14 +99,18 @@ This file has the different fields:
 Let's format the file as a 3 fields BED file and focus on more significant peaks filtering on *q-values*.
 
 ```
-awk '$9>40' TC1-A-H3K4_peaks.narrowPeak | cut -f 1-3 | sed 's/^/chr/' > TC1-A-H3K4_peaks.bed
+awk '$9>40'  TC1-A-H3K4/TC1-A-H3K4_peaks.narrowPeak | cut -f 1-3 | sed 's/^/chr/' >  TC1-A-H3K4/TC1-A-H3K4_peaks.bed
+cat TC1-A-H3K27-D3-broad/TC1-A-H3K27-D3-broad_peaks.broadPeak | cut -f 1-3 | sed 's/^/chr/' > TC1-A-H3K27-D3-broad/TC1-A-H3K27-D3-broad_peaks.broad.bed
+
 ```
 
 then  
 
 * load the BED in [GREAT](http://bejerano.stanford.edu/great/public/html/)  
 * for the relevant genome, `mm10`  
-* association rule: single nearest genome
+* association rule:
+    * _Single nearest gene_ for **H3K4** 
+    * _Two nearest genes_ for **H3K27** 
 
 ### Differential peak calling
 
@@ -112,4 +123,5 @@ rgt-ODIN  --input-1=../TC1-I-ST2-D0.GRCm38.p3.q30.bam \
           -m -n TC1-I-A-D0vsD15 -v \
           TC1-H3K4-ST2-D0.GRCm38.p3.q30.bam TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
           ../references/GRCm38.p3.fasta ../references/GRCm38.p3.chom.sizes
+
 ```

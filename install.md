@@ -101,6 +101,12 @@ download `putty`, `puttygen` and `pageant` [here](http://www.chiark.greenend.org
     * save as `gaia`
 1. load the `gaia` session, a prompt asks for the login `student??` and should do
 
+
+### Remenber galaxy works only with internal wi-fi
+
+external PhD cannot connect
+
+
 ### Test from a student account
 
 using the `ssh` keys provided by Sarah Diehl
@@ -120,7 +126,23 @@ student08 = Nicolas
 
 set-up done in `mkdocs.yml`
 
+### deploy
+
 publish on [github](http://ginolhac.github.io/chip-seq/)
 ```
 mkdocs gh-deploy
+```
+
+### convert to pdf
+
+install convertion to pandoc 
+```
+pip install mkdocs-pandoc
+```
+
+convert to PDF and EPUB
+```
+mkdocs2pandoc > mydocs.pd
+pandoc --toc -f markdown+grid_tables+table_captions -o chip-seq_AG.pdf mydocs.pd
+pandoc --toc -f markdown+grid_tables -t epub -o chip-seq_AG.epub mydocs.pd
 ```
