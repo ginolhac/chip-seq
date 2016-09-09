@@ -171,6 +171,7 @@
 mkdir bams
 cd bams
 ln -s /work/users/aginolhac/chip-seq/doctoral_school/data/*.bam .
+
 </code></pre>
 
 <h3 id="perform-peak-calling">Perform peak calling</h3>
@@ -180,22 +181,27 @@ ln -s /work/users/aginolhac/chip-seq/doctoral_school/data/*.bam .
 macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
                -c TC1-I-A-D3.GRCm38.p3.q30.bam \
                -f BAM -g mm -n TC1-A-H3K4-D3 -B -q 0.01 --outdir TC1-A-H3K4-D3
+
 </code></pre>
 
 <h3 id="check-model-inferred-by-macs2">check model inferred by MACS2</h3>
 <p>execute R script.</p>
 <pre><code>Rscript TC1-A-H3K4-D3/TC1-A-H3K4-D3_model.r
 Rscript TC1-ST2-H3K4-D0/TC1-ST2-H3K4-D0_model.r
+
 </code></pre>
 
 <p>fetch the pdf produced.</p>
 <h3 id="sort-per-chromosomes-and-coordinates">sort per chromosomes and coordinates</h3>
 <pre><code>find TC* -name '*.bdg' | parallel &quot;sort -k1,1 -k2,2n {} &gt; {.}.sort.bdg&quot;
+
 </code></pre>
 
 <h3 id="convert-to-bigwig">convert to bigwig</h3>
 <p>in order to get smaller files</p>
-<pre><code>find TC* -name '*sort.bdg' | parallel -j 1 &quot;/work/users/aginolhac/chip-seq/doctoral_school/bedGraphToBigWig {} /work/users/aginolhac/chip-seq/doctoral_school/references/GRCm38.p3.chom.sizes {.}.bigwig&quot;
+<pre><code>find TC* -name '*sort.bdg' | parallel -j 1 &quot;/work/users/aginolhac/chip-seq/doctoral_school/bedGraphToBigWig {} \
+  /work/users/aginolhac/chip-seq/doctoral_school/references/GRCm38.p3.chom.sizes {.}.bigwig&quot;
+
 </code></pre>
 
 <h3 id="fetch-the-files-and-display-them-in-igv">Fetch the files and display them in IGV</h3>
@@ -206,6 +212,7 @@ Rscript TC1-ST2-H3K4-D0/TC1-ST2-H3K4-D0_model.r
 macs2 callpeak -t TC1-H3K27-A-D3.GRCm38.p3.q30.bam \
                -c TC1-I-A-D3.GRCm38.p3.q30.bam \
                -f BAM --broad -g mm -n TC1-A-H3K27-D3-broad -B -q 0.01 --outdir TC1-A-H3K27-D3-broad
+
 </code></pre>
 
 <h2 id="great-analysis">GREAT analysis</h2>
@@ -226,14 +233,20 @@ macs2 callpeak -t TC1-H3K27-A-D3.GRCm38.p3.q30.bam \
 <li>relative summit position to peak start</li>
 </ol>
 <p>Let's format the file as a 3 fields BED file and focus on more significant peaks filtering on <em>q-values</em>.</p>
-<pre><code>awk '$9&gt;40' TC1-A-H3K4_peaks.narrowPeak | cut -f 1-3 | sed 's/^/chr/' &gt; TC1-A-H3K4_peaks.bed
+<pre><code>awk '$9&gt;40'  TC1-A-H3K4/TC1-A-H3K4_peaks.narrowPeak | cut -f 1-3 | sed 's/^/chr/' &gt;  TC1-A-H3K4/TC1-A-H3K4_peaks.bed
+cat TC1-A-H3K27-D3-broad/TC1-A-H3K27-D3-broad_peaks.broadPeak | cut -f 1-3 | sed 's/^/chr/' &gt; TC1-A-H3K27-D3-broad/TC1-A-H3K27-D3-broad_peaks.broad.bed
+
 </code></pre>
 
 <p>then  </p>
 <ul>
 <li>load the BED in <a href="http://bejerano.stanford.edu/great/public/html/">GREAT</a>  </li>
 <li>for the relevant genome, <code>mm10</code>  </li>
-<li>association rule: single nearest genome</li>
+<li>association rule:<ul>
+<li><em>Single nearest gene</em> for <strong>H3K4</strong> </li>
+<li><em>Two nearest genes</em> for <strong>H3K27</strong> </li>
+</ul>
+</li>
 </ul>
 <h3 id="differential-peak-calling">Differential peak calling</h3>
 <p><a href="http://www.regulatory-genomics.org/odin-2/basic-introduction/">ODIN</a> allows comparing two conditions associated with their own controls.</p>
@@ -243,6 +256,7 @@ macs2 callpeak -t TC1-H3K27-A-D3.GRCm38.p3.q30.bam \
           -m -n TC1-I-A-D0vsD15 -v \
           TC1-H3K4-ST2-D0.GRCm38.p3.q30.bam TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
           ../references/GRCm38.p3.fasta ../references/GRCm38.p3.chom.sizes
+
 </code></pre>
               
             </div>
