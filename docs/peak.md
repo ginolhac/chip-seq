@@ -15,7 +15,7 @@ For both the day 0 and day 3 of differentiation into adipocytes, two files are a
 cd ~/chip-seq
 mkdir bams
 cd bams
-ln -s /work/users/aginolhac/chip-seq/data/*.bam .
+ln -s /work/users/aginolhac/chip-seq/doctoral_school/data/*.bam .
 ```
 
 ### Perform peak calling
