@@ -199,12 +199,13 @@ Rscript TC1-ST2-H3K4-D0/TC1-ST2-H3K4-D0_model.r
 
 <h3 id="convert-to-bigwig">convert to bigwig</h3>
 <p>in order to get smaller files</p>
-<pre><code>find TC* -name '*sort.bdg' | parallel -j 1 &quot;/work/users/aginolhac/chip-seq/doctoral_school/bedGraphToBigWig {} \
+<pre><code>find TC* -name '*sort.bdg' | parallel -j 2 &quot;/work/users/aginolhac/chip-seq/doctoral_school/bedGraphToBigWig {} \
   /work/users/aginolhac/chip-seq/doctoral_school/references/GRCm38.p3.chom.sizes {.}.bigwig&quot;
 
 </code></pre>
 
 <h3 id="fetch-the-files-and-display-them-in-igv">Fetch the files and display them in IGV</h3>
+<p>IGV can be <a href="http://software.broadinstitute.org/software/igv/">downloaded</a> from the broadinstitute. </p>
 <h3 id="perform-peak-calling-with-broad-option">Perform peak calling with broad option</h3>
 <pre><code>macs2 callpeak -t TC1-H3K27-ST2-D0.GRCm38.p3.q30.bam \
                -c TC1-I-ST2-D0.GRCm38.p3.q30.bam \
@@ -212,6 +213,14 @@ Rscript TC1-ST2-H3K4-D0/TC1-ST2-H3K4-D0_model.r
 macs2 callpeak -t TC1-H3K27-A-D3.GRCm38.p3.q30.bam \
                -c TC1-I-A-D3.GRCm38.p3.q30.bam \
                -f BAM --broad -g mm -n TC1-A-H3K27-D3-broad -B -q 0.01 --outdir TC1-A-H3K27-D3-broad
+
+</code></pre>
+
+<p>Get the <code>bigwig</code> files for <strong>H3K27</strong>.
+Redo those sort and conversion steps but only for the folders that end with 'broad'</p>
+<pre><code>find TC*broad -name '*.bdg' | parallel &quot;sort -k1,1 -k2,2n {} &gt; {.}.sort.bdg&quot;
+find TC*broad -name '*sort.bdg' | parallel -j 2 &quot;/work/users/aginolhac/chip-seq/doctoral_school/bedGraphToBigWig {} \
+  /work/users/aginolhac/chip-seq/doctoral_school/references/GRCm38.p3.chom.sizes {.}.bigwig&quot;
 
 </code></pre>
 

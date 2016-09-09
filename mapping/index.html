@@ -232,30 +232,27 @@ to save computational time.</p>
 <p>enter at the end of the makefile, the following lines, according to your login.
 Again, do use <strong>spaces</strong> and not tabs for the indentation. For those who are lazy and use copy/paste in <code>vim</code>
  use the trick to <code>:set paste</code> to avoid extra spaces, comment hashes etc to be automatically added.</p>
-<p>Be careful to <strong>replace</strong> <code>student01</code> by the relevant username</p>
+<p>Be careful to <strong>replace</strong> <code>student01</code> by the relevant username. Descriptions of the different hierachical names
+can be read <a href="http://paleomix.readthedocs.io/en/latest/bam_pipeline/makefile.html#targets-section">here</a></p>
 <pre><code>TC1-I-A-D3:
   TC1-I-A-D3:
     TC1-I-A-D3:
-      &quot;14s006680-1-1&quot;:
-        /home/users/student01/chip-seq/raw/C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.gz
+      &quot;14s006680-1-1&quot;: /home/users/student01/chip-seq/raw/C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.gz
 
 TC1-H3K4-A-D3:
   TC1-H3K4-A-D3:
     TC1-H3K4-A-D3:
-      &quot;14s006647-1-1&quot;:
-        /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-H3K4-A-D3_14s006647-1-1_Sinkkonen_lane514s006647_sequence.txt.gz
+      &quot;14s006647-1-1&quot;: /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-H3K4-A-D3_14s006647-1-1_Sinkkonen_lane514s006647_sequence.txt.gz
 
 TC1-I-ST2-D0:
   TC1-I-ST2-D0:
     TC1-I-ST2-D0:
-      &quot;14s006677-1-1&quot;:
-        /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-I-ST2-D0_14s006677-1-1_Sinkkonen_lane814s006677_sequence.txt.gz
+      &quot;14s006677-1-1&quot;: /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-I-ST2-D0_14s006677-1-1_Sinkkonen_lane814s006677_sequence.txt.gz
 
 TC1-H3K4-ST2-D0:
   TC1-H3K4-ST2-D0:
     TC1-H3K4-ST2-D0:
-      &quot;14s006644&quot;:
-        /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-H3K4-ST2-D0_14s006644-1-1_Sinkkonen_lane514s006644_sequence.txt.gz
+      &quot;14s006644&quot;: /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-H3K4-ST2-D0_14s006644-1-1_Sinkkonen_lane514s006644_sequence.txt.gz
 </code></pre>
 
 <h3 id="perform-the-trimming-mapping">Perform the trimming / mapping</h3>
@@ -275,11 +272,7 @@ TC1-H3K4-ST2-D0:
 <p>check especially, the input for ST2, day0 before and after trimming. Did it solve the issue with adapters?</p>
 <h2 id="filter-for-unique-reads">filter for unique reads</h2>
 <p><em>Uniqueness</em> of reads refers to mappability. The fewer locations a read has in a genome, the higher is mappability will be.
-A common filter is to use <strong>30</strong> as a threshold for filtering reads:</p>
-<pre><code>samtools view -b -q 30 file.bam &gt; file.q30.bam
-</code></pre>
-
-<p>Filter in parallel</p>
+A common filter is to use <strong>30</strong> as a threshold for filtering reads. Filter them in parallel</p>
 <pre><code>parallel &quot;samtools view -b -q 30 {} &gt; {.}.q30.bam&quot; ::: *.bam
 </code></pre>
 
