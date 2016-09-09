@@ -2,7 +2,7 @@
 
 The programs you call on a terminal are not so different from their graphical interface you are used to on windows/mac.
 
-You need to know these commands: 
+You need to know these commands:
 
 ```
 pwd
@@ -17,6 +17,8 @@ chmod
 rm
 find
 ```
+
+TODO introduce `tmux`
 
 #### Two useful tips:
 
@@ -77,6 +79,8 @@ the first pattern is the owner
 the second pattern is for the group  
 the third pattern is for everyone else
 
+TODO more details needed
+
 ### text editor
 
 Let's have a look at a text editor, there is plenty of them, the one I use is `vim`, why?  
@@ -115,7 +119,7 @@ Get all sequences in genbank with the keyword trnl
 [http://www.ncbi.nlm.nih.gov/sites/entrez?db=nuccore&cmd=search&term=trnl](http://www.ncbi.nlm.nih.gov/sites/entrez?db=nuccore&cmd=search&term=trnl)
 
 but download only sequences from one class like *mammals* as a FASTA file.
-You should obtain a 1.1 Mo file. Otherwise, you can use `/home/users/aginolhac/trnl_mammals.fasta`
+You should obtain a 1.3 Mo file. Otherwise, you can use `/home/users/aginolhac/trnl_mammals.fasta`
 
 * how to obtain the first 500 lines of a file?  
 see the command `head` and its manual `man head`. You can redirect the output to a file with 'command > file_first500.fasta' for example.
@@ -129,6 +133,7 @@ Think of piping `head` and `tail`
 
 * you should have obtained the 500 first lines in a file and the 500 last in a second file. How can you merge these two files? look at `cat`
 
+TODO: Introduce pipe
 
 #### Extra questions
 
