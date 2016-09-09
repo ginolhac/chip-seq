@@ -55,12 +55,14 @@ find TC* -name '*.bdg' | parallel "sort -k1,1 -k2,2n {} > {.}.sort.bdg"
 in order to get smaller files
 
 ```
-find TC* -name '*sort.bdg' | parallel -j 1 "/work/users/aginolhac/chip-seq/doctoral_school/bedGraphToBigWig {} \
+find TC* -name '*sort.bdg' | parallel -j 2 "/work/users/aginolhac/chip-seq/doctoral_school/bedGraphToBigWig {} \
   /work/users/aginolhac/chip-seq/doctoral_school/references/GRCm38.p3.chom.sizes {.}.bigwig"
 
 ```
 
 ### Fetch the files and display them in IGV
+
+IGV can be [downloaded](http://software.broadinstitute.org/software/igv/) from the broadinstitute. 
 
 ### Perform peak calling with broad option
 
@@ -71,6 +73,16 @@ macs2 callpeak -t TC1-H3K27-ST2-D0.GRCm38.p3.q30.bam \
 macs2 callpeak -t TC1-H3K27-A-D3.GRCm38.p3.q30.bam \
                -c TC1-I-A-D3.GRCm38.p3.q30.bam \
                -f BAM --broad -g mm -n TC1-A-H3K27-D3-broad -B -q 0.01 --outdir TC1-A-H3K27-D3-broad
+
+```
+
+Get the `bigwig` files for **H3K27**.
+Redo those sort and conversion steps but only for the folders that end with 'broad'
+
+```
+find TC*broad -name '*.bdg' | parallel "sort -k1,1 -k2,2n {} > {.}.sort.bdg"
+find TC*broad -name '*sort.bdg' | parallel -j 2 "/work/users/aginolhac/chip-seq/doctoral_school/bedGraphToBigWig {} \
+  /work/users/aginolhac/chip-seq/doctoral_school/references/GRCm38.p3.chom.sizes {.}.bigwig"
 
 ```
 

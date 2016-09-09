@@ -45,16 +45,16 @@ Connecting to a computing node is anyway required to use modules.
 
 For Thursday: 
 ```
-oarsub -I -t inner=3950979 -l nodes=1,walltime=10
-oarsub -I -t inner=3950994 -l nodes=1,walltime=10
-oarsub -I -t inner=3950995 -l nodes=1,walltime=10
+oarsub -I -t inner=3950979 -l nodes=1,walltime=9
+oarsub -I -t inner=3950994 -l nodes=1,walltime=9
+oarsub -I -t inner=3950995 -l nodes=1,walltime=9
 ```
 
 For Friday:  
 ```
-oarsub -I -t inner=3950983 -l nodes=1,walltime=10
-oarsub -I -t inner=3950992 -l nodes=1,walltime=10
-oarsub -I -t inner=3950993 -l nodes=1,walltime=10
+oarsub -I -t inner=3950983 -l nodes=1,walltime=9
+oarsub -I -t inner=3950992 -l nodes=1,walltime=9
+oarsub -I -t inner=3950993 -l nodes=1,walltime=9
 ```
 
 Without entering into the details of [submitting a job](https://hpc.uni.lu/users/docs/oar.html#request-hierarchical-resources-with-oarsub),

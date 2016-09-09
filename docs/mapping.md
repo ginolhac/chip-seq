@@ -101,32 +101,29 @@ enter at the end of the makefile, the following lines, according to your login.
 Again, do use **spaces** and not tabs for the indentation. For those who are lazy and use copy/paste in `vim`
  use the trick to `:set paste` to avoid extra spaces, comment hashes etc to be automatically added.
 
- Be careful to **replace** `student01` by the relevant username
+Be careful to **replace** `student01` by the relevant username. Descriptions of the different hierachical names
+can be read [here](http://paleomix.readthedocs.io/en/latest/bam_pipeline/makefile.html#targets-section)
 
 ```
 TC1-I-A-D3:
   TC1-I-A-D3:
     TC1-I-A-D3:
-      "14s006680-1-1":
-        /home/users/student01/chip-seq/raw/C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.gz
+      "14s006680-1-1": /home/users/student01/chip-seq/raw/C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.gz
 
 TC1-H3K4-A-D3:
   TC1-H3K4-A-D3:
     TC1-H3K4-A-D3:
-      "14s006647-1-1":
-        /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-H3K4-A-D3_14s006647-1-1_Sinkkonen_lane514s006647_sequence.txt.gz
+      "14s006647-1-1": /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-H3K4-A-D3_14s006647-1-1_Sinkkonen_lane514s006647_sequence.txt.gz
 
 TC1-I-ST2-D0:
   TC1-I-ST2-D0:
     TC1-I-ST2-D0:
-      "14s006677-1-1":
-        /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-I-ST2-D0_14s006677-1-1_Sinkkonen_lane814s006677_sequence.txt.gz
+      "14s006677-1-1": /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-I-ST2-D0_14s006677-1-1_Sinkkonen_lane814s006677_sequence.txt.gz
 
 TC1-H3K4-ST2-D0:
   TC1-H3K4-ST2-D0:
     TC1-H3K4-ST2-D0:
-      "14s006644":
-        /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-H3K4-ST2-D0_14s006644-1-1_Sinkkonen_lane514s006644_sequence.txt.gz
+      "14s006644": /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-H3K4-ST2-D0_14s006644-1-1_Sinkkonen_lane514s006644_sequence.txt.gz
 ```
 
 ### Perform the trimming / mapping
@@ -158,13 +155,7 @@ check especially, the input for ST2, day0 before and after trimming. Did it solv
 ## filter for unique reads
 
 *Uniqueness* of reads refers to mappability. The fewer locations a read has in a genome, the higher is mappability will be.
-A common filter is to use **30** as a threshold for filtering reads:
-
-```
-samtools view -b -q 30 file.bam > file.q30.bam
-```
-
-Filter in parallel
+A common filter is to use **30** as a threshold for filtering reads. Filter them in parallel
 
 ```
 parallel "samtools view -b -q 30 {} > {.}.q30.bam" ::: *.bam
