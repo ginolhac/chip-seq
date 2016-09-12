@@ -104,6 +104,13 @@
           
             <li>
     <li class="toctree-l1 ">
+        <a class="" href="public/">Public data</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
         <a class="" href="contact/">Contact</a>
         
     </li>
@@ -213,10 +220,17 @@ On an interactive session, use the command <code>htop</code> to see if a process
 <h3 id="disk-space">disk space</h3>
 <p>Like on your local machine, you need to check how much data you used.
 Using a command line, you could use</p>
+<h4 id="disk-usage">disk usage</h4>
 <pre><code>du -sh ~
 </code></pre>
 
-<p>to display your disk usage (<code>du</code>) for your home folder (<code>~</code>).</p>
+<p>to display your disk usage (<code>du</code>) for your home folder (<code>~</code>). In a form readable by human (<code>-h</code>)</p>
+<h4 id="disk-free">disk free</h4>
+<pre><code>df -h
+</code></pre>
+
+<p>disk free scans all disks mounted. Could takes time to display the global usage. 
+Please worry if only few Mb are available on the disk you are planning to write to.</p>
               
             </div>
           </div>
@@ -262,5 +276,5 @@ Using a command line, you could use</p>
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2016-09-09 12:59:47.102377
+Build Date UTC : 2016-09-12 08:17:39.614139
 -->
