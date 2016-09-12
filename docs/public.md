@@ -16,7 +16,7 @@ Then select RunSelector.
 
 From a _Cell_ paper from 2010 and belong to this dataset:
  
-http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE20752
+[GEO GSE20752](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE20752)
  
 Specifically we want to look at these samples:
  
@@ -54,7 +54,7 @@ last for ~ 3 hours 30 minutes
 #### H3K4
 
 ```
-macs2 callpeak -tMikkelsen_3T3L1_t2_H3K4me3.GRCm38.p3.bam \
+macs2 callpeak -t Mikkelsen_3T3L1_t2_H3K4me3.GRCm38.p3.bam \
                -c Mikkelsen_3T3L1_WCE.GRCm38.p3.bam \
                -f BAM -g mm -n 3T3L1_t2_H3K4 -B -q 0.01 --outdir 3T3L1_t2_H3K4 &
 macs2 callpeak -t Mikkelsen_3T3L1_t3_H3K4me3.GRCm38.p3.bam \
@@ -65,7 +65,7 @@ macs2 callpeak -t Mikkelsen_3T3L1_t3_H3K4me3.GRCm38.p3.bam \
 #### H3K27
 
 ```
-macs2 callpeak -tMikkelsen_3T3L1_t2_H3K27ac.GRCm38.p3.bam \
+macs2 callpeak -t Mikkelsen_3T3L1_t2_H3K27ac.GRCm38.p3.bam \
                -c Mikkelsen_3T3L1_WCE.GRCm38.p3.bam --broad  \
                -f BAM -g mm -n 3T3L1_t2_H3K27ac -B -q 0.01 --outdir 3T3L1_t2_H3K27ac &
 macs2 callpeak -t Mikkelsen_3T3L1_t3_H3K27ac.GRCm38.p3.bam \

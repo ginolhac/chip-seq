@@ -31,6 +31,11 @@ macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
 
 ```
 
+In case `macs2` gives `command not found`, your are certainly missing the module, please re-run 
+the `module use` and `module load` in the [set-up](http://ginolhac.github.io/chip-seq/install/)
+
+
+
 ### check model inferred by MACS2
 
 execute R script.

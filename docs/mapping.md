@@ -13,6 +13,10 @@ check if paleomix is available
 paleomix
 ```
 
+In case it is not, your are certainly missing the module, please re-run 
+the `module use` and `module load` in the [set-up](http://ginolhac.github.io/chip-seq/install/)
+
+
 ### test your install
 
 fetch the example, reference is the human mitochondrial genome
