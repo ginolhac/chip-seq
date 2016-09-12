@@ -6,5 +6,6 @@ pages:
 - sequence QC: 'fastqc.md'
 - Mapping: 'mapping.md'
 - Peak calling: 'peak.md'
+- Public data: 'public.md'
 - Contact: 'contact.md'
 theme: readthedocs

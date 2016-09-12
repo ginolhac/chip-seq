@@ -100,8 +100,19 @@ On an interactive session, use the command `htop` to see if a process is correct
 Like on your local machine, you need to check how much data you used.
 Using a command line, you could use
 
+#### disk usage
+
 ```
 du -sh ~
 ```
 
-to display your disk usage (`du`) for your home folder (`~`).
+to display your disk usage (`du`) for your home folder (`~`). In a form readable by human (`-h`)
+
+#### disk free
+
+```
+df -h
+```
+
+disk free scans all disks mounted. Could takes time to display the global usage. 
+Please worry if only few Mb are available on the disk you are planning to write to.
