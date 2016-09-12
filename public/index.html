@@ -161,7 +161,7 @@
 <p>Go on <a href="http://www.ncbi.nlm.nih.gov/sra?linkname=bioproject_sra_all&amp;from_uid=125035">NCBI GEO</a></p>
 <p>Then select RunSelector.</p>
 <p>From a <em>Cell</em> paper from 2010 and belong to this dataset:</p>
-<p>http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE20752</p>
+<p><a href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE20752">GEO GSE20752</a></p>
 <p>Specifically we want to look at these samples:</p>
 <ul>
 <li><a href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM535748">3T3L1_t2_H3K4me3</a></li>
@@ -183,7 +183,7 @@
 <p>last for ~ 3 hours 30 minutes</p>
 <h3 id="peak-calling">peak calling</h3>
 <h4 id="h3k4">H3K4</h4>
-<pre><code>macs2 callpeak -tMikkelsen_3T3L1_t2_H3K4me3.GRCm38.p3.bam \
+<pre><code>macs2 callpeak -t Mikkelsen_3T3L1_t2_H3K4me3.GRCm38.p3.bam \
                -c Mikkelsen_3T3L1_WCE.GRCm38.p3.bam \
                -f BAM -g mm -n 3T3L1_t2_H3K4 -B -q 0.01 --outdir 3T3L1_t2_H3K4 &amp;
 macs2 callpeak -t Mikkelsen_3T3L1_t3_H3K4me3.GRCm38.p3.bam \
@@ -192,7 +192,7 @@ macs2 callpeak -t Mikkelsen_3T3L1_t3_H3K4me3.GRCm38.p3.bam \
 </code></pre>
 
 <h4 id="h3k27">H3K27</h4>
-<pre><code>macs2 callpeak -tMikkelsen_3T3L1_t2_H3K27ac.GRCm38.p3.bam \
+<pre><code>macs2 callpeak -t Mikkelsen_3T3L1_t2_H3K27ac.GRCm38.p3.bam \
                -c Mikkelsen_3T3L1_WCE.GRCm38.p3.bam --broad  \
                -f BAM -g mm -n 3T3L1_t2_H3K27ac -B -q 0.01 --outdir 3T3L1_t2_H3K27ac &amp;
 macs2 callpeak -t Mikkelsen_3T3L1_t3_H3K27ac.GRCm38.p3.bam \
