@@ -173,16 +173,72 @@ Linux access.gaia-cluster.uni.lux 3.2.0-4-amd64 unknown
 <p>Note that you are on the <code>access</code> frontend.</p>
 <p>The frontend is meant for browsing / transferring your files only and you <strong>MUST</strong> connect to a node for any computational work 
 using the utility <code>oarsub</code> described <a href="https://hpc.uni.lu/users/docs/oar.html">here</a>. This program managed the queuing system and dispatch jobs among the resources according to the demands.</p>
-<p>Softwares are organized into modules that provide you with the binaries but also all the environment required for their running processes.</p>
+<p>Software are organized into <strong>modules</strong> that provide you with the binaries but also all the environment required for their running processes.</p>
+<h4 id="tmux">TMUX</h4>
+<p>log in to a remote computer is great, all computation, heat generation is happening elsewhere but this comes with a price: disconnection.<br />
+This happens all the time. The way to get around it, is to have a <code>screen</code> system that store your terminal, commands, environment in which 
+you can easily detach and re-attach.</p>
+<p>Two systems exist, <code>screen</code> and <code>tmux</code>. Both work well, but <code>tmux</code> has a nicer interface IMHO.</p>
+<p>a short tutorial is <a href="https://www.sitepoint.com/tmux-a-simple-start/">accessible here.</a></p>
+<p>Briefly, on the <strong>access</strong> frontend, start a <code>tmux</code> instance with</p>
+<pre><code>tmux
+</code></pre>
+
+<p>to detach (press CTRL and B together, release then use the next key):</p>
+<pre><code>CTRL + B, then D
+</code></pre>
+
+<p>to re-attach:</p>
+<pre><code>tmux attach
+</code></pre>
+
+<p>or the alias</p>
+<pre><code>tmux at
+</code></pre>
+
+<h4 id="some-useful-commands">some useful commands</h4>
+<p>once in an instance,</p>
+<ul>
+<li><strong>create</strong> a new tab</li>
+</ul>
+<pre><code>CTRL + B, then C
+</code></pre>
+
+<ul>
+<li>move to the <strong>next</strong> tab</li>
+</ul>
+<pre><code>CTRL + B, then N
+</code></pre>
+
+<ul>
+<li>move to the <strong>previous</strong> tab</li>
+</ul>
+<pre><code>CTRL + B, then P
+</code></pre>
+
+<ul>
+<li><strong>rename</strong> to the current tab</li>
+</ul>
+<pre><code>CTRL + B, then ,
+</code></pre>
+
+<p>then type the new name</p>
+<h4 id="quit">Quit</h4>
+<pre><code>exit
+</code></pre>
+
+<p>in all tabs kills the <code>tmux</code> session</p>
+<p>Of note, <code>tmux</code> instances live until the frontend is rebooted.</p>
 <h3 id="connect-to-a-node">connect to a node</h3>
 <p>Connecting to a computing node is anyway required to use modules.</p>
-<p>For Thursday: </p>
+<p>You need to book ressources by specifying how many cores, optionaly if they are a same node, and a walltime clock. A job can never get extended.</p>
+<p>For Thursday:</p>
 <pre><code>oarsub -I -t inner=3950979 -l nodes=1,walltime=9
 oarsub -I -t inner=3950994 -l nodes=1,walltime=9
 oarsub -I -t inner=3950995 -l nodes=1,walltime=9
 </code></pre>
 
-<p>For Friday:  </p>
+<p>For Friday:</p>
 <pre><code>oarsub -I -t inner=3950983 -l nodes=1,walltime=9
 oarsub -I -t inner=3950992 -l nodes=1,walltime=9
 oarsub -I -t inner=3950993 -l nodes=1,walltime=9
@@ -193,7 +249,7 @@ here is the explanation for the above command:</p>
 <ul>
 <li><code>-I</code> is for interactive, default is passive</li>
 <li><code>-t inner=xxx</code>, connect to a <code>container</code>, specific for today because we booked resources for the course</li>
-<li><code>-l</code> define the resources you need. The less you ask for, the more high up you are in the queue. A <code>node</code> is usually composed of 12 <code>cores</code>, 
+<li><code>-l</code> define the resources you need. The less you ask for, the more high up you are in the queue. A <code>node</code> is usually composed of 12 or 24 <code>cores</code>, 
 so 12 tasks could be run in parallel. <code>walltime</code> define for how long in hours your job will last.</li>
 </ul>
 <p>Once logged in, the prompt changes for:</p>
@@ -231,6 +287,10 @@ Using a command line, you could use</p>
 
 <p>disk free scans all disks mounted. Could takes time to display the global usage. 
 Please worry if only few Mb are available on the disk you are planning to write to.</p>
+<h3 id="closing-connection">closing connection</h3>
+<p>When you are done, you can kill yourself your job by either doing <code>CTRL + D</code> or typing <code>exit</code>.
+That will free your booked ressources for others. Once done, you will still logged on the frontend and normally inside a <code>tmux</code>.
+The best is to detach from the <code>tmux</code> instance and log off from the gaia frontend using  <code>CTRL + D</code> or typing <code>exit</code>.</p>
               
             </div>
           </div>
@@ -276,5 +336,5 @@ Please worry if only few Mb are available on the disk you are planning to write 
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2016-09-12 08:25:02.875605
+Build Date UTC : 2016-09-13 09:29:39.740204
 -->
