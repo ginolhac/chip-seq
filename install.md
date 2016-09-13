@@ -6,6 +6,7 @@
 #### pysam
 
 `pysam` requires `Cython`, load it first and easybuild too
+
 ```
 module use $RESIF_ROOTINSTALL/lcsb/modules/all
 module load lang/Cython/0.22-goolf-1.4.10-Python-2.7.3
@@ -43,9 +44,7 @@ eb AdapterRemoval-2.1.7-goolf-1.4.10.eb`
 
 #### jar
 
-
 picard and GATK can be used from resif 
-
 
 #### mapDamage
 
@@ -66,6 +65,8 @@ module load bio/mapDamage
 can be connected to the galaxy server to display bams / bigwig etc.
 
 ## gaia container
+
+**FIXME**: ensure that all student accounts can connect to all nodes with no restriction
 
 book 2 nodes for the session
 
@@ -89,7 +90,11 @@ Job id     Name           User           Submission Date     S Queue
 
 ## set-up ssh keys on Windows
 
+**FIXME**: convert to `ppk` before for all students 
+
 download `putty`, `puttygen` and `pageant` [here](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
+
+`puttygen` will be useless once `ppk` keys are available.
 
 1. Open `puttygen` to convert keys to `.ppk` format. 
     * load private key, should say imported with success
@@ -104,7 +109,7 @@ download `putty`, `puttygen` and `pageant` [here](http://www.chiark.greenend.org
 
 ### Remenber galaxy works only with internal wi-fi
 
-external PhD cannot connect
+**FIXME**: external PhD cannot connect
 
 
 ### Test from a student account
@@ -130,17 +135,19 @@ set-up done in `mkdocs.yml`
 
 publish on [github](http://ginolhac.github.io/chip-seq/)
 ```
-mkdocs gh-deploy
+mkdocs gh-deploy --clean
 ```
 
 ### convert to pdf
 
 install convertion to pandoc 
+
 ```
 pip install mkdocs-pandoc
 ```
 
 convert to PDF and EPUB
+
 ```
 mkdocs2pandoc > mydocs.pd
 pandoc --toc -f markdown+grid_tables+table_captions -o chip-seq_AG.pdf mydocs.pd
