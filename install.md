@@ -68,6 +68,8 @@ can be connected to the galaxy server to display bams / bigwig etc.
 
 **FIXME**: ensure that all student accounts can connect to all nodes with no restriction
 
+**FIXME**: ensure that student accounts have a decent `.bashrc` that displays remaining time and contains minimal aliases
+
 book 2 nodes for the session
 
 ```

@@ -37,20 +37,101 @@ Note that you are on the `access` frontend.
 The frontend is meant for browsing / transferring your files only and you **MUST** connect to a node for any computational work 
 using the utility `oarsub` described [here](https://hpc.uni.lu/users/docs/oar.html). This program managed the queuing system and dispatch jobs among the resources according to the demands.
 
-Softwares are organized into modules that provide you with the binaries but also all the environment required for their running processes.
+Software are organized into **modules** that provide you with the binaries but also all the environment required for their running processes.
+
+
+#### TMUX
+
+log in to a remote computer is great, all computation, heat generation is happening elsewhere but this comes with a price: disconnection.  
+This happens all the time. The way to get around it, is to have a `screen` system that store your terminal, commands, environment in which 
+you can easily detach and re-attach.
+
+Two systems exist, `screen` and `tmux`. Both work well, but `tmux` has a nicer interface IMHO.
+
+a short tutorial is [accessible here.](https://www.sitepoint.com/tmux-a-simple-start/)
+
+Briefly, on the **access** frontend, start a `tmux` instance with
+
+```
+tmux
+```
+
+to detach (press CTRL and B together, release then use the next key):
+
+```
+CTRL + B, then D
+```
+
+to re-attach:
+
+```
+tmux attach
+```
+
+or the alias
+
+```
+tmux at
+```
+
+
+#### some useful commands
+
+once in an instance,
+
+- **create** a new tab
+
+```
+CTRL + B, then C
+```
+
+- move to the **next** tab
+
+```
+CTRL + B, then N
+```
+
+- move to the **previous** tab
+
+```
+CTRL + B, then P
+```
+
+- **rename** to the current tab
+
+```
+CTRL + B, then ,
+```
+
+then type the new name
+
+#### Quit
+
+```
+exit
+```
+
+in all tabs kills the `tmux` session
+
+
+Of note, `tmux` instances live until the frontend is rebooted.
 
 ### connect to a node
 
 Connecting to a computing node is anyway required to use modules.
 
-For Thursday: 
+You need to book ressources by specifying how many cores, optionaly if they are a same node, and a walltime clock. A job can never get extended.
+
+For Thursday:
+
 ```
 oarsub -I -t inner=3950979 -l nodes=1,walltime=9
 oarsub -I -t inner=3950994 -l nodes=1,walltime=9
 oarsub -I -t inner=3950995 -l nodes=1,walltime=9
 ```
 
-For Friday:  
+For Friday:
+
 ```
 oarsub -I -t inner=3950983 -l nodes=1,walltime=9
 oarsub -I -t inner=3950992 -l nodes=1,walltime=9
@@ -62,7 +143,7 @@ here is the explanation for the above command:
 
 - `-I` is for interactive, default is passive
 - `-t inner=xxx`, connect to a `container`, specific for today because we booked resources for the course
-- `-l` define the resources you need. The less you ask for, the more high up you are in the queue. A `node` is usually composed of 12 `cores`, 
+- `-l` define the resources you need. The less you ask for, the more high up you are in the queue. A `node` is usually composed of 12 or 24 `cores`, 
 so 12 tasks could be run in parallel. `walltime` define for how long in hours your job will last.
 
 Once logged in, the prompt changes for:
@@ -116,3 +197,10 @@ df -h
 
 disk free scans all disks mounted. Could takes time to display the global usage. 
 Please worry if only few Mb are available on the disk you are planning to write to.
+
+
+### closing connection
+
+When you are done, you can kill yourself your job by either doing `CTRL + D` or typing `exit`.
+That will free your booked ressources for others. Once done, you will still logged on the frontend and normally inside a `tmux`.
+The best is to detach from the `tmux` instance and log off from the gaia frontend using  `CTRL + D` or typing `exit`.
