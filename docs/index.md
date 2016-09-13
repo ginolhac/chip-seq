@@ -4,7 +4,7 @@ Running all analyses is computationally intensive and despite the power of the c
 
 ## log in `gaia`
 
-[`gaia`](https://hpc.uni.lu/systems/gaia/) is one of the [HPC of the UNI](https://hpc.uni.lu).
+[`gaia`](https://hpc.uni.lu/systems/gaia/) is one of the [High Performance Computer (HPC) of the UNI](https://hpc.uni.lu).
 
 ### connect to the frontend
 
@@ -37,13 +37,13 @@ Note that you are on the `access` frontend.
 The frontend is meant for browsing / transferring your files only and you **MUST** connect to a node for any computational work 
 using the utility `oarsub` described [here](https://hpc.uni.lu/users/docs/oar.html). This program managed the queuing system and dispatch jobs among the resources according to the demands.
 
-Software are organized into **modules** that provide you with the binaries but also all the environment required for their running processes.
+Softwares are organized into **modules** that provide you with the binaries but also all the environment required for their running processes.
 
 
-### TMUX
+## TMUX
 
 log in to a remote computer is great, all computation, heat generation is happening elsewhere but this comes with a price: disconnection.  
-This happens all the time. The way to get around it, is to have a `screen` system that store your terminal, commands, environment in which 
+This happens all the time. The way to get around it is to have a `screen` system that stores your terminal, commands, environment in which 
 you can easily detach and re-attach.
 
 Two systems exist, `screen` and `tmux`. Both work well, but `tmux` has a nicer interface IMHO.
@@ -75,7 +75,7 @@ tmux at
 ```
 
 
-#### some useful commands
+### Useful commands
 
 once in an instance,
 
@@ -105,7 +105,7 @@ CTRL + B, then ,
 
 then type the new name
 
-#### Quit
+### Quit
 
 ```
 exit
@@ -120,7 +120,7 @@ Of note, `tmux` instances live until the frontend is rebooted.
 
 Connecting to a computing node is anyway required to use modules.
 
-You need to book ressources by specifying how many cores, optionaly if they are a same node, and a walltime clock. A job can never get extended.
+You need to book resources by specifying how many cores, optionally if they are on a same node, and a wall time clock. A job can never get extended.
 
 For Thursday:
 
@@ -202,5 +202,5 @@ Please worry if only few Mb are available on the disk you are planning to write 
 ### closing connection
 
 When you are done, you can kill yourself your job by either doing `CTRL + D` or typing `exit`.
-That will free your booked ressources for others. Once done, you will still logged on the frontend and normally inside a `tmux`.
+That will free your booked resources for others. Once done, you will still log on the frontend and normally inside a `tmux`.
 The best is to detach from the `tmux` instance and log off from the gaia frontend using  `CTRL + D` or typing `exit`.
