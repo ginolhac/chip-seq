@@ -59,6 +59,8 @@
                 
                     <li><a class="toctree-l4" href="#log-in-gaia">log in gaia</a></li>
                 
+                    <li><a class="toctree-l4" href="#tmux">TMUX</a></li>
+                
                     <li><a class="toctree-l4" href="#monitoring-the-resources-used">monitoring the resources used</a></li>
                 
             
@@ -155,7 +157,7 @@
                 <h1 id="chip-seq-practical-session">ChIP-seq practical session</h1>
 <p>Running all analyses is computationally intensive and despite the power of the current laptops, jobs should be run on high-performance clusters (HPC).</p>
 <h2 id="log-in-gaia">log in <code>gaia</code></h2>
-<p><a href="https://hpc.uni.lu/systems/gaia/"><code>gaia</code></a> is one of the <a href="https://hpc.uni.lu">HPC of the UNI</a>.</p>
+<p><a href="https://hpc.uni.lu/systems/gaia/"><code>gaia</code></a> is one of the <a href="https://hpc.uni.lu">High Performance Computer (HPC) of the UNI</a>.</p>
 <h3 id="connect-to-the-frontend">connect to the frontend</h3>
 <p>To connect to it, you need an account and an authorized ssh key. Actually, a pair of keys, one public and one private.
 The public key is sent over when connecting to the remote and compared to the authorized private key.
@@ -177,10 +179,10 @@ Linux access.gaia-cluster.uni.lux 3.2.0-4-amd64 unknown
 <p>Note that you are on the <code>access</code> frontend.</p>
 <p>The frontend is meant for browsing / transferring your files only and you <strong>MUST</strong> connect to a node for any computational work 
 using the utility <code>oarsub</code> described <a href="https://hpc.uni.lu/users/docs/oar.html">here</a>. This program managed the queuing system and dispatch jobs among the resources according to the demands.</p>
-<p>Software are organized into <strong>modules</strong> that provide you with the binaries but also all the environment required for their running processes.</p>
-<h3 id="tmux">TMUX</h3>
+<p>Softwares are organized into <strong>modules</strong> that provide you with the binaries but also all the environment required for their running processes.</p>
+<h2 id="tmux">TMUX</h2>
 <p>log in to a remote computer is great, all computation, heat generation is happening elsewhere but this comes with a price: disconnection.<br />
-This happens all the time. The way to get around it, is to have a <code>screen</code> system that store your terminal, commands, environment in which 
+This happens all the time. The way to get around it is to have a <code>screen</code> system that stores your terminal, commands, environment in which 
 you can easily detach and re-attach.</p>
 <p>Two systems exist, <code>screen</code> and <code>tmux</code>. Both work well, but <code>tmux</code> has a nicer interface IMHO.</p>
 <p>a short tutorial is <a href="https://www.sitepoint.com/tmux-a-simple-start/">accessible here.</a></p>
@@ -200,7 +202,7 @@ you can easily detach and re-attach.</p>
 <pre><code>tmux at
 </code></pre>
 
-<h4 id="some-useful-commands">some useful commands</h4>
+<h3 id="useful-commands">Useful commands</h3>
 <p>once in an instance,</p>
 <ul>
 <li><strong>create</strong> a new tab</li>
@@ -227,7 +229,7 @@ you can easily detach and re-attach.</p>
 </code></pre>
 
 <p>then type the new name</p>
-<h4 id="quit">Quit</h4>
+<h3 id="quit">Quit</h3>
 <pre><code>exit
 </code></pre>
 
@@ -235,7 +237,7 @@ you can easily detach and re-attach.</p>
 <p>Of note, <code>tmux</code> instances live until the frontend is rebooted.</p>
 <h3 id="connect-to-a-node">connect to a node</h3>
 <p>Connecting to a computing node is anyway required to use modules.</p>
-<p>You need to book ressources by specifying how many cores, optionaly if they are a same node, and a walltime clock. A job can never get extended.</p>
+<p>You need to book resources by specifying how many cores, optionally if they are on a same node, and a wall time clock. A job can never get extended.</p>
 <p>For Thursday:</p>
 <pre><code>oarsub -I -t inner=3950979 -l nodes=1,walltime=9
 oarsub -I -t inner=3950994 -l nodes=1,walltime=9
@@ -293,7 +295,7 @@ Using a command line, you could use</p>
 Please worry if only few Mb are available on the disk you are planning to write to.</p>
 <h3 id="closing-connection">closing connection</h3>
 <p>When you are done, you can kill yourself your job by either doing <code>CTRL + D</code> or typing <code>exit</code>.
-That will free your booked ressources for others. Once done, you will still logged on the frontend and normally inside a <code>tmux</code>.
+That will free your booked resources for others. Once done, you will still log on the frontend and normally inside a <code>tmux</code>.
 The best is to detach from the <code>tmux</code> instance and log off from the gaia frontend using  <code>CTRL + D</code> or typing <code>exit</code>.</p>
               
             </div>
@@ -342,5 +344,5 @@ The best is to detach from the <code>tmux</code> instance and log off from the g
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2016-09-13 11:13:06.321720
+Build Date UTC : 2016-09-13 11:19:30.396741
 -->
