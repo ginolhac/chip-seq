@@ -16,6 +16,7 @@ module load base/EasyBuild
 `cd ~/easybuild`
 
 
+sometimes Cython is not found, reload cache by doing `module spider Cython`
 
 #### paleomix
 
@@ -51,6 +52,15 @@ picard and GATK can be used from resif
 `eb -r /home/users/aginolhac/easybuild mapDamage-2.0.6-goolf-1.4.10-Python-2.7.3.eb`
 
 ### load modules
+
+```
+module load bio/AdapterRemoval
+module load bio/paleomix
+module load bio/SAMtools/0.1.19-goolf-1.4.10
+module load bio/BWA
+module load bio/mapDamage
+```
+
 
 ```
 module load bio/AdapterRemoval

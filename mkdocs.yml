@@ -1,5 +1,5 @@
 site_name: ChIP-seq tutorials
-pages:
+nav:
 - Home: "index.md"
 - "Command line, basics": "cli.md"
 - Setup: "install.md"
