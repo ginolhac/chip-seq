@@ -151,7 +151,7 @@ For more details see the lecture <a href="https://ulhpc-tutorials.readthedocs.io
 <p>Shortly, we built a container with all the necessary tools and softwares embeded. Hence, you just need to book the HPC resources and load the container to start working on your <strong>chip-seq</strong> sequences.</p>
 <h3 id="tweak-for-the-picard">Tweak for the <code>picard</code></h3>
 <p>we need to tweak this location only <strong>once</strong>.</p>
-<pre><code>mkdir -p ~/install/jar_root/
+<pre><code class="bash">mkdir -p ~/install/jar_root/
 cp /scratch/aginolhac/picard.jar ~/install/jar_root/
 </code></pre>
 
@@ -167,13 +167,13 @@ cp /scratch/aginolhac/picard.jar ~/install/jar_root/
 <li>first we load the tools <code>singularity</code></li>
 <li>second we load the container</li>
 </ul>
-<pre><code>module load tools/Singularity
+<pre><code class="bash">module load tools/Singularity
 singularity shell -s /bin/bash --bind /scratch/users:/scratch/users /scratch/users/aginolhac/ubuntu-chip-seq.simg
 </code></pre>
 
 <p>then you are inside the container, all the tools should be available.</p>
 <p>try running the following and raise your hand if any is <code>command not found</code></p>
-<pre><code>bwa
+<pre><code class="bash">bwa
 samtools
 macs2
 paleomix
