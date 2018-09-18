@@ -55,12 +55,12 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../cli/">Command line, basics</a>
+    <a class="" href="../install/">Setup</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="../install/">Setup</a>
+    <a class="" href="../cli/">Command line, basics</a>
 	    </li>
           
             <li class="toctree-l1 current">
@@ -140,12 +140,12 @@
             <div class="section">
               
                 <h2 id="fastq-quality-controls">FASTQ Quality controls</h2>
-<p>Using <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> you can perform the necessary controls over fastq files.</p>
+<p>Using <a href="http://www.bioinformatics.babraham.ac.uk/projects/fastqc/">FastQC</a> you can perform the necessary controls over FASTQ files.</p>
 <pre><code>fastqc C51C3ACXX_TC1-H3K4-A-D3_14s006647-1-1_Sinkkonen_lane514s006647_sequence.txt.gz
 </code></pre>
 
 <h3 id="running-in-parallel">running in parallel</h3>
-<p>If you have booked <strong>2</strong> cores, otherwise update the <code>-j</code> option:</p>
+<p>If you have booked <strong>4</strong> cores, otherwise update the <code>-j</code> option:</p>
 <pre><code>parallel -j 4 &quot;fastqc {}&quot; ::: *.gz
 </code></pre>
 
@@ -159,7 +159,7 @@ done
 </code></pre>
 
 <h3 id="visualize-the-results">visualize the results</h3>
-<p>collect the <code>html</code> files using either <code>rsync</code>, <code>scp</code> for command lines or <a href="https://filezilla-project.org/download.php?type=client">FileZilla</a> for  GUI tool.</p>
+<p>collect the <code>html</code> files using either <code>rsync</code>, <code>scp</code> for command lines or <a href="https://filezilla-project.org/download.php?type=client">FileZilla</a> for a GUI tool.</p>
 <p>You should observe some issues that needs to be solve.</p>
               
             </div>
@@ -171,7 +171,7 @@ done
         <a href="../mapping/" class="btn btn-neutral float-right" title="Mapping">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../install/" class="btn btn-neutral" title="Setup"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cli/" class="btn btn-neutral" title="Command line, basics"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -199,7 +199,7 @@ done
           <a href="https://github.com/ginolhac/chip-seq/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../install/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../cli/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../mapping/" style="color: #fcfcfc">Next &raquo;</a></span>

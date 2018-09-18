@@ -55,12 +55,12 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../cli/">Command line, basics</a>
+    <a class="" href="../install/">Setup</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="../install/">Setup</a>
+    <a class="" href="../cli/">Command line, basics</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -161,21 +161,20 @@ Full documentation available <a href="http://paleomix.readthedocs.io/en/latest/"
 <pre><code>paleomix
 </code></pre>
 
-<p>In case it is not, your are certainly missing the module, please re-run 
-the <code>module use</code> and <code>module load</code> in the <a href="http://ginolhac.github.io/chip-seq/install/">set-up</a></p>
+<p>In case it is not, your are certainly not using the <em>singularity container</em>, see instructions in the <a href="http://ginolhac.github.io/chip-seq/install/">set-up</a></p>
 <h3 id="test-your-install">test your install</h3>
 <p>fetch the example, reference is the human mitochondrial genome</p>
-<pre><code>mkdir -p ~/install/paleomix/example
-cp -r /work/users/aginolhac/chip-seq/paleomix/examples/bam_pipeline/00* ~/install/paleomix/example
-cd ~/install/paleomix/example
+<pre><code>mkdir -p ~/paleomix/example
+cp -r /scratcg/users/aginolhac/chip-seq/bam_pipeline_example/000* ~/paleomix/example
+cd ~/paleomix/example
 </code></pre>
 
 <p>run the example, start by a <code>dry-run</code>, adjust the number of threads accordingly.</p>
-<pre><code>paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=2 --dry-run 000_makefile.yaml
+<pre><code>paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=8 --dry-run 000_makefile.yaml
 </code></pre>
 
 <p>If all fine, re-rerun the command without the <code>--dry-run</code> option</p>
-<p>Of note, calling <code>mapDamage</code> was disabled to limit the computation time (~ 35 min when included).
+<p>Of note, calling <code>mapDamage</code> and <code>GATK</code> were disabled to limit the computation time (~ 35 min when included).
 Anyway, this tool is not used for ChIP-seq analysis.</p>
 <h3 id="generate-a-makefile">Generate a makefile</h3>
 <p>Trimming, mapping imply a lot of steps and it is hard to be sure that everything goes well. 
@@ -189,7 +188,7 @@ paleomix bam_pipeline mkfile &gt; mouse.yaml
 </code></pre>
 
 <h3 id="edit-the-makefile">Edit the makefile</h3>
-<p>using your favorite text editor, edit the <code>mouse.yaml</code>. For example <code>vim mouse.yaml</code> or <code>kate</code> or <code>nano</code>.</p>
+<p>using your favorite text editor (such as <code>nano</code>), edit the <code>mouse.yaml</code>. For example <code>vim mouse.yaml</code> or <code>kate</code> or <code>nano</code>.</p>
 <h4 id="options">Options</h4>
 <p>For duplicates, change the default behavior from <code>filter</code> to <code>mark</code>  </p>
 <pre><code>  PCRDuplicates: mark
@@ -223,7 +222,7 @@ This is not in the scope of ChIP-seq analysis. Same for mapDamage, only relevant
 to save computational time.</p>
 <pre><code>Prefixes:
   mouse_19:
-    Path: /work/users/aginolhac/chip-seq/doctoral_school/references/chr19.fasta
+    Path: /scratch/users/aginolhac/chip-seq/references/chr19.fasta
 </code></pre>
 
 <h4 id="samples">Samples</h4>

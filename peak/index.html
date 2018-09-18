@@ -55,12 +55,12 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../cli/">Command line, basics</a>
+    <a class="" href="../install/">Setup</a>
 	    </li>
           
             <li class="toctree-l1">
 		
-    <a class="" href="../install/">Setup</a>
+    <a class="" href="../cli/">Command line, basics</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -170,7 +170,7 @@
 <pre><code>cd ~/chip-seq
 mkdir bams
 cd bams
-ln -s /work/users/aginolhac/chip-seq/doctoral_school/data/*.bam .
+ln -s /scratch/users/aginolhac/chip-seq/data/*.bam .
 
 </code></pre>
 
@@ -184,8 +184,7 @@ macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
 
 </code></pre>
 
-<p>In case <code>macs2</code> gives <code>command not found</code>, your are certainly missing the module, please re-run 
-the <code>module use</code> and <code>module load</code> in the <a href="http://ginolhac.github.io/chip-seq/install/">set-up</a></p>
+<p>In case <code>macs2</code> gives <code>command not found</code>, your are certainly missing the module, please see the <a href="http://ginolhac.github.io/chip-seq/install/">set-up</a></p>
 <h3 id="check-model-inferred-by-macs2">check model inferred by MACS2</h3>
 <p>execute R script.</p>
 <pre><code>Rscript TC1-A-H3K4-D3/TC1-A-H3K4-D3_model.r
@@ -201,8 +200,8 @@ Rscript TC1-ST2-H3K4-D0/TC1-ST2-H3K4-D0_model.r
 
 <h3 id="convert-to-bigwig">convert to bigwig</h3>
 <p>in order to get smaller files</p>
-<pre><code>find TC* -name '*sort.bdg' | parallel -j 2 &quot;/work/users/aginolhac/chip-seq/doctoral_school/bedGraphToBigWig {} \
-  /work/users/aginolhac/chip-seq/doctoral_school/references/GRCm38.p3.chom.sizes {.}.bigwig&quot;
+<pre><code>find TC* -name '*sort.bdg' | parallel -j 2 &quot;bedGraphToBigWig {} \
+  /scratch/users/aginolhac/chip-seq/references/GRCm38.p3.chom.sizes {.}.bigwig&quot;
 
 </code></pre>
 
@@ -221,8 +220,8 @@ macs2 callpeak -t TC1-H3K27-A-D3.GRCm38.p3.q30.bam \
 <p>Get the <code>bigwig</code> files for <strong>H3K27</strong>.
 Redo those sort and conversion steps but only for the folders that end with 'broad'</p>
 <pre><code>find TC*broad -name '*.bdg' | parallel &quot;sort -k1,1 -k2,2n {} &gt; {.}.sort.bdg&quot;
-find TC*broad -name '*sort.bdg' | parallel -j 2 &quot;/work/users/aginolhac/chip-seq/doctoral_school/bedGraphToBigWig {} \
-  /work/users/aginolhac/chip-seq/doctoral_school/references/GRCm38.p3.chom.sizes {.}.bigwig&quot;
+find TC*broad -name '*sort.bdg' | parallel -j 2 &quot;bedGraphToBigWig {} \
+  /work/users/aginolhac/chip-seq/references/GRCm38.p3.chom.sizes {.}.bigwig&quot;
 
 </code></pre>
 
