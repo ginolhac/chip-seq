@@ -15,7 +15,7 @@ For both the day 0 and day 3 of differentiation into adipocytes, two files are a
 cd ~/chip-seq
 mkdir bams
 cd bams
-ln -s /work/users/aginolhac/chip-seq/doctoral_school/data/*.bam .
+ln -s /scratch/users/aginolhac/chip-seq/data/*.bam .
 
 ```
 
@@ -31,8 +31,7 @@ macs2 callpeak -t TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
 
 ```
 
-In case `macs2` gives `command not found`, your are certainly missing the module, please re-run 
-the `module use` and `module load` in the [set-up](http://ginolhac.github.io/chip-seq/install/)
+In case `macs2` gives `command not found`, your are certainly missing the module, please see the [set-up](http://ginolhac.github.io/chip-seq/install/)
 
 
 
@@ -60,8 +59,8 @@ find TC* -name '*.bdg' | parallel "sort -k1,1 -k2,2n {} > {.}.sort.bdg"
 in order to get smaller files
 
 ```
-find TC* -name '*sort.bdg' | parallel -j 2 "/work/users/aginolhac/chip-seq/doctoral_school/bedGraphToBigWig {} \
-  /work/users/aginolhac/chip-seq/doctoral_school/references/GRCm38.p3.chom.sizes {.}.bigwig"
+find TC* -name '*sort.bdg' | parallel -j 2 "bedGraphToBigWig {} \
+  /scratch/users/aginolhac/chip-seq/references/GRCm38.p3.chom.sizes {.}.bigwig"
 
 ```
 
@@ -86,8 +85,8 @@ Redo those sort and conversion steps but only for the folders that end with 'bro
 
 ```
 find TC*broad -name '*.bdg' | parallel "sort -k1,1 -k2,2n {} > {.}.sort.bdg"
-find TC*broad -name '*sort.bdg' | parallel -j 2 "/work/users/aginolhac/chip-seq/doctoral_school/bedGraphToBigWig {} \
-  /work/users/aginolhac/chip-seq/doctoral_school/references/GRCm38.p3.chom.sizes {.}.bigwig"
+find TC*broad -name '*sort.bdg' | parallel -j 2 "bedGraphToBigWig {} \
+  /work/users/aginolhac/chip-seq/references/GRCm38.p3.chom.sizes {.}.bigwig"
 
 ```
 

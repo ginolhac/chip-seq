@@ -1,38 +1,46 @@
-## load necessary software as modules
+## load the singularity container
 
-### Add location of these modules
+[Singularity](https://www.sylabs.io/) allows to use containers (from _i.e_ [Docker](https://www.docker.com/)) on High-Performance Computer.
+For more details see the lecture [by Valentin Plugaru](https://ulhpc-tutorials.readthedocs.io/en/latest/containers/singularity/)
 
-```
-module use $RESIF_ROOTINSTALL/lcsb/modules/all
-module use /home/users/aginolhac/.local/easybuild/modules/all/
-```
-
-### Load the modules
-
-```
-module load bio/FastQC
-module load bio/AdapterRemoval
-module load bio/paleomix
-module load bio/SAMtools/0.1.19-goolf-1.4.10
-module load bio/BWA
-module load bio/mapDamage
-module load bio/MACS2
-module load lang/Java
-module load lang/R/3.3.0-ictce-7.3.5-bare
-```
+Shortly, we built a container with all the necessary tools and softwares embeded. Hence, you just need to book the HPC resources and load the container to start working on your **chip-seq** sequences.
 
 ### Tweak for the `picard`
 
+we need to tweak this location only **once**.
 
 ```
 mkdir -p ~/install/jar_root/
-cp /home/users/aginolhac/install/jar_root/picard.jar ~/install/jar_root/
+cp /scratch/aginolhac/picard.jar ~/install/jar_root/
 ```
 
-#### Final tweak for `Gatk`
+### book resources on iris
+
+- 2 hours
+- 8 cores
+- interactive
+
+`srun --cpu-bind=none -p interactive --time=2:0:0 -c 8 --pty bash -i`
+
+### load the container
+
+- first we load the tools `singularity`
+- second we load the container
 
 ```
-cp /home/users/aginolhac/install/jar_root/GenomeAnalysisTK.jar ~/install/jar_root/
+module load tools/Singularity
+singularity shell -s /bin/bash --bind /scratch/users:/scratch/users /scratch/users/aginolhac/ubuntu-chip-seq.simg
+```
+
+then you are inside the container, all the tools should be available.
+
+try running the following and raise your hand if any is `command not found`
+
+```
+bwa
+samtools
+macs2
+paleomix
 ```
 
 ## prepare your working environment
@@ -44,11 +52,11 @@ create a new folder to work in:
 go inside:
 `cd chip-seq`
 create and go in a sub-folder:
-`mkdir raw`
+`mkdir fastq`
 go inside:
-`cd raw`
-symbolic link the fastq files:
-`ln -s /work/users/aginolhac/chip-seq/doctoral_school/raw/C* .`
+`cd fastq`
+symbolic link the **FASTQ** files:
+`ln -s /scratch/users/aginolhac/chip-seq/fastq/C* .`
 
 
 ## check integrity of files

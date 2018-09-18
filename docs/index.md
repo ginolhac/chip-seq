@@ -2,9 +2,9 @@
 
 Running all analyses is computationally intensive and despite the power of the current laptops, jobs should be run on high-performance clusters (HPC).
 
-## log in `gaia`
+## log in `iris`
 
-[`gaia`](https://hpc.uni.lu/systems/gaia/) is one of the [High Performance Computer (HPC) of the UNI](https://hpc.uni.lu).
+[`iris`](https://hpc.uni.lu/systems/iris/) is one of the [High Performance Computer (HPC) of the UNI](https://hpc.uni.lu).
 
 ### connect to the frontend
 
@@ -15,30 +15,28 @@ A match allows the sender to log in. No password required.
 After the setting up of your account, the following should work if you are using mac or GNU/Linux:
 
 ```
-ssh gaia-cluster
+ssh iris-cluster
 ```
 
-Otherwise, on Windows, right-click on `pageant` in the system tray and load a saved session `gaia`. In the terminal, log as your username, such as `student01`.
+Otherwise, on Windows, right-click on `pageant` in the system tray and load a saved session `iris`. In the terminal, log as your username, such as `student01`.
 
-You should see the following prompt of the gaia frontend:
+You should see the following prompt of the `iris` frontend:
 
 ```
-===============================================================================
+==================================================================================
  /!\ NEVER COMPILE OR RUN YOUR PROGRAMS FROM THIS FRONTEND !
-     First reserve your nodes (using oarsub(1))
-Linux access.gaia-cluster.uni.lux 3.2.0-4-amd64 unknown
- 16:45:49 up 126 days,  1:28, 34 users,  load average: 0.96, 1.58, 1.73
-0 16:45:49 your_login@access(gaia-cluster) ~ $
+     First reserve your nodes (using srun/sbatch(1))
+aginolhac@access1.iris-cluster.uni.lux(11:30:46): ~ $
 ```
 
 
 Note that you are on the `access` frontend.
 
 The frontend is meant for browsing / transferring your files only and you **MUST** connect to a node for any computational work 
-using the utility `oarsub` described [here](https://hpc.uni.lu/users/docs/oar.html). This program managed the queuing system and dispatch jobs among the resources according to the demands.
+using the utility `slurm` described [here](https://hpc.uni.lu/users/docs/slurm.html). This program managed the queuing system and dispatch jobs among the resources according to the demands.
 
 Softwares are organized into **modules** that provide you with the binaries but also all the environment required for their running processes.
-
+However, we will use a [container](https://www.docker.com/resources/what-container) that will ease our analyses.
 
 ## TMUX
 
@@ -116,47 +114,30 @@ in all tabs kills the `tmux` session
 
 Of note, `tmux` instances live until the frontend is rebooted.
 
-### connect to a node
+### connect to a computing node
 
 Connecting to a computing node is anyway required to use modules.
 
-You need to book resources by specifying how many cores, optionally if they are on a same node, and a wall time clock. A job can never get extended.
+You need to book resources by specifying how many cores, optionally if they are on a same node, the memory required, and a wall time clock. A job can never get extended.
 
-For Thursday:
+Without entering into the details of [submitting a job](https://hpc.uni.lu/users/docs/slurm.html#basic-usage-commands). The less you ask for, the more high up you are in the queue. Here is the explanation for the above command:
 
-```
-oarsub -I -t inner=3950979 -l nodes=1,walltime=9
-oarsub -I -t inner=3950994 -l nodes=1,walltime=9
-oarsub -I -t inner=3950995 -l nodes=1,walltime=9
-```
-
-For Friday:
-
-```
-oarsub -I -t inner=3950983 -l nodes=1,walltime=9
-oarsub -I -t inner=3950992 -l nodes=1,walltime=9
-oarsub -I -t inner=3950993 -l nodes=1,walltime=9
-```
-
-Without entering into the details of [submitting a job](https://hpc.uni.lu/users/docs/oar.html#request-hierarchical-resources-with-oarsub),
-here is the explanation for the above command:
-
-- `-I` is for interactive, default is passive
-- `-t inner=xxx`, connect to a `container`, specific for today because we booked resources for the course
-- `-l` define the resources you need. The less you ask for, the more high up you are in the queue. A `node` is usually composed of 12 or 24 `cores`, 
-so 12 tasks could be run in parallel. `walltime` define for how long in hours your job will last.
+- `srun` is for interactive, `sbatch` for passive
+- `--time=` following by _hour:minute:second_ for wall time clock
+- `--mem=` with `12GB` for booking 12 gigabytes
+- `-c` cores, A `node` is usually composed of 28 `cores`
 
 Once logged in, the prompt changes for:
 
 ```
-09:14:48 your_login@gaia-66(gaia-cluster)[OAR3511326->717]
+aginolhac@iris-001(11:17:55)
 ```
 
-where you see the node you are logged to (here `gaia-66`), the job ID (3511326) and the time in minutes before your job will be killed (717 minutes).
+where you see the node you are logged to (here `iris-001`).
 
 ## monitoring the resources used
 
-On a shared cluster, you have to take of **three** things:
+On a shared cluster, you have to take care of **three** things:
 
 1. memory usage
 2. cores used
@@ -168,7 +149,7 @@ Each node has
 On an interactive session, use the command `htop` to see if the memory is not full. If the system is swapping (using hard drives for memory storage)
 it becomes super slow and eventually stalled.
 
-For passive sessions, you can use [ganglia](https://hpc.uni.lu/gaia/ganglia/) to check out the nodes you are using.
+For passive sessions, you can use [ganglia](https://hpc.uni.lu/iris/ganglia/) to check out the nodes you are using.
 
 ### cores
 
@@ -198,6 +179,7 @@ df -h
 disk free scans all disks mounted. Could takes time to display the global usage. 
 Please worry if only few Mb are available on the disk you are planning to write to.
 
+check also your own quota with `df-ulhpc` on the frontend.
 
 ### closing connection
 

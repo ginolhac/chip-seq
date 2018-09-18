@@ -18,7 +18,6 @@ rm
 find
 ```
 
-TODO introduce `tmux`
 
 #### Two useful tips:
 
@@ -133,7 +132,6 @@ Think of piping `head` and `tail`
 
 * you should have obtained the 500 first lines in a file and the 500 last in a second file. How can you merge these two files? look at `cat`
 
-TODO: Introduce pipe
 
 #### Extra questions
 

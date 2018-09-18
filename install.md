@@ -74,31 +74,6 @@ module load bio/mapDamage
 
 can be connected to the galaxy server to display bams / bigwig etc.
 
-## gaia container
-
-**FIXME**: ensure that all student accounts can connect to all nodes with no restriction
-
-**FIXME**: ensure that student accounts have a decent `.bashrc` that displays remaining time and contains minimal aliases
-
-book 2 nodes for the session
-
-```
-oarsub -t container -r "2016-09-08 08:00:00" -l nodes=2,walltime=10:00:00
-oarsub -t container -r "2016-09-09 08:00:00" -l nodes=2,walltime=10:00:00
-```
-
-containers booked:
-```
-0 11:26:21 aginolhac@access(gaia-cluster) ~ $ oarstat -u aginolhac
-Job id     Name           User           Submission Date     S Queue
----------- -------------- -------------- ------------------- - ----------
-3950979                   aginolhac      2016-08-26 11:10:57 W default   
-3950983                   aginolhac      2016-08-26 11:12:17 W default   
-3950992                   aginolhac      2016-08-26 11:25:12 W default   
-3950993                   aginolhac      2016-08-26 11:25:26 W default   
-3950994                   aginolhac      2016-08-26 11:25:53 W default   
-3950995                   aginolhac      2016-08-26 11:26:09 W default
-```
 
 ## set-up ssh keys on Windows
 
@@ -126,7 +101,7 @@ download `putty`, `puttygen` and `pageant` [here](http://www.chiark.greenend.org
 
 ### Test from a student account
 
-using the `ssh` keys provided by Sarah Diehl
+using the `ssh` keys provided
 
 `ssh -p 8022 -i ./student06.key student06@access-gaia.uni.lu`
 

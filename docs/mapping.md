@@ -13,26 +13,25 @@ check if paleomix is available
 paleomix
 ```
 
-In case it is not, your are certainly missing the module, please re-run 
-the `module use` and `module load` in the [set-up](http://ginolhac.github.io/chip-seq/install/)
+In case it is not, your are certainly not using the _singularity container_, see instructions in the [set-up](http://ginolhac.github.io/chip-seq/install/)
 
 
 ### test your install
 
 fetch the example, reference is the human mitochondrial genome
 ```
-mkdir -p ~/install/paleomix/example
-cp -r /work/users/aginolhac/chip-seq/paleomix/examples/bam_pipeline/00* ~/install/paleomix/example
-cd ~/install/paleomix/example
+mkdir -p ~/paleomix/example
+cp -r /scratcg/users/aginolhac/chip-seq/bam_pipeline_example/000* ~/paleomix/example
+cd ~/paleomix/example
 ```
 run the example, start by a `dry-run`, adjust the number of threads accordingly.
 ```
-paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=2 --dry-run 000_makefile.yaml
+paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=8 --dry-run 000_makefile.yaml
 ```
 
 If all fine, re-rerun the command without the `--dry-run` option
 
-Of note, calling `mapDamage` was disabled to limit the computation time (~ 35 min when included).
+Of note, calling `mapDamage` and `GATK` were disabled to limit the computation time (~ 35 min when included).
 Anyway, this tool is not used for ChIP-seq analysis.
 
 ### Generate a makefile
@@ -51,7 +50,7 @@ paleomix bam_pipeline mkfile > mouse.yaml
 
 ### Edit the makefile
 
-using your favorite text editor, edit the `mouse.yaml`. For example `vim mouse.yaml` or `kate` or `nano`.
+using your favorite text editor (such as `nano`), edit the `mouse.yaml`. For example `vim mouse.yaml` or `kate` or `nano`.
 
 #### Options
 
@@ -95,7 +94,7 @@ to save computational time.
 ```
 Prefixes:
   mouse_19:
-    Path: /work/users/aginolhac/chip-seq/doctoral_school/references/chr19.fasta
+    Path: /scratch/users/aginolhac/chip-seq/references/chr19.fasta
 ```
 
 
