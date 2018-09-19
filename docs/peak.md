@@ -84,7 +84,7 @@ Redo those sort and conversion steps but only for the folders that end with 'bro
 ```
 find TC*broad -name '*.bdg' | parallel "sort -k1,1 -k2,2n {} > {.}.sort.bdg"
 find TC*broad -name '*sort.bdg' | parallel -j 2 "bedGraphToBigWig {} \
-  /work/users/aginolhac/chip-seq/references/GRCm38.p3.chom.sizes {.}.bigwig"
+  /scratch/users/aginolhac/chip-seq/references/GRCm38.p3.chom.sizes {.}.bigwig"
 
 ```
 
@@ -95,7 +95,7 @@ The website [GREAT](http://bejerano.stanford.edu/great/public/html/) allows past
 
 ### predict functions of cis-regulatory regions
 
-Using the `TC1-A-H3K4_peaks.narrowPeak` file produced by MACS2.
+Using the `TC1-A-H3K4-D3_peaks.narrowPeak` file produced by MACS2.
 
 This file has the different fields:
 
@@ -113,7 +113,7 @@ This file has the different fields:
 Let's format the file as a 3 fields BED file and focus on more significant peaks filtering on *q-values*.
 
 ```
-awk '$9>40'  TC1-A-H3K4/TC1-A-H3K4_peaks.narrowPeak | cut -f 1-3 | sed 's/^/chr/' >  TC1-A-H3K4/TC1-A-H3K4_peaks.bed
+awk '$9>40'  TC1-A-H3K4-D3/TC1-A-H3K4-D3_peaks.narrowPeak | cut -f 1-3 | sed 's/^/chr/' >  TC1-A-H3K4-D3/TC1-A-H3K4_peaks.bed
 cat TC1-A-H3K27-D3-broad/TC1-A-H3K27-D3-broad_peaks.broadPeak | cut -f 1-3 | sed 's/^/chr/' > TC1-A-H3K27-D3-broad/TC1-A-H3K27-D3-broad_peaks.broad.bed
 
 ```
@@ -128,14 +128,34 @@ then
 
 ### Differential peak calling
 
-[ODIN](http://www.regulatory-genomics.org/odin-2/basic-introduction/) allows comparing two conditions associated with their own controls.
+[THOR](http://www.regulatory-genomics.org/thor-2/basic-intrstruction/) allows comparing two conditions associated with their own controls and with replicates.
+
+- first, index the bams
+
+```
+parallel "samtools index {}" ::: *bam
+```
+
+- second, create a config file `THOR.config` that contains:
+
+```
+#rep1
+TC1-H3K4-ST2-D0.GRCm38.p3.q30.bam
+#rep2
+TC1-H3K4-A-D3.GRCm38.p3.q30.bam
+#chrom_sizes
+/scratch/users/aginolhac/chip-seq/references/GRCm38.p3.chom.sizes
+#genome
+/scratch/users/aginolhac/chip-seq/references/GRCm38.p3.fasta
+#inputs1
+TC1-I-ST2-D0.GRCm38.p3.q30.bam
+#inputs2
+TC1-I-A-D3.GRCm38.p3.q30.bam
+```
 
 A command line looks like
 ```
-rgt-ODIN  --input-1=../TC1-I-ST2-D0.GRCm38.p3.q30.bam \
-          --input-2=../TC1-I-A-D3.GRCm38.p3.q30.bam \
-          -m -n TC1-I-A-D0vsD15 -v \
-          TC1-H3K4-ST2-D0.GRCm38.p3.q30.bam TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
-          ../references/GRCm38.p3.fasta ../references/GRCm38.p3.chom.sizes
-
+rgt-THOR -m -n TC1-I-A-D0vsD15 --output-dir=TC1-I-A-D0vsD1 THOR.config
 ```
+
+takes ~ 25 minutes
