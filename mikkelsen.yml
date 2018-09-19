@@ -133,7 +133,7 @@ Prefixes:
     # containing the references against which reads are to be mapped.
 #    Path: PATH_TO_PREFIX
   GRCm38.p3:
-    Path: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/references/GRCm38.p3.fasta
+    Path: /scratch/users/aginolhac/chip-seq/Mikkelsen/references/GRCm38.p3.fasta
 
     # (Optional) Uncomment and replace 'PATH_TO_BEDFILE' with the path to a
     # .bed file listing extra regions for which coverage / depth statistics
@@ -159,35 +159,35 @@ Prefixes:
 Mikkelsen_3T3L1_WCE:
   SAMN00011733:
     3T3L1_WCE:
-      SRR040087: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040087.fastq.gz
-      SRR040088: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040088.fastq.gz
-      SRR040089: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040089.fastq.gz
-      SRR040090: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040090.fastq.gz
-      SRR040091: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040091.fastq.gz
-      SRR040092: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040092.fastq.gz
-      SRR040093: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040093.fastq.gz
-      SRR040094: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040094.fastq.gz
-      SRR040095: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040095.fastq.gz
+      SRR040087: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040087.fastq.gz
+      SRR040088: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040088.fastq.gz
+      SRR040089: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040089.fastq.gz
+      SRR040090: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040090.fastq.gz
+      SRR040091: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040091.fastq.gz
+      SRR040092: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040092.fastq.gz
+      SRR040093: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040093.fastq.gz
+      SRR040094: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040094.fastq.gz
+      SRR040095: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040095.fastq.gz
 Mikkelsen_3T3L1_t2_H3K4me3:
   SAMN00011741:
     3T3L1_t2_H3K4me3:
-      SRR040113: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040113.fastq.gz
-      SRR040114: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040114.fastq.gz
-      SRR040115: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040115.fastq.gz
-      SRR040116: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040116.fastq.gz
+      SRR040113: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040113.fastq.gz
+      SRR040114: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040114.fastq.gz
+      SRR040115: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040115.fastq.gz
+      SRR040116: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040116.fastq.gz
 Mikkelsen_3T3L1_t2_H3K27ac:
   SAMN00011744:
     3T3L1_t2_H3K27ac:
-      SRR040121: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040121.fastq.gz
-      SRR040122: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040122.fastq.gz
+      SRR040121: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040121.fastq.gz
+      SRR040122: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040122.fastq.gz
 Mikkelsen_3T3L1_t3_H3K4me3:
   SAMN00011748:
     3T3L1_t3_H3K4me3:
-      SRR040131: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040131.fastq.gz
-      SRR040132: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040132.fastq.gz
-      SRR040133: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040133.fastq.gz
+      SRR040131: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040131.fastq.gz
+      SRR040132: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040132.fastq.gz
+      SRR040133: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040133.fastq.gz
 Mikkelsen_3T3L1_t3_H3K27ac:
   SAMN00011751:
     3T3L1_t3_H3K27ac:
-      SRR040140: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040140.fastq.gz
-      SRR040141: /work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen/fastq/SRR040141.fastq.gz 
+      SRR040140: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040140.fastq.gz
+      SRR040141: /scratch/users/aginolhac/chip-seq/Mikkelsen/fastq/SRR040141.fastq.gz 
