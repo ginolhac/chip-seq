@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Peak calling - ChIP-seq tutorials</title>
+  <title>peak(Conflicted) - ChIP-seq tutorials</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Peak calling";
-    var mkdocs_page_input_path = "peak.md";
+    var mkdocs_page_name = "peak(Conflicted)";
+    var mkdocs_page_input_path = "peak(Conflicted).md";
     var mkdocs_page_url = null;
   </script>
   
@@ -73,44 +73,9 @@
     <a class="" href="../mapping/">Mapping</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Peak calling</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#peak-calling">Peak calling</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#retrieve-the-bam-files-with-all-chromosomes">Retrieve the BAM files with all chromosomes</a></li>
-        
-            <li><a class="toctree-l3" href="#perform-peak-calling">Perform peak calling</a></li>
-        
-            <li><a class="toctree-l3" href="#check-model-inferred-by-macs2">check model inferred by MACS2</a></li>
-        
-            <li><a class="toctree-l3" href="#sort-per-chromosomes-and-coordinates">sort per chromosomes and coordinates</a></li>
-        
-            <li><a class="toctree-l3" href="#convert-to-bigwig">convert to bigwig</a></li>
-        
-            <li><a class="toctree-l3" href="#fetch-the-files-and-display-them-in-igv">Fetch the files and display them in IGV</a></li>
-        
-            <li><a class="toctree-l3" href="#perform-peak-calling-with-broad-option">Perform peak calling with broad option</a></li>
-        
-        </ul>
-    
-
-    <li class="toctree-l2"><a href="#great-analysis">GREAT analysis</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#predict-functions-of-cis-regulatory-regions">predict functions of cis-regulatory regions</a></li>
-        
-            <li><a class="toctree-l3" href="#differential-peak-calling">Differential peak calling</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../peak/">Peak calling</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -145,10 +110,10 @@
     
       
     
-    <li>Peak calling</li>
+    <li>peak(Conflicted)</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ginolhac/chip-seq/edit/master/docs/peak.md"
+        <a href="https://github.com/ginolhac/chip-seq/edit/master/docs/peak(Conflicted).md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -219,14 +184,14 @@ macs2 callpeak -t TC1-H3K27-A-D3.GRCm38.p3.q30.bam \
 Redo those sort and conversion steps but only for the folders that end with 'broad'</p>
 <pre><code>find TC*broad -name '*.bdg' | parallel &quot;sort -k1,1 -k2,2n {} &gt; {.}.sort.bdg&quot;
 find TC*broad -name '*sort.bdg' | parallel -j 2 &quot;bedGraphToBigWig {} \
-  /scratch/users/aginolhac/chip-seq/references/GRCm38.p3.chom.sizes {.}.bigwig&quot;
+  /work/users/aginolhac/chip-seq/references/GRCm38.p3.chom.sizes {.}.bigwig&quot;
 
 </code></pre>
 
 <h2 id="great-analysis">GREAT analysis</h2>
 <p>The website <a href="http://bejerano.stanford.edu/great/public/html/">GREAT</a> allows pasting bed regions of enriched regions.</p>
 <h3 id="predict-functions-of-cis-regulatory-regions">predict functions of cis-regulatory regions</h3>
-<p>Using the <code>TC1-A-H3K4-D3_peaks.narrowPeak</code> file produced by MACS2.</p>
+<p>Using the <code>TC1-A-H3K4_peaks.narrowPeak</code> file produced by MACS2.</p>
 <p>This file has the different fields:</p>
 <ol>
 <li>chromosome</li>
@@ -241,7 +206,7 @@ find TC*broad -name '*sort.bdg' | parallel -j 2 &quot;bedGraphToBigWig {} \
 <li>relative summit position to peak start</li>
 </ol>
 <p>Let's format the file as a 3 fields BED file and focus on more significant peaks filtering on <em>q-values</em>.</p>
-<pre><code>awk '$9&gt;40'  TC1-A-H3K4-D3/TC1-A-H3K4-D3_peaks.narrowPeak | cut -f 1-3 | sed 's/^/chr/' &gt;  TC1-A-H3K4-D3/TC1-A-H3K4_peaks.bed
+<pre><code>awk '$9&gt;40'  TC1-A-H3K4/TC1-A-H3K4_peaks.narrowPeak | cut -f 1-3 | sed 's/^/chr/' &gt;  TC1-A-H3K4/TC1-A-H3K4_peaks.bed
 cat TC1-A-H3K27-D3-broad/TC1-A-H3K27-D3-broad_peaks.broadPeak | cut -f 1-3 | sed 's/^/chr/' &gt; TC1-A-H3K27-D3-broad/TC1-A-H3K27-D3-broad_peaks.broad.bed
 
 </code></pre>
@@ -257,48 +222,19 @@ cat TC1-A-H3K27-D3-broad/TC1-A-H3K27-D3-broad_peaks.broadPeak | cut -f 1-3 | sed
 </li>
 </ul>
 <h3 id="differential-peak-calling">Differential peak calling</h3>
-<p><a href="http://www.regulatory-genomics.org/thor-2/basic-intrstruction/">THOR</a> allows comparing two conditions associated with their own controls and with replicates.</p>
-<ul>
-<li>first, index the bams</li>
-</ul>
-<pre><code>parallel &quot;samtools index {}&quot; ::: *bam
-</code></pre>
-
-<ul>
-<li>second, create a config file <code>THOR.config</code> that contains:</li>
-</ul>
-<pre><code>#rep1
-TC1-H3K4-ST2-D0.GRCm38.p3.q30.bam
-#rep2
-TC1-H3K4-A-D3.GRCm38.p3.q30.bam
-#chrom_sizes
-/scratch/users/aginolhac/chip-seq/references/GRCm38.p3.chom.sizes
-#genome
-/scratch/users/aginolhac/chip-seq/references/GRCm38.p3.fasta
-#inputs1
-TC1-I-ST2-D0.GRCm38.p3.q30.bam
-#inputs2
-TC1-I-A-D3.GRCm38.p3.q30.bam
-</code></pre>
-
+<p><a href="http://www.regulatory-genomics.org/odin-2/basic-introduction/">ODIN</a> allows comparing two conditions associated with their own controls.</p>
 <p>A command line looks like</p>
-<pre><code>rgt-THOR -m -n TC1-I-A-D0vsD15 --output-dir=TC1-I-A-D0vsD1 THOR.config
-</code></pre>
+<pre><code>rgt-ODIN  --input-1=../TC1-I-ST2-D0.GRCm38.p3.q30.bam \
+          --input-2=../TC1-I-A-D3.GRCm38.p3.q30.bam \
+          -m -n TC1-I-A-D0vsD15 -v \
+          TC1-H3K4-ST2-D0.GRCm38.p3.q30.bam TC1-H3K4-A-D3.GRCm38.p3.q30.bam \
+          ../references/GRCm38.p3.fasta ../references/GRCm38.p3.chom.sizes
 
-<p>takes ~ 25 minutes</p>
+</code></pre>
               
             </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../public/" class="btn btn-neutral float-right" title="Public data">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../mapping/" class="btn btn-neutral" title="Mapping"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
@@ -324,10 +260,6 @@ TC1-I-A-D3.GRCm38.p3.q30.bam
           <a href="https://github.com/ginolhac/chip-seq/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../mapping/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../public/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
