@@ -6,13 +6,14 @@ Using [FastQC](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/) you ca
 fastqc C51C3ACXX_TC1-H3K4-A-D3_14s006647-1-1_Sinkkonen_lane514s006647_sequence.txt.gz
 ```
 
+but one file at a time, does not benefit the HPC.
 
 ### running in parallel
 
-If you have booked **4** cores, otherwise update the `-j` option:
+If you have booked at least **4** cores, otherwise update the `-j` option:
 
 ```
-parallel -j 4 "fastqc {}" ::: *.gz
+parallel -j 4 "fastqc {}" ::: fastq/*.gz
 ```
 
 the `{}` instruction will be replaced by all occurrences of the pattern `*.gz`, everything that ends by `.gz`. [`parallel`](http://www.gnu.org/software/parallel/) 

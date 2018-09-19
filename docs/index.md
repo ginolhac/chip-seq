@@ -22,7 +22,7 @@ Otherwise, on Windows, right-click on `pageant` in the system tray and load a sa
 
 You should see the following prompt of the `iris` frontend:
 
-```
+```console
 ==================================================================================
  /!\ NEVER COMPILE OR RUN YOUR PROGRAMS FROM THIS FRONTEND !
      First reserve your nodes (using srun/sbatch(1))

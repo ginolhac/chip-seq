@@ -2,7 +2,7 @@
 
 Public data can be used in 2 ways:
 
-* download processed data uploaded by the authors. See Sarah Diehl's tutorial
+* download processed data uploaded by the authors
 * download raw data
 
 Use the first one save time but rely on the authors's workflow
@@ -30,7 +30,7 @@ te input control they used for normalization:
 [input control](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM535740)
 
 
-Download `SRR_Acc_List.txt` in `/work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen`
+Download `SRR_Acc_List.txt` in `/scratch/users/aginolhac/chip-seq/Mikkelsen`
 
 `fastq-dump` is a tool from NCBI, part of the [sra-tools](https://github.com/ncbi/sra-tools/wiki/Downloads), available for free. Install this program.
 

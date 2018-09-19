@@ -1,13 +1,13 @@
 site_name: ChIP-seq tutorials
 nav:
-- Home: "index.md"
-- Setup: "install.md"
-- Command line, basics: "cli.md"
-- sequence QC: "fastqc.md"
-- Mapping: "mapping.md"
-- Peak calling: "peak.md"
-- Public data: "public.md"
-- Contact: "contact.md"
+- Home: index.md
+- Setup: install.md
+- "Command line, basics": cli.md
+- QC: fastqc.md
+- Mapping: mapping.md
+- Peak calling: peak.md
+- Public data: public.md
+- Contact: contact.md
 repo_url: https://github.com/ginolhac/chip-seq/
 site_description: "ChIP-seq tutorial, University of Luxembourg, Life Sciences Research Unit"
 theme: readthedocs

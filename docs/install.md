@@ -9,9 +9,9 @@ Shortly, we built a container with all the necessary tools and softwares embeded
 
 we need to tweak this location only **once**.
 
-```
+```bash
 mkdir -p ~/install/jar_root/
-cp /scratch/aginolhac/picard.jar ~/install/jar_root/
+cp /scratch/users/aginolhac/picard.jar ~/install/jar_root/
 ```
 
 ### book resources on iris
@@ -27,7 +27,7 @@ cp /scratch/aginolhac/picard.jar ~/install/jar_root/
 - first we load the tools `singularity`
 - second we load the container
 
-```
+```bash
 module load tools/Singularity
 singularity shell -s /bin/bash --bind /scratch/users:/scratch/users /scratch/users/aginolhac/ubuntu-chip-seq.simg
 ```
@@ -36,7 +36,7 @@ then you are inside the container, all the tools should be available.
 
 try running the following and raise your hand if any is `command not found`
 
-```
+```bash
 bwa
 samtools
 macs2
@@ -45,19 +45,13 @@ paleomix
 
 ## prepare your working environment
 
-go to your home directory:
-`cd`
-create a new folder to work in:
-`mkdir chip-seq`
-go inside:
-`cd chip-seq`
-create and go in a sub-folder:
-`mkdir fastq`
-go inside:
-`cd fastq`
-symbolic link the **FASTQ** files:
-`ln -s /scratch/users/aginolhac/chip-seq/fastq/C* .`
-
+- go to your home directory: `cd`
+- create a new folder to work in: `mkdir chip-seq`
+- go inside: `cd chip-seq`
+- create and go in a sub-folder: `mkdir fastq`
+- go inside: `cd fastq`
+- symbolic link the **FASTQ** files: `ln -s /scratch/users/aginolhac/chip-seq/fastq/C* .`
+- check your actions: `ll` (alias of `ls -l`)
 
 ## check integrity of files
 
@@ -67,3 +61,5 @@ Computing the `md5sum` ensure you have the same file as your sequence provider.
 Then `paleomix` will check the FASTQ are correct, *i. e* have 4 lines in a correct format.
 
 `md5sum -c C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.md5`
+
+you should observe an `OK` after few seconds of computing time.

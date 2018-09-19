@@ -82,6 +82,24 @@ TODO more details needed
 
 ### text editor
 
+#### nano
+
+often installed, it is easy to use as all commands are written at the bottom:
+
+```console
+
+
+
+^G Get Help                   ^O WriteOut                   ^R Read File                  ^Y Prev Page                  ^K Cut Text                   ^C Cur Pos
+^X Exit                       ^J Justify                    ^W Where Is                   ^V Next Page                  ^U UnCut Text                 ^T To Spell
+```
+
+
+you can write/modify text directly and use `CTRL + O` to save then `CTRL + X` to exit.
+
+
+#### VIM
+
 Let's have a look at a text editor, there is plenty of them, the one I use is `vim`, why?  
 Because
 
