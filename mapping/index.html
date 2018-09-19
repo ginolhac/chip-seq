@@ -65,7 +65,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../fastqc/">sequence QC</a>
+    <a class="" href="../fastqc/">QC</a>
 	    </li>
           
             <li class="toctree-l1 current">
@@ -86,6 +86,9 @@
             <li><a class="toctree-l3" href="#perform-the-trimming-mapping">Perform the trimming / mapping</a></li>
         
         </ul>
+    
+
+    <li class="toctree-l2"><a href="#correct-the-makefile">correct the makefile</a></li>
     
 
     <li class="toctree-l2"><a href="#check-trimming">check trimming</a></li>
@@ -164,8 +167,9 @@ Full documentation available <a href="http://paleomix.readthedocs.io/en/latest/"
 <p>In case it is not, your are certainly not using the <em>singularity container</em>, see instructions in the <a href="http://ginolhac.github.io/chip-seq/install/">set-up</a></p>
 <h3 id="test-your-install">test your install</h3>
 <p>fetch the example, reference is the human mitochondrial genome</p>
-<pre><code>mkdir -p ~/paleomix/example
-cp -r /scratcg/users/aginolhac/chip-seq/bam_pipeline_example/000* ~/paleomix/example
+<pre><code>
+mkdir -p ~/paleomix/example
+cp -r /scratch/users/aginolhac/chip-seq/bam_pipeline_example/000* ~/paleomix/example
 cd ~/paleomix/example
 </code></pre>
 
@@ -190,7 +194,15 @@ paleomix bam_pipeline mkfile &gt; mouse.yaml
 <h3 id="edit-the-makefile">Edit the makefile</h3>
 <p>using your favorite text editor (such as <code>nano</code>), edit the <code>mouse.yaml</code>. For example <code>vim mouse.yaml</code> or <code>kate</code> or <code>nano</code>.</p>
 <h4 id="options">Options</h4>
-<p>For duplicates, change the default behavior from <code>filter</code> to <code>mark</code>  </p>
+<ul>
+<li>for the compression, change the default behavior from <code>bz2</code> to <code>gz</code>  </li>
+</ul>
+<pre><code>  CompressionFormat: gz
+</code></pre>
+
+<ul>
+<li>for duplicates, change the default behavior from <code>filter</code> to <code>mark</code>  </li>
+</ul>
 <pre><code>  PCRDuplicates: mark
 </code></pre>
 
@@ -216,7 +228,7 @@ Change <code>yes/no</code> to match the following:</p>
 
 <p>In detail, the <code>RealignedBAM</code> are important for calling variants, we only need to <code>RawBAM</code>.
 Moreover, the <code>Depths</code> also help to define which upper limit could be used for variant calling.
-This is not in the scope of ChIP-seq analysis. Same for mapDamage, only relevant for ancient DNA.</p>
+This is not in the scope of ChIP-seq analysis. Same for <code>mapDamage</code>, only relevant for ancient DNA.</p>
 <h4 id="prefixes">Prefixes</h4>
 <p>These are the references to align read to. You could notice that we are going to use only one chromosome
 to save computational time.</p>
@@ -226,43 +238,65 @@ to save computational time.</p>
 </code></pre>
 
 <h4 id="samples">Samples</h4>
-<p>enter at the end of the makefile, the following lines, according to your login.
+<p>enter at the end of the makefile, the following lines.
 Again, do use <strong>spaces</strong> and not tabs for the indentation. For those who are lazy and use copy/paste in <code>vim</code>
  use the trick to <code>:set paste</code> to avoid extra spaces, comment hashes etc to be automatically added.</p>
-<p>Be careful to <strong>replace</strong> <code>student01</code> by the relevant username. Descriptions of the different hierachical names
+<p>The descriptions of the different hierachical names
 can be read <a href="http://paleomix.readthedocs.io/en/latest/bam_pipeline/makefile.html#targets-section">here</a></p>
 <pre><code>TC1-I-A-D3:
   TC1-I-A-D3:
     TC1-I-A-D3:
-      &quot;14s006680-1-1&quot;: /home/users/student01/chip-seq/raw/C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.gz
+      &quot;14s006680-1-1&quot;: fastq/C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.gz
 
 TC1-H3K4-A-D3:
   TC1-H3K4-A-D3:
     TC1-H3K4-A-D3:
-      &quot;14s006647-1-1&quot;: /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-H3K4-A-D3_14s006647-1-1_Sinkkonen_lane514s006647_sequence.txt.gz
+      &quot;14s006647-1-1&quot;: fastq/C51C3ACXX_TC1-H3K4-A-D3_14s006647-1-1_Sinkkonen_lane514s006647_sequence.txt.gz
 
 TC1-I-ST2-D0:
   TC1-I-ST2-D0:
     TC1-I-ST2-D0:
-      &quot;14s006677-1-1&quot;: /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-I-ST2-D0_14s006677-1-1_Sinkkonen_lane814s006677_sequence.txt.gz
+      &quot;14s006677-1-1&quot;: fastq/C51C3ACXX_TC1-I-ST2-D0_14s006677-1-1_Sinkkonen_lane814s006677_sequence.txt.gz
 
 TC1-H3K4-ST2-D0:
   TC1-H3K4-ST2-D0:
     TC1-H3K4-ST2-D0:
-      &quot;14s006644&quot;: /home/users/student01/chip-seq/raw/C51C3ACXX_TC1-H3K4-ST2-D0_14s006644-1-1_Sinkkonen_lane514s006644_sequence.txt.gz
+      &quot;14s006644&quot;: fastq/C51C3ACXX_TC1-H3K4-ST2-D0_14s006644-1-1_Sinkkonen_lane514s006644_sequence.txt.gz
 </code></pre>
 
 <h3 id="perform-the-trimming-mapping">Perform the trimming / mapping</h3>
 <p>First use the option <code>--dry-run</code> to spot mistakes.</p>
 <p>Please <strong>adapt</strong> the <code>--max-threads</code> option to the #cpus actually booked</p>
-<pre><code>paleomix bam_pipeline run --bwa-max-threads=4 --max-threads=12 --dry-run mouse.yaml
+<pre><code>paleomix bam_pipeline run --bwa-max-threads=2 --adapterremoval-max-threads=2 --max-threads=8 --dry-run mouse.yaml
 </code></pre>
 
 <p>when all green lights are on, remove the <code>dry-run</code> and perform the mapping.</p>
+<h2 id="correct-the-makefile">correct the makefile</h2>
+<p>the trimming should go well, but an error arises because you cannot write to the reference folder.</p>
+<ul>
+<li>symbolic links in your own folder, removing the file that should be created if the ref is correct</li>
+</ul>
+<pre><code>mkdir references
+ln -s /scratch/users/aginolhac/chip-seq/references/chr19.fasta references/
+</code></pre>
+
+<ul>
+<li>correct the makefile, so the <code>Path</code> is relative now</li>
+</ul>
+<pre><code>    Path: references/chr19.fasta
+</code></pre>
+
+<ul>
+<li>enjoy <code>paleomix</code> by just re-running it, only necessary steps are done (validatating the ref, indexing it and mappings)</li>
+</ul>
+<pre><code>paleomix bam_pipeline run --bwa-max-threads=2 --adapterremoval-max-threads=2 --max-threads=8 mouse.yaml
+</code></pre>
+
+<p>the whole process should takes ~ 25 minutes with 8 cores</p>
 <h2 id="check-trimming">check trimming</h2>
 <p>First of all, check using <code>fastqc</code> that the trimming did remove the adapters that were contaminated the reads.</p>
 <p>Again, with <code>parallel</code> specify the <strong>max</strong> number of jobs with the option <code>-j</code> to fit the #cpus booked</p>
-<pre><code>find . -name &quot;reads.truncated.bz2&quot; | parallel -j 12 &quot;fastqc {}&quot; &amp;
+<pre><code>find . -name &quot;reads.truncated.gz&quot; | parallel -j 8 &quot;fastqc {}&quot; &amp;
 </code></pre>
 
 <p>using the character <code>&amp;</code> tells the shell that we want the processes to run in the background. Meaning that you can still run more things while the 4 tasks are running. Check them using <code>htop</code>.</p>
@@ -291,7 +325,7 @@ such as in <code>fastqc</code> output, then filtering may be necessary. Marking 
         <a href="../peak/" class="btn btn-neutral float-right" title="Peak calling">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../fastqc/" class="btn btn-neutral" title="sequence QC"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../fastqc/" class="btn btn-neutral" title="QC"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   

@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>sequence QC - ChIP-seq tutorials</title>
+  <title>QC - ChIP-seq tutorials</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "sequence QC";
+    var mkdocs_page_name = "QC";
     var mkdocs_page_input_path = "fastqc.md";
     var mkdocs_page_url = null;
   </script>
@@ -65,7 +65,7 @@
           
             <li class="toctree-l1 current">
 		
-    <a class="current" href="./">sequence QC</a>
+    <a class="current" href="./">QC</a>
     <ul class="subnav">
             
     <li class="toctree-l2"><a href="#fastq-quality-controls">FASTQ Quality controls</a></li>
@@ -126,7 +126,7 @@
     
       
     
-    <li>sequence QC</li>
+    <li>QC</li>
     <li class="wy-breadcrumbs-aside">
       
         <a href="https://github.com/ginolhac/chip-seq/edit/master/docs/fastqc.md"
@@ -144,9 +144,10 @@
 <pre><code>fastqc C51C3ACXX_TC1-H3K4-A-D3_14s006647-1-1_Sinkkonen_lane514s006647_sequence.txt.gz
 </code></pre>
 
+<p>but one file at a time, does not benefit the HPC.</p>
 <h3 id="running-in-parallel">running in parallel</h3>
-<p>If you have booked <strong>4</strong> cores, otherwise update the <code>-j</code> option:</p>
-<pre><code>parallel -j 4 &quot;fastqc {}&quot; ::: *.gz
+<p>If you have booked at least <strong>4</strong> cores, otherwise update the <code>-j</code> option:</p>
+<pre><code>parallel -j 4 &quot;fastqc {}&quot; ::: fastq/*.gz
 </code></pre>
 
 <p>the <code>{}</code> instruction will be replaced by all occurrences of the pattern <code>*.gz</code>, everything that ends by <code>.gz</code>. <a href="http://www.gnu.org/software/parallel/"><code>parallel</code></a> 

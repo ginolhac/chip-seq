@@ -87,7 +87,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../fastqc/">sequence QC</a>
+    <a class="" href="../fastqc/">QC</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -152,7 +152,7 @@ For more details see the lecture <a href="https://ulhpc-tutorials.readthedocs.io
 <h3 id="tweak-for-the-picard">Tweak for the <code>picard</code></h3>
 <p>we need to tweak this location only <strong>once</strong>.</p>
 <pre><code class="bash">mkdir -p ~/install/jar_root/
-cp /scratch/aginolhac/picard.jar ~/install/jar_root/
+cp /scratch/users/aginolhac/picard.jar ~/install/jar_root/
 </code></pre>
 
 <h3 id="book-resources-on-iris">book resources on iris</h3>
@@ -180,24 +180,22 @@ paleomix
 </code></pre>
 
 <h2 id="prepare-your-working-environment">prepare your working environment</h2>
-<p>go to your home directory:
-<code>cd</code>
-create a new folder to work in:
-<code>mkdir chip-seq</code>
-go inside:
-<code>cd chip-seq</code>
-create and go in a sub-folder:
-<code>mkdir fastq</code>
-go inside:
-<code>cd fastq</code>
-symbolic link the <strong>FASTQ</strong> files:
-<code>ln -s /scratch/users/aginolhac/chip-seq/fastq/C* .</code></p>
+<ul>
+<li>go to your home directory: <code>cd</code></li>
+<li>create a new folder to work in: <code>mkdir chip-seq</code></li>
+<li>go inside: <code>cd chip-seq</code></li>
+<li>create and go in a sub-folder: <code>mkdir fastq</code></li>
+<li>go inside: <code>cd fastq</code></li>
+<li>symbolic link the <strong>FASTQ</strong> files: <code>ln -s /scratch/users/aginolhac/chip-seq/fastq/C* .</code></li>
+<li>check your actions: <code>ll</code> (alias of <code>ls -l</code>)</li>
+</ul>
 <h2 id="check-integrity-of-files">check integrity of files</h2>
 <p>Just as a side note, such large files are usually a pain to download. Since they are the very raw files
 after the sequencer (despite basecalling) checking their integrity is worth doing.
 Computing the <code>md5sum</code> ensure you have the same file as your sequence provider.
 Then <code>paleomix</code> will check the FASTQ are correct, <em>i. e</em> have 4 lines in a correct format.</p>
 <p><code>md5sum -c C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.md5</code></p>
+<p>you should observe an <code>OK</code> after few seconds of computing time.</p>
               
             </div>
           </div>

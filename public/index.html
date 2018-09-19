@@ -65,7 +65,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="../fastqc/">sequence QC</a>
+    <a class="" href="../fastqc/">QC</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -142,7 +142,7 @@
                 <h2 id="public-data-mikkelsen-et-al">Public data, Mikkelsen et al.</h2>
 <p>Public data can be used in 2 ways:</p>
 <ul>
-<li>download processed data uploaded by the authors. See Sarah Diehl's tutorial</li>
+<li>download processed data uploaded by the authors</li>
 <li>download raw data</li>
 </ul>
 <p>Use the first one save time but rely on the authors's workflow</p>
@@ -160,7 +160,7 @@
 </ul>
 <p>te input control they used for normalization:</p>
 <p><a href="http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM535740">input control</a></p>
-<p>Download <code>SRR_Acc_List.txt</code> in <code>/work/users/aginolhac/chip-seq/doctoral_school/Mikkelsen</code></p>
+<p>Download <code>SRR_Acc_List.txt</code> in <code>/scratch/users/aginolhac/chip-seq/Mikkelsen</code></p>
 <p><code>fastq-dump</code> is a tool from NCBI, part of the <a href="https://github.com/ncbi/sra-tools/wiki/Downloads">sra-tools</a>, available for free. Install this program.</p>
 <p>then fetch and compress</p>
 <p><code>parallel -j 6 --progress "fastq-dump --gzip {}" :::: SRR_Acc_List.txt</code></p>
