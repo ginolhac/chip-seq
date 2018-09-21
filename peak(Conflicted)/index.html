@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Peak calling - ChIP-seq tutorials</title>
+  <title>peak(Conflicted) - ChIP-seq tutorials</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,8 +17,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Peak calling";
-    var mkdocs_page_input_path = "peak.md";
+    var mkdocs_page_name = "peak(Conflicted)";
+    var mkdocs_page_input_path = "peak(Conflicted).md";
     var mkdocs_page_url = null;
   </script>
   
@@ -73,46 +73,9 @@
     <a class="" href="../mapping/">Mapping</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">Peak calling</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#peak-calling">Peak calling</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#retrieve-the-bam-files-with-all-chromosomes">Retrieve the BAM files with all chromosomes</a></li>
-        
-            <li><a class="toctree-l3" href="#perform-peak-calling">Perform peak calling</a></li>
-        
-            <li><a class="toctree-l3" href="#check-model-inferred-by-macs2">check model inferred by MACS2</a></li>
-        
-            <li><a class="toctree-l3" href="#sort-per-chromosomes-and-coordinates">sort per chromosomes and coordinates</a></li>
-        
-            <li><a class="toctree-l3" href="#convert-to-bigwig">convert to bigwig</a></li>
-        
-            <li><a class="toctree-l3" href="#fetch-the-files-and-display-them-in-igv">Fetch the files and display them in IGV</a></li>
-        
-            <li><a class="toctree-l3" href="#perform-peak-calling-with-broad-option">Perform peak calling with broad option</a></li>
-        
-        </ul>
-    
-
-    <li class="toctree-l2"><a href="#great-analysis">GREAT analysis</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#predict-functions-of-cis-regulatory-regions">predict functions of cis-regulatory regions</a></li>
-        
-            <li><a class="toctree-l3" href="#alternative-with-ngsplot">alternative with ngsplot</a></li>
-        
-            <li><a class="toctree-l3" href="#differential-peak-calling">Differential peak calling</a></li>
-        
-        </ul>
-    
-
-    </ul>
+    <a class="" href="../peak/">Peak calling</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -147,10 +110,10 @@
     
       
     
-    <li>Peak calling</li>
+    <li>peak(Conflicted)</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ginolhac/chip-seq/edit/master/docs/peak.md"
+        <a href="https://github.com/ginolhac/chip-seq/edit/master/docs/peak(Conflicted).md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -295,56 +258,10 @@ TC1-I-A-D3.GRCm38.p3.q30.bam
 </code></pre>
 
 <p>takes ~ 25 minutes</p>
-<h4 id="visualization">visualization</h4>
-<ul>
-<li>load the file <code>TC1-I-A-D0vsD3-diffpeaks.bed</code> and the bigwig files (<code>.bw</code> extension)</li>
-<li>color bigwig for D0 in red</li>
-<li>color bigwig for D3 in green</li>
-<li>select both bigwig and right-click to <strong>Overlay tracks</strong></li>
-<li>the BED track should display in red the regions with higher enrichments in the D0, green in the D3.</li>
-</ul>
-<h4 id="meta-analysis-using-great">meta-analysis using GREAT</h4>
-<p>You can play with the BED file in R with this code to extract the fold-change from counts.
-It is encoded in the 11th field of the narrowPeak file as <strong>counts</strong> for the first condition (D0-ST2) and counts for the second condition (D3-A)</p>
-<pre><code># load the file using the tidyverse
-library(readr)
-library(dplyr)
-library(ggplot2)
-library(tidyr)
-diffpeaks &lt;- read_tsv(&quot;TC1-I-A-D0vsD3-diffpeaks.bed&quot;,
-                      col_names = FALSE, trim_ws = TRUE, col_types = cols(X1 = col_character()))
-# split the last field into three
-diffpeaks %&gt;%
-  separate(X11, into = c(&quot;count1&quot;, &quot;count2&quot;, &quot;third&quot;), sep = &quot;;&quot;, convert = TRUE) %&gt;%
-  mutate(FC = count2 / count1) -&gt; thor_splitted
-# plot the histogram of the fold-change computed above, count second condition / count 1st condition
-thor_splitted %&gt;%
-  ggplot(aes(x = log2(FC))) +
-  geom_histogram() +
-  scale_x_continuous(breaks = seq(-5, 3, 1))
-
-# create a bed file, append chr to chromosome names and write down the file
-thor_splitted %&gt;%
-  filter(log2(FC) &gt; 0.5) %&gt;%
-  select(X1, X2, X3) %&gt;%
-  mutate(X1 = paste0(&quot;chr&quot;, X1)) %&gt;%
-  write_tsv(&quot;THOR_logFC0.5.bed&quot;, col_names = FALSE)
-</code></pre>
-
-<p>you can now import the file <code>THOR_logFC0.5.bed</code> into GREAT and see again how the meta-analysis looks like.</p>
               
             </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../public/" class="btn btn-neutral float-right" title="Public data">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../mapping/" class="btn btn-neutral" title="Mapping"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
@@ -370,10 +287,6 @@ thor_splitted %&gt;%
           <a href="https://github.com/ginolhac/chip-seq/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../mapping/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../public/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
