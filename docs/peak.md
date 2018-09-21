@@ -114,6 +114,12 @@ Let's format the file as a 3 fields BED file and focus on more significant peaks
 
 ```
 awk '$9>40'  TC1-A-H3K4-D3/TC1-A-H3K4-D3_peaks.narrowPeak | cut -f 1-3 | sed 's/^/chr/' >  TC1-A-H3K4-D3/TC1-A-H3K4_peaks.bed
+awk '$9>40'  TC1-ST2-H3K4-D0/TC1-ST2-H3K4-D0_peaks.narrowPeak | cut -f 1-3 | sed 's/^/chr/' >  TC1-ST2-H3K4-D0/TC1-ST2-H3K4-D0_peaks.bed
+```
+
+For H3K27:
+
+```
 cat TC1-A-H3K27-D3-broad/TC1-A-H3K27-D3-broad_peaks.broadPeak | cut -f 1-3 | sed 's/^/chr/' > TC1-A-H3K27-D3-broad/TC1-A-H3K27-D3-broad_peaks.broad.bed
 
 ```
@@ -125,6 +131,13 @@ then
 * association rule:
     * _Single nearest gene_ for **H3K4** 
     * _Two nearest genes_ for **H3K27** 
+
+
+### alternative with ngsplot
+
+Example of [ngsplot](https://github.com/shenlab-sinai/ngsplot) where gene expression ranked the genes from top to bottom and ChIP-seq of H3K4 is mapped with the red density on top.
+
+![](https://raw.githubusercontent.com/shenlab-sinai/ngsplot/develop/webimgs/hesc.H3k4me3.tss.all.png)
 
 ### Differential peak calling
 
@@ -155,7 +168,49 @@ TC1-I-A-D3.GRCm38.p3.q30.bam
 
 A command line looks like
 ```
-rgt-THOR -m -n TC1-I-A-D0vsD15 --output-dir=TC1-I-A-D0vsD1 THOR.config
+rgt-THOR -m -n TC1-I-A-D0vsD3 --output-dir=TC1-I-A-D0vsD3 THOR.config
 ```
 
 takes ~ 25 minutes
+
+
+#### visualization
+
+- load the file `TC1-I-A-D0vsD3-diffpeaks.bed` and the bigwig files (`.bw` extension)
+- color bigwig for D0 in red
+- color bigwig for D3 in green
+- select both bigwig and right-click to **Overlay tracks**
+- the BED track should display in red the regions with higher enrichments in the D0, green in the D3.
+
+#### meta-analysis using GREAT
+
+You can play with the BED file in R with this code to extract the fold-change from counts.
+It is encoded in the 11th field of the narrowPeak file as **counts** for the first condition (D0-ST2) and counts for the second condition (D3-A)
+
+```
+# load the file using the tidyverse
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+diffpeaks <- read_tsv("TC1-I-A-D0vsD3-diffpeaks.bed",
+                      col_names = FALSE, trim_ws = TRUE, col_types = cols(X1 = col_character()))
+# split the last field into three
+diffpeaks %>%
+  separate(X11, into = c("count1", "count2", "third"), sep = ";", convert = TRUE) %>%
+  mutate(FC = count2 / count1) -> thor_splitted
+# plot the histogram of the fold-change computed above, count second condition / count 1st condition
+thor_splitted %>%
+  ggplot(aes(x = log2(FC))) +
+  geom_histogram() +
+  scale_x_continuous(breaks = seq(-5, 3, 1))
+
+# create a bed file, append chr to chromosome names and write down the file
+thor_splitted %>%
+  filter(log2(FC) > 0.5) %>%
+  select(X1, X2, X3) %>%
+  mutate(X1 = paste0("chr", X1)) %>%
+  write_tsv("THOR_logFC0.5.bed", col_names = FALSE)
+```
+
+you can now import the file `THOR_logFC0.5.bed` into GREAT and see again how the meta-analysis looks like.

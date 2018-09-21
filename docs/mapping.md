@@ -186,6 +186,12 @@ using the character `&` tells the shell that we want the processes to run in the
 
 check especially, the input for ST2, day0 before and after trimming. Did it solve the issue with adapters?
 
+truncated read files are all named the same. And they are located into a deeper folder structure. To rename them all with their ids and move them at the `~/chip-seq/` level, you can run the following:
+
+```
+find -name "reads.truncated.gz" |  xargs ls -1 | awk '{split($1, path, "/");  system("mv "$0 " "path[3] "_" path[6])}'
+```
+
 ## filter for unique reads
 
 *Uniqueness* of reads refers to mappability. The fewer locations a read has in a genome, the higher is mappability will be.

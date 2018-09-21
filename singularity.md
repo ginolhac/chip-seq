@@ -1,7 +1,5 @@
 ## singularity
 
-
-
 in `docker`, start from a ubuntu image and start an interactive session
 
 ```
