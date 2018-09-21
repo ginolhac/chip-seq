@@ -244,7 +244,11 @@ find TC*broad -name '*sort.bdg' | parallel -j 2 &quot;bedGraphToBigWig {} \
 </ol>
 <p>Let's format the file as a 3 fields BED file and focus on more significant peaks filtering on <em>q-values</em>.</p>
 <pre><code>awk '$9&gt;40'  TC1-A-H3K4-D3/TC1-A-H3K4-D3_peaks.narrowPeak | cut -f 1-3 | sed 's/^/chr/' &gt;  TC1-A-H3K4-D3/TC1-A-H3K4_peaks.bed
-cat TC1-A-H3K27-D3-broad/TC1-A-H3K27-D3-broad_peaks.broadPeak | cut -f 1-3 | sed 's/^/chr/' &gt; TC1-A-H3K27-D3-broad/TC1-A-H3K27-D3-broad_peaks.broad.bed
+awk '$9&gt;40'  TC1-ST2-H3K4-D0/TC1-ST2-H3K4-D0_peaks.narrowPeak | cut -f 1-3 | sed 's/^/chr/' &gt;  TC1-ST2-H3K4-D0/TC1-ST2-H3K4-D0_peaks.bed
+</code></pre>
+
+<p>For H3K27:</p>
+<pre><code>cat TC1-A-H3K27-D3-broad/TC1-A-H3K27-D3-broad_peaks.broadPeak | cut -f 1-3 | sed 's/^/chr/' &gt; TC1-A-H3K27-D3-broad/TC1-A-H3K27-D3-broad_peaks.broad.bed
 
 </code></pre>
 
