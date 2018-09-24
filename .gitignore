@@ -1,6 +1,4 @@
-*.jpg
 *.swp
-*.pdf
-DS_Store
+.DS_Store
 *.pptx
 .Rproj.user
