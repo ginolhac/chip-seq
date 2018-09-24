@@ -1,3 +1,11 @@
+## Workflow
+
+
+The workflow of all steps is summarised below:
+
+![](https://cdn.rawgit.com/ginolhac/chip-seq/0ce17313/workflow.jpg)
+
+
 ## load the singularity container
 
 [Singularity](https://www.sylabs.io/) allows to use containers (from _i.e_ [Docker](https://www.docker.com/)) on High-Performance Computer.

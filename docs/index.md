@@ -2,6 +2,14 @@
 
 Running all analyses is computationally intensive and despite the power of the current laptops, jobs should be run on high-performance clusters (HPC).
 
+
+## lecture
+
+slides are available as a pdf, click below
+
+[![](https://cdn.rawgit.com/ginolhac/chip-seq/a158809c/slides.png)](https://cdn.rawgit.com/ginolhac/chip-seq/0ce17313/chip-seq.pdf)
+
+
 ## log in `iris`
 
 [`iris`](https://hpc.uni.lu/systems/iris/) is one of the [High Performance Computer (HPC) of the UNI](https://hpc.uni.lu).
@@ -18,7 +26,7 @@ After the setting up of your account, the following should work if you are using
 ssh iris-cluster
 ```
 
-Otherwise, on Windows, right-click on `pageant` in the system tray and load a saved session `iris`. In the terminal, log as your username, such as `student01`.
+Otherwise, on Windows, use `xmobaterm`. In the terminal, log as your username, such as `student01`.
 
 You should see the following prompt of the `iris` frontend:
 
@@ -37,6 +45,11 @@ using the utility `slurm` described [here](https://hpc.uni.lu/users/docs/slurm.h
 
 Softwares are organized into **modules** that provide you with the binaries but also all the environment required for their running processes.
 However, we will use a [container](https://www.docker.com/resources/what-container) that will ease our analyses.
+
+
+The login procedure can be depicted as:
+
+![](https://cdn.rawgit.com/ginolhac/chip-seq/0ce17313/access.jpg)
 
 ## TMUX
 
