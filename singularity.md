@@ -72,4 +72,7 @@ singularity shell -s /bin/bash --bind /scratch/users:/scratch/users /scratch/use
 
 ### issues
 
-- install `nano`
+- install `htop`
+- language set still not working
+- bashrc still not working
+- remove `parallel` for `gargs` or anything without Ole trademark!
