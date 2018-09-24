@@ -3,7 +3,7 @@
 
 The workflow of all steps is summarised below:
 
-![](https://cdn.rawgit.com/ginolhac/chip-seq/0ce17313/workflow.jpg)
+![](https://rawgit.com/ginolhac/chip-seq/master/workflow.jpg)
 
 
 ## load the singularity container

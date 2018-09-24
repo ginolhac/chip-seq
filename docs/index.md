@@ -7,7 +7,7 @@ Running all analyses is computationally intensive and despite the power of the c
 
 slides are available as a pdf, click below
 
-[![](https://cdn.rawgit.com/ginolhac/chip-seq/a158809c/slides.png)](https://cdn.rawgit.com/ginolhac/chip-seq/0ce17313/chip-seq.pdf)
+[![](https://rawgit.com/ginolhac/chip-seq/master/slides.png)](https://rawgit.com/ginolhac/chip-seq/master/chip-seq.pdf)
 
 
 ## log in `iris`
@@ -49,7 +49,7 @@ However, we will use a [container](https://www.docker.com/resources/what-contain
 
 The login procedure can be depicted as:
 
-![](https://cdn.rawgit.com/ginolhac/chip-seq/0ce17313/access.jpg)
+![](https://rawgit.com/ginolhac/chip-seq/master/access.jpg)
 
 ## TMUX
 
