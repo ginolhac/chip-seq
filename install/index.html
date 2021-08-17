@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Setup - ChIP-seq tutorials</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,9 +25,8 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,87 +35,53 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> ChIP-seq tutorials</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Home</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">Setup</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#workflow">Workflow</a></li>
-    
-
-    <li class="toctree-l2"><a href="#load-the-singularity-container">load the singularity container</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#tweak-for-the-picard">Tweak for the picard</a></li>
-        
-            <li><a class="toctree-l3" href="#book-resources-on-iris">book resources on iris</a></li>
-        
-            <li><a class="toctree-l3" href="#load-the-container">load the container</a></li>
-        
-        </ul>
-    
-
-    <li class="toctree-l2"><a href="#prepare-your-working-environment">prepare your working environment</a></li>
-    
-
-    <li class="toctree-l2"><a href="#check-integrity-of-files">check integrity of files</a></li>
-    
-
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Setup</a>
+    <ul class="current">
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../cli/">Command line, basics</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../fastqc/">QC</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../mapping/">Mapping</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../peak/">Peak calling</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../public/">Public data</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../contact/">Contact</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../cli/">Command line, basics</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../fastqc/">QC</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../mapping/">Mapping</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../peak/">Peak calling</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../public/">Public data</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../contact/">Contact</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -143,8 +109,10 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
@@ -157,10 +125,9 @@ For more details see the lecture <a href="https://ulhpc-tutorials.readthedocs.io
 <p>Shortly, we built a container with all the necessary tools and softwares embeded. Hence, you just need to book the HPC resources and load the container to start working on your <strong>chip-seq</strong> sequences.</p>
 <h3 id="tweak-for-the-picard">Tweak for the <code>picard</code></h3>
 <p>we need to tweak this location only <strong>once</strong>.</p>
-<pre><code class="bash">mkdir -p ~/install/jar_root/
+<pre><code class="language-bash">mkdir -p ~/install/jar_root/
 cp /scratch/users/aginolhac/picard.jar ~/install/jar_root/
 </code></pre>
-
 <h3 id="book-resources-on-iris">book resources on iris</h3>
 <ul>
 <li>2 hours</li>
@@ -173,18 +140,16 @@ cp /scratch/users/aginolhac/picard.jar ~/install/jar_root/
 <li>first we load the tools <code>singularity</code></li>
 <li>second we load the container</li>
 </ul>
-<pre><code class="bash">module load tools/Singularity
+<pre><code class="language-bash">module load tools/Singularity
 singularity shell -s /bin/bash --bind /scratch/users:/scratch/users /scratch/users/aginolhac/ubuntu-chip-seq.simg
 </code></pre>
-
 <p>then you are inside the container, all the tools should be available.</p>
 <p>try running the following and raise your hand if any is <code>command not found</code></p>
-<pre><code class="bash">bwa
+<pre><code class="language-bash">bwa
 samtools
 macs2
 paleomix
 </code></pre>
-
 <h2 id="prepare-your-working-environment">prepare your working environment</h2>
 <ul>
 <li>go to your home directory: <code>cd</code></li>
@@ -224,7 +189,7 @@ Then <code>paleomix</code> will check the FASTQ are correct, <em>i. e</em> have 
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -234,22 +199,30 @@ Then <code>paleomix</code> will check the FASTQ are correct, <em>i. e</em> have 
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a href="https://github.com/ginolhac/chip-seq/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../cli/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/ginolhac/chip-seq/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cli/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

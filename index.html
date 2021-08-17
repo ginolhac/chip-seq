@@ -5,15 +5,16 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ChIP-seq tutorial, University of Luxembourg, Life Sciences Research Unit">
+  <meta name="description" content="ChIP-seq tutorial, University of Luxembourg, Department Life Sciences and Medecine">
+  
   
   <link rel="shortcut icon" href="img/favicon.ico">
-  <title>Home - ChIP-seq tutorials</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <title>ChIP-seq tutorials</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,9 +25,8 @@
   
   <script src="js/jquery-2.1.1.min.js" defer></script>
   <script src="js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,80 +35,89 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href="." class="icon icon-home"> ChIP-seq tutorials</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href=".">Home</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#chip-seq-practical-session">ChIP-seq practical session</a></li>
-    
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#lecture">lecture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#log-in-iris">log in iris</a>
         <ul>
-        
-            <li><a class="toctree-l3" href="#lecture">lecture</a></li>
-        
-            <li><a class="toctree-l3" href="#log-in-iris">log in iris</a></li>
-        
-            <li><a class="toctree-l3" href="#tmux">TMUX</a></li>
-        
-            <li><a class="toctree-l3" href="#monitoring-the-resources-used">monitoring the resources used</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#connect-to-the-frontend">connect to the frontend</a>
+    </li>
         </ul>
-    
-
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tmux">TMUX</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#useful-commands">Useful commands</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#quit">Quit</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#connect-to-a-computing-node">connect to a computing node</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#monitoring-the-resources-used">monitoring the resources used</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#memory">memory</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cores">cores</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#disk-space">disk space</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#disk-usage">disk usage</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#disk-free">disk free</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#closing-connection">closing connection</a>
+    </li>
+        </ul>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="install/">Setup</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="cli/">Command line, basics</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="fastqc/">QC</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="mapping/">Mapping</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="peak/">Peak calling</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="public/">Public data</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="contact/">Contact</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="install/">Setup</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="cli/">Command line, basics</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="fastqc/">QC</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="mapping/">Mapping</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="peak/">Peak calling</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="public/">Public data</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="contact/">Contact</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -136,8 +145,10 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
@@ -155,15 +166,13 @@ A match allows the sender to log in. No password required.</p>
 <p>After the setting up of your account, the following should work if you are using mac or GNU/Linux:</p>
 <pre><code>ssh iris-cluster
 </code></pre>
-
 <p>Otherwise, on Windows, use <code>xmobaterm</code>. In the terminal, log as your username, such as <code>student01</code>.</p>
 <p>You should see the following prompt of the <code>iris</code> frontend:</p>
-<pre><code class="console">==================================================================================
+<pre><code class="language-console">==================================================================================
  /!\ NEVER COMPILE OR RUN YOUR PROGRAMS FROM THIS FRONTEND !
      First reserve your nodes (using srun/sbatch(1))
 aginolhac@access1.iris-cluster.uni.lux(11:30:46): ~ $
 </code></pre>
-
 <p>Note that you are on the <code>access</code> frontend.</p>
 <p>The frontend is meant for browsing / transferring your files only and you <strong>MUST</strong> connect to a node for any computational work 
 using the utility <code>slurm</code> described <a href="https://hpc.uni.lu/users/docs/slurm.html">here</a>. This program managed the queuing system and dispatch jobs among the resources according to the demands.</p>
@@ -180,19 +189,15 @@ you can easily detach and re-attach.</p>
 <p>Briefly, on the <strong>access</strong> frontend, start a <code>tmux</code> instance with</p>
 <pre><code>tmux
 </code></pre>
-
 <p>to detach (press CTRL and B together, release then use the next key):</p>
 <pre><code>CTRL + B, then D
 </code></pre>
-
 <p>to re-attach:</p>
 <pre><code>tmux attach
 </code></pre>
-
 <p>or the alias</p>
 <pre><code>tmux at
 </code></pre>
-
 <h3 id="useful-commands">Useful commands</h3>
 <p>once in an instance,</p>
 <ul>
@@ -200,30 +205,25 @@ you can easily detach and re-attach.</p>
 </ul>
 <pre><code>CTRL + B, then C
 </code></pre>
-
 <ul>
 <li>move to the <strong>next</strong> tab</li>
 </ul>
 <pre><code>CTRL + B, then N
 </code></pre>
-
 <ul>
 <li>move to the <strong>previous</strong> tab</li>
 </ul>
 <pre><code>CTRL + B, then P
 </code></pre>
-
 <ul>
 <li><strong>rename</strong> to the current tab</li>
 </ul>
 <pre><code>CTRL + B, then ,
 </code></pre>
-
 <p>then type the new name</p>
 <h3 id="quit">Quit</h3>
 <pre><code>exit
 </code></pre>
-
 <p>in all tabs kills the <code>tmux</code> session</p>
 <p>Of note, <code>tmux</code> instances live until the frontend is rebooted.</p>
 <h3 id="connect-to-a-computing-node">connect to a computing node</h3>
@@ -239,7 +239,6 @@ you can easily detach and re-attach.</p>
 <p>Once logged in, the prompt changes for:</p>
 <pre><code>aginolhac@iris-001(11:17:55)
 </code></pre>
-
 <p>where you see the node you are logged to (here <code>iris-001</code>).</p>
 <h2 id="monitoring-the-resources-used">monitoring the resources used</h2>
 <p>On a shared cluster, you have to take care of <strong>three</strong> things:</p>
@@ -263,12 +262,10 @@ Using a command line, you could use</p>
 <h4 id="disk-usage">disk usage</h4>
 <pre><code>du -sh ~
 </code></pre>
-
 <p>to display your disk usage (<code>du</code>) for your home folder (<code>~</code>). In a form readable by human (<code>-h</code>)</p>
 <h4 id="disk-free">disk free</h4>
 <pre><code>df -h
 </code></pre>
-
 <p>disk free scans all disks mounted. Could takes time to display the global usage. 
 Please worry if only few Mb are available on the disk you are planning to write to.</p>
 <p>check also your own quota with <code>df-ulhpc</code> on the frontend.</p>
@@ -296,7 +293,7 @@ The best is to detach from the <code>tmux</code> instance and log off from the g
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -306,25 +303,33 @@ The best is to detach from the <code>tmux</code> instance and log off from the g
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a href="https://github.com/ginolhac/chip-seq/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-      
-        <span style="margin-left: 15px"><a href="install/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/ginolhac/chip-seq/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+      <span><a href="install/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
     <script src="js/theme.js" defer></script>
       <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
 
 <!--
-MkDocs version : 1.0.2
-Build Date UTC : 2018-09-24 07:53:01
+MkDocs version : 1.2.2
+Build Date UTC : 2021-08-17 13:56:02.594183+00:00
 -->

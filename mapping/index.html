@@ -7,13 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Mapping - ChIP-seq tutorials</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   
   <script>
     // Current page data
@@ -24,9 +25,8 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
-  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -35,92 +35,71 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> ChIP-seq tutorials</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Home</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../install/">Setup</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../cli/">Command line, basics</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../fastqc/">QC</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">Mapping</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#paleomix-next-generation-sequencing-wrapper">paleomix, Next-Generation Sequencing wrapper</a></li>
-    
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../install/">Setup</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../cli/">Command line, basics</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../fastqc/">QC</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Mapping</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#test-your-install">test your install</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#generate-a-makefile">Generate a makefile</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#edit-the-makefile">Edit the makefile</a>
         <ul>
-        
-            <li><a class="toctree-l3" href="#test-your-install">test your install</a></li>
-        
-            <li><a class="toctree-l3" href="#generate-a-makefile">Generate a makefile</a></li>
-        
-            <li><a class="toctree-l3" href="#edit-the-makefile">Edit the makefile</a></li>
-        
-            <li><a class="toctree-l3" href="#perform-the-trimming-mapping">Perform the trimming / mapping</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#options">Options</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#features">Features</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#prefixes">Prefixes</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#samples">Samples</a>
+    </li>
         </ul>
-    
-
-    <li class="toctree-l2"><a href="#correct-the-makefile">correct the makefile</a></li>
-    
-
-    <li class="toctree-l2"><a href="#check-trimming">check trimming</a></li>
-    
-
-    <li class="toctree-l2"><a href="#filter-for-unique-reads">filter for unique reads</a></li>
-    
-
-    <li class="toctree-l2"><a href="#filter-for-duplicates">filter for duplicates?</a></li>
-    
-
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#perform-the-trimming-mapping">Perform the trimming / mapping</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../peak/">Peak calling</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../public/">Public data</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../contact/">Contact</a>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../peak/">Peak calling</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../public/">Public data</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../contact/">Contact</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -148,8 +127,10 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
+
           <div role="main">
             <div class="section">
               
@@ -163,7 +144,6 @@ Full documentation available <a href="http://paleomix.readthedocs.io/en/latest/"
 <p>check if paleomix is available</p>
 <pre><code>paleomix
 </code></pre>
-
 <p>In case it is not, your are certainly not using the <em>singularity container</em>, see instructions in the <a href="http://ginolhac.github.io/chip-seq/install/">set-up</a></p>
 <h3 id="test-your-install">test your install</h3>
 <p>fetch the example, reference is the human mitochondrial genome</p>
@@ -172,11 +152,9 @@ mkdir -p ~/paleomix/example
 cp -r /scratch/users/aginolhac/chip-seq/bam_pipeline_example/000* ~/paleomix/example
 cd ~/paleomix/example
 </code></pre>
-
 <p>run the example, start by a <code>dry-run</code>, adjust the number of threads accordingly.</p>
 <pre><code>paleomix bam_pipeline run --bwa-max-threads=1 --max-threads=8 --dry-run 000_makefile.yaml
 </code></pre>
-
 <p>If all fine, re-rerun the command without the <code>--dry-run</code> option</p>
 <p>Of note, calling <code>mapDamage</code> and <code>GATK</code> were disabled to limit the computation time (~ 35 min when included).
 Anyway, this tool is not used for ChIP-seq analysis.</p>
@@ -190,7 +168,6 @@ What matters is, that you use <strong>SPACES</strong> and not TABS.</p>
 <pre><code>cd ~/chip-seq
 paleomix bam_pipeline mkfile &gt; mouse.yaml
 </code></pre>
-
 <h3 id="edit-the-makefile">Edit the makefile</h3>
 <p>using your favorite text editor (such as <code>nano</code>), edit the <code>mouse.yaml</code>. For example <code>vim mouse.yaml</code> or <code>kate</code> or <code>nano</code>.</p>
 <h4 id="options">Options</h4>
@@ -199,13 +176,11 @@ paleomix bam_pipeline mkfile &gt; mouse.yaml
 </ul>
 <pre><code>  CompressionFormat: gz
 </code></pre>
-
 <ul>
 <li>for duplicates, change the default behavior from <code>filter</code> to <code>mark</code>  </li>
 </ul>
 <pre><code>  PCRDuplicates: mark
 </code></pre>
-
 <h4 id="features">Features</h4>
 <p>Under the <code>Features</code> section, update the featurse that need to be performed.
 Change <code>yes/no</code> to match the following:</p>
@@ -225,7 +200,6 @@ Change <code>yes/no</code> to match the following:</p>
     DuplicateHist: no   # Generate histogram of PCR duplicates, for use with PreSeq
                         #   Location: {Destination}/{Target}.{Genome}.duphist/{Library}/
 </code></pre>
-
 <p>In detail, the <code>RealignedBAM</code> are important for calling variants, we only need to <code>RawBAM</code>.
 Moreover, the <code>Depths</code> also help to define which upper limit could be used for variant calling.
 This is not in the scope of ChIP-seq analysis. Same for <code>mapDamage</code>, only relevant for ancient DNA.</p>
@@ -236,7 +210,6 @@ to save computational time.</p>
   mouse_19:
     Path: /scratch/users/aginolhac/chip-seq/references/chr19.fasta
 </code></pre>
-
 <h4 id="samples">Samples</h4>
 <p>enter at the end of the makefile, the following lines.
 Again, do use <strong>spaces</strong> and not tabs for the indentation. For those who are lazy and use copy/paste in <code>vim</code>
@@ -263,13 +236,11 @@ TC1-H3K4-ST2-D0:
     TC1-H3K4-ST2-D0:
       &quot;14s006644&quot;: fastq/C51C3ACXX_TC1-H3K4-ST2-D0_14s006644-1-1_Sinkkonen_lane514s006644_sequence.txt.gz
 </code></pre>
-
 <h3 id="perform-the-trimming-mapping">Perform the trimming / mapping</h3>
 <p>First use the option <code>--dry-run</code> to spot mistakes.</p>
 <p>Please <strong>adapt</strong> the <code>--max-threads</code> option to the #cpus actually booked</p>
 <pre><code>paleomix bam_pipeline run --bwa-max-threads=2 --adapterremoval-max-threads=2 --max-threads=8 --dry-run mouse.yaml
 </code></pre>
-
 <p>when all green lights are on, remove the <code>dry-run</code> and perform the mapping.</p>
 <h2 id="correct-the-makefile">correct the makefile</h2>
 <p>the trimming should go well, but an error arises because you cannot write to the reference folder.</p>
@@ -279,38 +250,32 @@ TC1-H3K4-ST2-D0:
 <pre><code>mkdir references
 ln -s /scratch/users/aginolhac/chip-seq/references/chr19.fasta references/
 </code></pre>
-
 <ul>
 <li>correct the makefile, so the <code>Path</code> is relative now</li>
 </ul>
 <pre><code>    Path: references/chr19.fasta
 </code></pre>
-
 <ul>
 <li>enjoy <code>paleomix</code> by just re-running it, only necessary steps are done (validatating the ref, indexing it and mappings)</li>
 </ul>
 <pre><code>paleomix bam_pipeline run --bwa-max-threads=2 --adapterremoval-max-threads=2 --max-threads=8 mouse.yaml
 </code></pre>
-
 <p>the whole process should takes ~ 25 minutes with 8 cores</p>
 <h2 id="check-trimming">check trimming</h2>
 <p>First of all, check using <code>fastqc</code> that the trimming did remove the adapters that were contaminated the reads.</p>
 <p>Again, with <code>parallel</code> specify the <strong>max</strong> number of jobs with the option <code>-j</code> to fit the #cpus booked</p>
 <pre><code>find . -name &quot;reads.truncated.gz&quot; | parallel -j 8 &quot;fastqc {}&quot; &amp;
 </code></pre>
-
 <p>using the character <code>&amp;</code> tells the shell that we want the processes to run in the background. Meaning that you can still run more things while the 4 tasks are running. Check them using <code>htop</code>.</p>
 <p>check especially, the input for ST2, day0 before and after trimming. Did it solve the issue with adapters?</p>
 <p>truncated read files are all named the same. And they are located into a deeper folder structure. To rename them all with their ids and move them at the <code>~/chip-seq/</code> level, you can run the following:</p>
 <pre><code>find -name &quot;reads.truncated.gz&quot; |  xargs ls -1 | awk '{split($1, path, &quot;/&quot;);  system(&quot;mv &quot;$0 &quot; &quot;path[3] &quot;_&quot; path[6])}'
 </code></pre>
-
 <h2 id="filter-for-unique-reads">filter for unique reads</h2>
 <p><em>Uniqueness</em> of reads refers to mappability. The fewer locations a read has in a genome, the higher is mappability will be.
 A common filter is to use <strong>30</strong> as a threshold for filtering reads. Filter them in parallel</p>
 <pre><code>parallel &quot;samtools view -b -q 30 {} &gt; {.}.q30.bam&quot; ::: *.bam
 </code></pre>
-
 <p>Since we are using only the chr19 for this tutorial, do you think the mappability score is correct? Why?</p>
 <h2 id="filter-for-duplicates">filter for duplicates?</h2>
 <p>Duplication is a bias that comes from PCR amplification. Reads then stack at the same location and create artificial high depth of coverage.
@@ -341,7 +306,7 @@ such as in <code>fastqc</code> output, then filtering may be necessary. Marking 
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -351,22 +316,30 @@ such as in <code>fastqc</code> output, then filtering may be necessary. Marking 
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a href="https://github.com/ginolhac/chip-seq/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-        <span><a href="../fastqc/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../peak/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/ginolhac/chip-seq/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../fastqc/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../peak/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
