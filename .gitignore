@@ -2,3 +2,16 @@
 .DS_Store
 *.pptx
 .Rproj.user
+*Rproj
+*.pdf
+*.html
+old/
+*.gz
+*.xml
+*.tgz
+ChIP-seq_course_student_accounts/
+Advanced_course*/
+2018/
+macs2/
+fastqc/
+site/
