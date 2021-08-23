@@ -1,4 +1,5 @@
 *.swp
+*#
 .DS_Store
 *.pptx
 .Rproj.user
@@ -15,3 +16,6 @@ Advanced_course*/
 macs2/
 fastqc/
 site/
+*.epub
+mydocs.pd
+*.odp

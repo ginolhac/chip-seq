@@ -4,7 +4,7 @@ The programs you call on a terminal are not so different from their graphical in
 
 You need to know these commands:
 
-```
+```bash
 pwd
 more
 less
@@ -58,7 +58,7 @@ and change it for
 `cp TEST/test test2`  
 the first and last field of `ls -l` should provide
 
-```
+```bash
 drwxr-xr-x TEST
 -rw-r--r-- test
 -rw-r--r-- test2
@@ -101,7 +101,8 @@ you can write/modify text directly and use `CTRL + O` to save then `CTRL + X` to
 #### VIM
 
 Let's have a look at a text editor, there is plenty of them, the one I use is `vim`, why?  
-Because
+
+Because:
 
 * it's commonly installed on servers
 * extremely powerful
@@ -122,39 +123,3 @@ The useful ones
 * `w` save changes to the file
 * `:q!` quit without saving changes
 * `:wq` write and quit
-
-### Exercise 2
-
-`find` is great but not at all user-friendly.
-Try to find all your files which are bigger than 1 Go.
-then which are older than 1 year.
-Imagine doing this with windows...
-
-### Exercise 3, using a FASTA file
-
-Get all sequences in genbank with the keyword trnl  
-[http://www.ncbi.nlm.nih.gov/sites/entrez?db=nuccore&cmd=search&term=trnl](http://www.ncbi.nlm.nih.gov/sites/entrez?db=nuccore&cmd=search&term=trnl)
-
-but download only sequences from one class like *mammals* as a FASTA file.
-You should obtain a 1.3 Mo file. Otherwise, you can use `/home/users/aginolhac/trnl_mammals.fasta`
-
-* how to obtain the first 500 lines of a file?  
-see the command `head` and its manual `man head`. You can redirect the output to a file with 'command > file_first500.fasta' for example.
-
-* how can you obtain from line 400 to 560?  
-Think of piping `head` and `tail`
-
-* count how many lines in this file. See `wc`
-
-* count how many sequences you have in the FASTA file. look at `grep`
-
-* you should have obtained the 500 first lines in a file and the 500 last in a second file. How can you merge these two files? look at `cat`
-
-
-#### Extra questions
-
-* there is an empty file after each sequence. Try to remove them (my favorite is `sed`, but check the `-v` option of grep)
-
-* Extract all headers (start with `>`) then the *gi number* (see `cut`). Redirect to a file.
-
-* Look if there some double gi, look at `sort` and `uniq`.

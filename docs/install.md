@@ -3,7 +3,7 @@
 
 The workflow of all steps is summarised below:
 
-![](https://rawgit.com/ginolhac/chip-seq/master/workflow.jpg)
+![](https://rawgit.com/ginolhac/chip-seq/master/workflow.png)
 
 
 ## load the singularity container
@@ -13,14 +13,7 @@ For more details see the lecture [by Valentin Plugaru](https://ulhpc-tutorials.r
 
 Shortly, we built a container with all the necessary tools and softwares embeded. Hence, you just need to book the HPC resources and load the container to start working on your **chip-seq** sequences.
 
-### Tweak for the `picard`
 
-we need to tweak this location only **once**.
-
-```bash
-mkdir -p ~/install/jar_root/
-cp /scratch/users/aginolhac/picard.jar ~/install/jar_root/
-```
 
 ### book resources on iris
 
@@ -40,16 +33,7 @@ module load tools/Singularity
 singularity shell -s /bin/bash --bind /scratch/users:/scratch/users /scratch/users/aginolhac/ubuntu-chip-seq.simg
 ```
 
-then you are inside the container, all the tools should be available.
 
-try running the following and raise your hand if any is `command not found`
-
-```bash
-bwa
-samtools
-macs2
-paleomix
-```
 
 ## prepare your working environment
 

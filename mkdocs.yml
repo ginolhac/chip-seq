@@ -6,7 +6,6 @@ nav:
 - QC: fastqc.md
 - Mapping: mapping.md
 - Peak calling: peak.md
-- Public data: public.md
 - Contact: contact.md
 repo_url: https://github.com/ginolhac/chip-seq/
 site_description: "ChIP-seq tutorial, University of Luxembourg, Department Life Sciences and Medecine"
