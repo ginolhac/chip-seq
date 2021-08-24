@@ -16,7 +16,7 @@
     
     
       
-        <title>Install - ChIP-seq tutorials</title>
+        <title>Workflow - ChIP-seq tutorials</title>
       
     
     
@@ -93,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Install
+              Workflow
             
           </span>
         </div>
@@ -218,8 +218,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../snakemake/" class="md-nav__link">
-        Setup snakemake
+      <a href="../cli/" class="md-nav__link">
+        Command line, basics
       </a>
     </li>
   
@@ -233,9 +233,93 @@
   
   
     <li class="md-nav__item">
-      <a href="../cli/" class="md-nav__link">
-        Command line, basics
+      <a href="../snakemake/" class="md-nav__link">
+        Setup snakemake
       </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Workflow
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Workflow
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#workflow" class="md-nav__link">
+    Workflow
+  </a>
+  
+    <nav class="md-nav" aria-label="Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#singularity-containers" class="md-nav__link">
+    Singularity containers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#book-resources-on-iris" class="md-nav__link">
+    Book resources on iris
+  </a>
+  
+    <nav class="md-nav" aria-label="Book resources on iris">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    (Optional)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -313,26 +397,27 @@
     Workflow
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#singularity-container" class="md-nav__link">
-    Singularity container
-  </a>
-  
-    <nav class="md-nav" aria-label="Singularity container">
+    <nav class="md-nav" aria-label="Workflow">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#book-resources-on-iris" class="md-nav__link">
-    book resources on iris
+  <a href="#singularity-containers" class="md-nav__link">
+    Singularity containers
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#load-the-container" class="md-nav__link">
-    load the container
+  <a href="#book-resources-on-iris" class="md-nav__link">
+    Book resources on iris
+  </a>
+  
+    <nav class="md-nav" aria-label="Book resources on iris">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    (Optional)
   </a>
   
 </li>
@@ -341,18 +426,9 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#prepare-your-working-environment" class="md-nav__link">
-    prepare your working environment
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-integrity-of-files" class="md-nav__link">
-    check integrity of files
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -368,53 +444,34 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ginolhac/chip-seq/edit/master/docs/install.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/ginolhac/chip-seq/edit/master/docs/workflow.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>Install</h1>
+                  <h1>Workflow</h1>
                 
                 <h2 id="workflow">Workflow</h2>
 <p>The workflow of all steps is summarised below:</p>
 <p><img alt="" src="https://rawgit.com/ginolhac/chip-seq/master/workflow.png" /></p>
-<h2 id="singularity-container">Singularity container</h2>
+<p>and the template is hosted on the <a href="https://gitlab.lcsb.uni.lu/aurelien.ginolhac/snakemake-chip-seq">LCSB Gitlab</a></p>
+<h3 id="singularity-containers">Singularity containers</h3>
 <p><a href="https://www.sylabs.io/">Singularity</a> allows to use containers (from <em>i.e</em> <a href="https://www.docker.com/">Docker</a>) on High-Performance Computer.
 For more details see the lecture <a href="https://ulhpc-tutorials.readthedocs.io/en/latest/containers/singularity/">by HPC team</a></p>
-<p>Shortly, we built a container with all the necessary tools and softwares embeded. Hence, you need to book the HPC resources.
-Snakemake will load the container for every  <strong>chip-seq</strong> sequences.</p>
-<h3 id="book-resources-on-iris">book resources on iris</h3>
-<ul>
-<li>2 hours</li>
-<li>8 cores</li>
-<li>interactive</li>
-</ul>
-<p><code>srun --cpu-bind=none -p interactive --time=2:0:0 -c 8 --pty bash -i</code></p>
-<h3 id="load-the-container">load the container</h3>
-<ul>
-<li>first we load the tools <code>singularity</code></li>
-<li>second we load the container</li>
-</ul>
-<pre><code class="language-bash">module load tools/Singularity
-singularity shell -s /bin/bash --bind /scratch/users:/scratch/users /scratch/users/aginolhac/ubuntu-chip-seq.simg
+<p>Shortly, a container with all the necessary tools, softwares and all libraries are embeded. Hence, you need to book the HPC resources but not install those softwares. <strong>Snakemake</strong> will load the container for every  <strong>action</strong> it runs.</p>
+<h3 id="book-resources-on-iris">Book resources on iris</h3>
+<p><code>si</code> is a shortcut for booking a short interactive session (30 minutes, 1 core).</p>
+<p>But, we can alter the time for one hour with <code>-t</code> and ask for more cores with <code>-c</code>. Example below:</p>
+<pre><code>si -t 1:00:00 -c 6
 </code></pre>
-<h2 id="prepare-your-working-environment">prepare your working environment</h2>
-<ul>
-<li>go to your home directory: <code>cd</code></li>
-<li>create a new folder to work in: <code>mkdir chip-seq</code></li>
-<li>go inside: <code>cd chip-seq</code></li>
-<li>create and go in a sub-folder: <code>mkdir fastq</code></li>
-<li>go inside: <code>cd fastq</code></li>
-<li>symbolic link the <strong>FASTQ</strong> files: <code>ln -s /scratch/users/aginolhac/chip-seq/fastq/C* .</code></li>
-<li>check your actions: <code>ll</code> (alias of <code>ls -l</code>)</li>
-</ul>
-<h2 id="check-integrity-of-files">check integrity of files</h2>
-<p>Just as a side note, such large files are usually a pain to download. Since they are the very raw files
-after the sequencer (despite basecalling) checking their integrity is worth doing.
-Computing the <code>md5sum</code> ensure you have the same file as your sequence provider.
-Then <code>paleomix</code> will check the FASTQ are correct, <em>i. e</em> have 4 lines in a correct format.</p>
-<p><code>md5sum -c C53CYACXX_TC1-I-A-D3_14s006682-1-1_Sinkkonen_lane114s006682_sequence.txt.md5</code></p>
-<p>you should observe an <code>OK</code> after few seconds of computing time.</p>
+<h4 id="optional">(Optional)</h4>
+<p>Two nodes were reserved for this course. This will work if you have a student accounts or if you are part of the Department of Life Sciences.
+To access them you need to add the following parameter for Thursday:</p>
+<pre><code>si -t 1:0:0 -c 6 --reservation=aginolhac-teaching-20210902
+</code></pre>
+<p>and for Friday:</p>
+<pre><code>si -t 1:0:0 -c 6 --reservation=aginolhac-teaching-20210903
+</code></pre>
                 
               
               
@@ -430,6 +487,41 @@ Then <code>paleomix</code> will check the FASTQ are correct, <em>i. e</em> have 
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../snakemake/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Setup snakemake" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Setup snakemake
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../mapping/" class="md-footer__link md-footer__link--next" aria-label="Next: Mapping" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Mapping
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
