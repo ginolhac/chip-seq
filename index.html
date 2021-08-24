@@ -49,11 +49,11 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#lecture">lecture</a>
+    <li class="toctree-l2"><a class="reference internal" href="#lecture">Lecture</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#log-in-iris">log in iris</a>
+    <li class="toctree-l2"><a class="reference internal" href="#log-in-iris">Log in iris</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#connect-to-the-frontend">connect to the frontend</a>
+    <li class="toctree-l3"><a class="reference internal" href="#connect-to-the-frontend">Connect to the frontend</a>
     </li>
         </ul>
     </li>
@@ -63,25 +63,25 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#quit">Quit</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#connect-to-a-computing-node">connect to a computing node</a>
+    <li class="toctree-l3"><a class="reference internal" href="#book-resources-on-a-computing-node">Book resources on a computing node</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#monitoring-the-resources-used">monitoring the resources used</a>
+    <li class="toctree-l2"><a class="reference internal" href="#monitoring-the-resources-used">Monitoring the resources used</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#memory">memory</a>
+    <li class="toctree-l3"><a class="reference internal" href="#memory">Memory</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cores">cores</a>
+    <li class="toctree-l3"><a class="reference internal" href="#cores">Cores</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#disk-space">disk space</a>
+    <li class="toctree-l3"><a class="reference internal" href="#disk-space">Disk space</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#disk-usage">disk usage</a>
+    <li class="toctree-l4"><a class="reference internal" href="#disk-usage">Disk usage</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#disk-free">disk free</a>
+    <li class="toctree-l4"><a class="reference internal" href="#disk-free">Disk free</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#closing-connection">closing connection</a>
+    <li class="toctree-l3"><a class="reference internal" href="#closing-connection">Closing connection</a>
     </li>
         </ul>
     </li>
@@ -89,7 +89,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="install/">Setup</a>
+                    <li class="toctree-l1"><a class="" href="snakemake.md">Setup</a>
                     </li>
                 </ul>
                 <ul>
@@ -97,7 +97,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="fastqc/">QC</a>
+                    <li class="toctree-l1"><a class="" href="fastqc.md">QC</a>
                     </li>
                 </ul>
                 <ul>
@@ -106,10 +106,6 @@
                 </ul>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="peak/">Peak calling</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="public/">Public data</a>
                     </li>
                 </ul>
                 <ul>
@@ -154,28 +150,29 @@
               
                 <h1 id="chip-seq-practical-session">ChIP-seq practical session</h1>
 <p>Running all analyses is computationally intensive and despite the power of the current laptops, jobs should be run on high-performance clusters (HPC).</p>
-<h2 id="lecture">lecture</h2>
+<h2 id="lecture">Lecture</h2>
 <p>slides are available as a pdf, click below</p>
 <p><a href="https://rawgit.com/ginolhac/chip-seq/master/chip-seq.pdf"><img alt="" src="https://rawgit.com/ginolhac/chip-seq/master/slides.png" /></a></p>
-<h2 id="log-in-iris">log in <code>iris</code></h2>
-<p><a href="https://hpc.uni.lu/systems/iris/"><code>iris</code></a> is one of the <a href="https://hpc.uni.lu">High Performance Computer (HPC) of the UNI</a>.</p>
-<h3 id="connect-to-the-frontend">connect to the frontend</h3>
-<p>To connect to it, you need an account and an authorized ssh key. Actually, a pair of keys, one public and one private.
+<h2 id="log-in-iris">Log in <code>iris</code></h2>
+<p><a href="https://hpc-docs.uni.lu/systems/iris/"><code>iris</code></a> is one of the <a href="https://hpc.uni.lu">High Performance Computer (HPC) of the UNI</a>.</p>
+<p>You should use your account or one the student account prepared for you.</p>
+<h3 id="connect-to-the-frontend">Connect to the frontend</h3>
+<p>To connect to it, you need an account and an authorized <code>ssh</code> key. Actually, a pair of keys, one public and one private.
 The public key is sent over when connecting to the remote and compared to the authorized private key.
 A match allows the sender to log in. No password required.</p>
 <p>After the setting up of your account, the following should work if you are using mac or GNU/Linux:</p>
-<pre><code>ssh iris-cluster
+<pre><code class="language-bash">ssh iris-cluster
 </code></pre>
-<p>Otherwise, on Windows, use <code>xmobaterm</code>. In the terminal, log as your username, such as <code>student01</code>.</p>
+<p>Otherwise, on Windows, use <code>xmobaterm</code>. In the terminal, log as your username, such as <code>student15</code>.</p>
 <p>You should see the following prompt of the <code>iris</code> frontend:</p>
 <pre><code class="language-console">==================================================================================
  /!\ NEVER COMPILE OR RUN YOUR PROGRAMS FROM THIS FRONTEND !
      First reserve your nodes (using srun/sbatch(1))
-aginolhac@access1.iris-cluster.uni.lux(11:30:46): ~ $
+username@access1.iris-cluster.uni.lux(11:30:46): ~ $
 </code></pre>
 <p>Note that you are on the <code>access</code> frontend.</p>
 <p>The frontend is meant for browsing / transferring your files only and you <strong>MUST</strong> connect to a node for any computational work 
-using the utility <code>slurm</code> described <a href="https://hpc.uni.lu/users/docs/slurm.html">here</a>. This program managed the queuing system and dispatch jobs among the resources according to the demands.</p>
+using the utility <code>slurm</code> described <a href="https://hpc-docs.uni.lu/slurm/">here</a>. This program managed the queuing system and dispatch jobs among the resources according to the demands.</p>
 <p>Softwares are organized into <strong>modules</strong> that provide you with the binaries but also all the environment required for their running processes.
 However, we will use a <a href="https://www.docker.com/resources/what-container">container</a> that will ease our analyses.</p>
 <p>The login procedure can be depicted as:</p>
@@ -226,10 +223,10 @@ you can easily detach and re-attach.</p>
 </code></pre>
 <p>in all tabs kills the <code>tmux</code> session</p>
 <p>Of note, <code>tmux</code> instances live until the frontend is rebooted.</p>
-<h3 id="connect-to-a-computing-node">connect to a computing node</h3>
-<p>Connecting to a computing node is anyway required to use modules.</p>
+<h3 id="book-resources-on-a-computing-node">Book resources on a computing node</h3>
+<p>Connecting to a computing node is required to use resources.</p>
 <p>You need to book resources by specifying how many cores, optionally if they are on a same node, the memory required, and a wall time clock. A job can never get extended.</p>
-<p>Without entering into the details of <a href="https://hpc.uni.lu/users/docs/slurm.html#basic-usage-commands">submitting a job</a>. The less you ask for, the more high up you are in the queue. Here is the explanation for the above command:</p>
+<p>Without entering into the details of <a href="https://hpc-docs.uni.lu/slurm/commands/">submitting a job</a>. The less you ask for, the more high up you are in the queue. Here is the explanation for the above command:</p>
 <ul>
 <li><code>srun</code> is for interactive, <code>sbatch</code> for passive</li>
 <li><code>--time=</code> following by <em>hour:minute:second</em> for wall time clock</li>
@@ -237,39 +234,39 @@ you can easily detach and re-attach.</p>
 <li><code>-c</code> cores, A <code>node</code> is usually composed of 28 <code>cores</code></li>
 </ul>
 <p>Once logged in, the prompt changes for:</p>
-<pre><code>aginolhac@iris-001(11:17:55)
+<pre><code class="language-bash">username@iris-001(11:17:55)
 </code></pre>
 <p>where you see the node you are logged to (here <code>iris-001</code>).</p>
-<h2 id="monitoring-the-resources-used">monitoring the resources used</h2>
+<h2 id="monitoring-the-resources-used">Monitoring the resources used</h2>
 <p>On a shared cluster, you have to take care of <strong>three</strong> things:</p>
 <ol>
 <li>memory usage</li>
 <li>cores used</li>
 <li>disk space</li>
 </ol>
-<h3 id="memory">memory</h3>
+<h3 id="memory">Memory</h3>
 <p>Each node has
 On an interactive session, use the command <code>htop</code> to see if the memory is not full. If the system is swapping (using hard drives for memory storage)
 it becomes super slow and eventually stalled.</p>
-<p>For passive sessions, you can use <a href="https://hpc.uni.lu/iris/ganglia/">ganglia</a> to check out the nodes you are using.</p>
-<h3 id="cores">cores</h3>
+<p>For passive jobs, you can join a computing node by using the <code>sjoin nodeid jobid</code> command. Where <code>nodeid</code> and <code>jobid</code> can be autocomplemented by <key>TAB</key></p>
+<h3 id="cores">Cores</h3>
 <p>even if you book 10 cores, nothing will prevent you from starting 100 jobs. They will run but then tasks are distributed on the available resources.
 In this example, each task will use 1/10th of a core, then runs very slowly.<br />
 On an interactive session, use the command <code>htop</code> to see if a process is correctly using close to 100% of a core.</p>
-<h3 id="disk-space">disk space</h3>
+<h3 id="disk-space">Disk space</h3>
 <p>Like on your local machine, you need to check how much data you used.
 Using a command line, you could use</p>
-<h4 id="disk-usage">disk usage</h4>
+<h4 id="disk-usage">Disk usage</h4>
 <pre><code>du -sh ~
 </code></pre>
 <p>to display your disk usage (<code>du</code>) for your home folder (<code>~</code>). In a form readable by human (<code>-h</code>)</p>
-<h4 id="disk-free">disk free</h4>
-<pre><code>df -h
+<h4 id="disk-free">Disk free</h4>
+<pre><code>df-ulphc
 </code></pre>
 <p>disk free scans all disks mounted. Could takes time to display the global usage. 
 Please worry if only few Mb are available on the disk you are planning to write to.</p>
 <p>check also your own quota with <code>df-ulhpc</code> on the frontend.</p>
-<h3 id="closing-connection">closing connection</h3>
+<h3 id="closing-connection">Closing connection</h3>
 <p>When you are done, you can kill yourself your job by either doing <code>CTRL + D</code> or typing <code>exit</code>.
 That will free your booked resources for others. Once done, you will still log on the frontend and normally inside a <code>tmux</code>.
 The best is to detach from the <code>tmux</code> instance and log off from the gaia frontend using  <code>CTRL + D</code> or typing <code>exit</code>.</p>
@@ -280,7 +277,7 @@ The best is to detach from the <code>tmux</code> instance and log off from the g
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="install/" class="btn btn-neutral float-right" title="Setup">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="cli/" class="btn btn-neutral float-right" title="Command line, basics">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
     </div>
@@ -312,7 +309,7 @@ The best is to detach from the <code>tmux</code> instance and log off from the g
     
     
     
-      <span><a href="install/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="cli/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
@@ -331,5 +328,5 @@ The best is to detach from the <code>tmux</code> instance and log off from the g
 
 <!--
 MkDocs version : 1.2.2
-Build Date UTC : 2021-08-17 13:56:02.594183+00:00
+Build Date UTC : 2021-08-24 12:10:42.147254+00:00
 -->

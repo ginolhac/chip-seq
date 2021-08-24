@@ -51,7 +51,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../install/">Setup</a>
+                    <li class="toctree-l1"><a class="" href="../snakemake.md">Setup</a>
                     </li>
                 </ul>
                 <ul class="current">
@@ -61,7 +61,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#exercise-1">Exercise 1</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#text-editor">text editor</a>
+    <li class="toctree-l2"><a class="reference internal" href="#text-editor">Text editor</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#nano">nano</a>
     </li>
@@ -69,19 +69,11 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#exercise-2">Exercise 2</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#exercise-3-using-a-fasta-file">Exercise 3, using a FASTA file</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#extra-questions">Extra questions</a>
-    </li>
-        </ul>
-    </li>
     </ul>
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../fastqc/">QC</a>
+                    <li class="toctree-l1"><a class="" href="../fastqc.md">QC</a>
                     </li>
                 </ul>
                 <ul>
@@ -90,10 +82,6 @@
                 </ul>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../peak/">Peak calling</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../public/">Public data</a>
                     </li>
                 </ul>
                 <ul>
@@ -136,10 +124,10 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="command-line">command line</h2>
+                <h2 id="command-line">Command line</h2>
 <p>The programs you call on a terminal are not so different from their graphical interface you are used to on windows/mac.</p>
 <p>You need to know these commands:</p>
-<pre><code>pwd
+<pre><code class="language-bash">pwd
 more
 less
 cp
@@ -188,7 +176,7 @@ use the up arrow, you should see 'cp TEST/test .'
 and change it for<br />
 <code>cp TEST/test test2</code><br />
 the first and last field of <code>ls -l</code> should provide</p>
-<pre><code>drwxr-xr-x TEST
+<pre><code class="language-bash">drwxr-xr-x TEST
 -rw-r--r-- test
 -rw-r--r-- test2
 </code></pre>
@@ -203,7 +191,7 @@ the first pattern is the owner<br />
 the second pattern is for the group<br />
 the third pattern is for everyone else</p>
 <p>TODO more details needed</p>
-<h3 id="text-editor">text editor</h3>
+<h3 id="text-editor">Text editor</h3>
 <h4 id="nano">nano</h4>
 <p>often installed, it is easy to use as all commands are written at the bottom:</p>
 <pre><code class="language-console">
@@ -214,8 +202,8 @@ the third pattern is for everyone else</p>
 </code></pre>
 <p>you can write/modify text directly and use <code>CTRL + O</code> to save then <code>CTRL + X</code> to exit.</p>
 <h4 id="vim">VIM</h4>
-<p>Let's have a look at a text editor, there is plenty of them, the one I use is <code>vim</code>, why?<br />
-Because</p>
+<p>Let's have a look at a text editor, there is plenty of them, the one I use is <code>vim</code>, why?  </p>
+<p>Because:</p>
 <ul>
 <li>it's commonly installed on servers</li>
 <li>extremely powerful</li>
@@ -237,47 +225,6 @@ The useful ones  </p>
 <li><code>:q!</code> quit without saving changes</li>
 <li><code>:wq</code> write and quit</li>
 </ul>
-<h3 id="exercise-2">Exercise 2</h3>
-<p><code>find</code> is great but not at all user-friendly.
-Try to find all your files which are bigger than 1 Go.
-then which are older than 1 year.
-Imagine doing this with windows...</p>
-<h3 id="exercise-3-using-a-fasta-file">Exercise 3, using a FASTA file</h3>
-<p>Get all sequences in genbank with the keyword trnl<br />
-<a href="http://www.ncbi.nlm.nih.gov/sites/entrez?db=nuccore&amp;cmd=search&amp;term=trnl">http://www.ncbi.nlm.nih.gov/sites/entrez?db=nuccore&amp;cmd=search&amp;term=trnl</a></p>
-<p>but download only sequences from one class like <em>mammals</em> as a FASTA file.
-You should obtain a 1.3 Mo file. Otherwise, you can use <code>/home/users/aginolhac/trnl_mammals.fasta</code></p>
-<ul>
-<li>
-<p>how to obtain the first 500 lines of a file?<br />
-see the command <code>head</code> and its manual <code>man head</code>. You can redirect the output to a file with 'command &gt; file_first500.fasta' for example.</p>
-</li>
-<li>
-<p>how can you obtain from line 400 to 560?<br />
-Think of piping <code>head</code> and <code>tail</code></p>
-</li>
-<li>
-<p>count how many lines in this file. See <code>wc</code></p>
-</li>
-<li>
-<p>count how many sequences you have in the FASTA file. look at <code>grep</code></p>
-</li>
-<li>
-<p>you should have obtained the 500 first lines in a file and the 500 last in a second file. How can you merge these two files? look at <code>cat</code></p>
-</li>
-</ul>
-<h4 id="extra-questions">Extra questions</h4>
-<ul>
-<li>
-<p>there is an empty file after each sequence. Try to remove them (my favorite is <code>sed</code>, but check the <code>-v</code> option of grep)</p>
-</li>
-<li>
-<p>Extract all headers (start with <code>&gt;</code>) then the <em>gi number</em> (see <code>cut</code>). Redirect to a file.</p>
-</li>
-<li>
-<p>Look if there some double gi, look at <code>sort</code> and <code>uniq</code>.</p>
-</li>
-</ul>
               
             </div>
           </div>
@@ -285,10 +232,10 @@ Think of piping <code>head</code> and <code>tail</code></p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../fastqc/" class="btn btn-neutral float-right" title="QC">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../mapping/" class="btn btn-neutral float-right" title="Mapping">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../install/" class="btn btn-neutral" title="Setup"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -318,10 +265,10 @@ Think of piping <code>head</code> and <code>tail</code></p>
         </span>
     
     
-      <span><a href="../install/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../fastqc/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../mapping/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Setup - ChIP-seq tutorials</title>
+  <title>Install - ChIP-seq tutorials</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Setup";
+    var mkdocs_page_name = "Install";
     var mkdocs_page_input_path = "install.md";
     var mkdocs_page_url = null;
   </script>
@@ -50,10 +50,8 @@
                     <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                     </li>
                 </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Setup</a>
-    <ul class="current">
-    </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="" href="../snakemake.md">Setup</a>
                     </li>
                 </ul>
                 <ul>
@@ -61,7 +59,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../fastqc/">QC</a>
+                    <li class="toctree-l1"><a class="" href="../fastqc.md">QC</a>
                     </li>
                 </ul>
                 <ul>
@@ -70,10 +68,6 @@
                 </ul>
                 <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../peak/">Peak calling</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../public/">Public data</a>
                     </li>
                 </ul>
                 <ul>
@@ -101,7 +95,7 @@
     
       
     
-    <li>Setup</li>
+    <li>Install</li>
     <li class="wy-breadcrumbs-aside">
       
         <a href="https://github.com/ginolhac/chip-seq/edit/master/docs/install.md"
@@ -118,16 +112,12 @@
               
                 <h2 id="workflow">Workflow</h2>
 <p>The workflow of all steps is summarised below:</p>
-<p><img alt="" src="https://rawgit.com/ginolhac/chip-seq/master/workflow.jpg" /></p>
-<h2 id="load-the-singularity-container">load the singularity container</h2>
+<p><img alt="" src="https://rawgit.com/ginolhac/chip-seq/master/workflow.png" /></p>
+<h2 id="singularity-container">Singularity container</h2>
 <p><a href="https://www.sylabs.io/">Singularity</a> allows to use containers (from <em>i.e</em> <a href="https://www.docker.com/">Docker</a>) on High-Performance Computer.
-For more details see the lecture <a href="https://ulhpc-tutorials.readthedocs.io/en/latest/containers/singularity/">by Valentin Plugaru</a></p>
-<p>Shortly, we built a container with all the necessary tools and softwares embeded. Hence, you just need to book the HPC resources and load the container to start working on your <strong>chip-seq</strong> sequences.</p>
-<h3 id="tweak-for-the-picard">Tweak for the <code>picard</code></h3>
-<p>we need to tweak this location only <strong>once</strong>.</p>
-<pre><code class="language-bash">mkdir -p ~/install/jar_root/
-cp /scratch/users/aginolhac/picard.jar ~/install/jar_root/
-</code></pre>
+For more details see the lecture <a href="https://ulhpc-tutorials.readthedocs.io/en/latest/containers/singularity/">by HPC team</a></p>
+<p>Shortly, we built a container with all the necessary tools and softwares embeded. Hence, you need to book the HPC resources.
+Snakemake will load the container for every  <strong>chip-seq</strong> sequences.</p>
 <h3 id="book-resources-on-iris">book resources on iris</h3>
 <ul>
 <li>2 hours</li>
@@ -142,13 +132,6 @@ cp /scratch/users/aginolhac/picard.jar ~/install/jar_root/
 </ul>
 <pre><code class="language-bash">module load tools/Singularity
 singularity shell -s /bin/bash --bind /scratch/users:/scratch/users /scratch/users/aginolhac/ubuntu-chip-seq.simg
-</code></pre>
-<p>then you are inside the container, all the tools should be available.</p>
-<p>try running the following and raise your hand if any is <code>command not found</code></p>
-<pre><code class="language-bash">bwa
-samtools
-macs2
-paleomix
 </code></pre>
 <h2 id="prepare-your-working-environment">prepare your working environment</h2>
 <ul>
@@ -171,15 +154,6 @@ Then <code>paleomix</code> will check the FASTQ are correct, <em>i. e</em> have 
             </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../cli/" class="btn btn-neutral float-right" title="Command line, basics">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
@@ -207,10 +181,6 @@ Then <code>paleomix</code> will check the FASTQ are correct, <em>i. e</em> have 
         </span>
     
     
-      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../cli/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
