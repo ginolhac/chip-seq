@@ -1,11 +1,12 @@
 site_name: ChIP-seq tutorials
 nav:
 - Home: index.md
-- Setup snakemake: snakemake.md
 - "Command line, basics": cli.md
+- Setup snakemake: snakemake.md
+- Workflow: workflow.md
 - Mapping: mapping.md
 - Peak calling: peak.md
 - Contact: contact.md
 repo_url: https://github.com/ginolhac/chip-seq/
 site_description: "ChIP-seq tutorial, University of Luxembourg, Department Life Sciences and Medecine"
-theme: readthedocs
+theme: material

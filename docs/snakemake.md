@@ -60,7 +60,7 @@ export PYTHONNOUSERSITE=True
 ```
 
 
-### Install snakemake in dedicated environment
+### Install snakemake in a dedicated environment
 
 It is also recommended to leave the `base` environment as clean as possible,
 
