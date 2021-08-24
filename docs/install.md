@@ -6,12 +6,13 @@ The workflow of all steps is summarised below:
 ![](https://rawgit.com/ginolhac/chip-seq/master/workflow.png)
 
 
-## load the singularity container
+## Singularity container
 
 [Singularity](https://www.sylabs.io/) allows to use containers (from _i.e_ [Docker](https://www.docker.com/)) on High-Performance Computer.
-For more details see the lecture [by Valentin Plugaru](https://ulhpc-tutorials.readthedocs.io/en/latest/containers/singularity/)
+For more details see the lecture [by HPC team](https://ulhpc-tutorials.readthedocs.io/en/latest/containers/singularity/)
 
-Shortly, we built a container with all the necessary tools and softwares embeded. Hence, you just need to book the HPC resources and load the container to start working on your **chip-seq** sequences.
+Shortly, we built a container with all the necessary tools and softwares embeded. Hence, you need to book the HPC resources.
+Snakemake will load the container for every  **chip-seq** sequences.
 
 
 

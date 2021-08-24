@@ -1,7 +1,7 @@
 site_name: ChIP-seq tutorials
 nav:
 - Home: index.md
-- Setup: install.md
+- Setup: snakemake.md
 - "Command line, basics": cli.md
 - QC: fastqc.md
 - Mapping: mapping.md

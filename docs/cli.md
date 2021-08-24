@@ -1,4 +1,4 @@
-## command line
+## Command line
 
 The programs you call on a terminal are not so different from their graphical interface you are used to on windows/mac.
 
@@ -80,7 +80,7 @@ the third pattern is for everyone else
 
 TODO more details needed
 
-### text editor
+### Text editor
 
 #### nano
 
