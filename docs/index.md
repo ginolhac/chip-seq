@@ -2,6 +2,7 @@
 
 Running all analyses is computationally intensive and despite the power of the current laptops, jobs should be run on high-performance clusters (HPC).
 
+Moreover, bioinformatic analyses involve many inter-dependent steps that need to be coherently run by a workflow manager such as [`snakemake`](https://snakemake.github.io/)
 
 ## Lecture
 
@@ -13,6 +14,8 @@ slides are available as a pdf, click below
 ## Log in `iris`
 
 [`iris`](https://hpc-docs.uni.lu/systems/iris/) is one of the [High Performance Computer (HPC) of the UNI](https://hpc.uni.lu).
+The HPC team has prepared a [getting started](https://hpc-docs.uni.lu/getting-started/) page if you wish learn about this.
+
 
 You should use your account or one the student account prepared for you.
 
@@ -22,11 +25,23 @@ To connect to it, you need an account and an authorized `ssh` key. Actually, a p
 The public key is sent over when connecting to the remote and compared to the authorized private key.
 A match allows the sender to log in. No password required.
 
+### For MacOS/Linux
+
+
+Instructions: follow **step 1a** of this [tutorial](https://ulhpc-tutorials.readthedocs.io/en/latest/preliminaries/#secure-shell-ssh)
+
 After the setting up of your account, the following should work if you are using mac or GNU/Linux:
 
 ```bash
 ssh iris-cluster
 ```
+
+### For Windows
+
+Instructions: follow **step 1c** of this [tutorial](https://ulhpc-tutorials.readthedocs.io/en/latest/preliminaries/#secure-shell-ssh)
+
+
+
 
 Otherwise, on Windows, use `xmobaterm`. In the terminal, log as your username, such as `student15`.
 
