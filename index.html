@@ -257,6 +257,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#for-macoslinux" class="md-nav__link">
+    For MacOS/Linux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-windows" class="md-nav__link">
+    For Windows
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -502,6 +516,20 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#for-macoslinux" class="md-nav__link">
+    For MacOS/Linux
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#for-windows" class="md-nav__link">
+    For Windows
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -621,19 +649,25 @@
                 
                 <h1 id="chip-seq-practical-session">ChIP-seq practical session</h1>
 <p>Running all analyses is computationally intensive and despite the power of the current laptops, jobs should be run on high-performance clusters (HPC).</p>
+<p>Moreover, bioinformatic analyses involve many inter-dependent steps that need to be coherently run by a workflow manager such as <a href="https://snakemake.github.io/"><code>snakemake</code></a></p>
 <h2 id="lecture">Lecture</h2>
 <p>slides are available as a pdf, click below</p>
 <p><a href="https://rawgit.com/ginolhac/chip-seq/master/chip-seq.pdf"><img alt="" src="https://rawgit.com/ginolhac/chip-seq/master/slides.png" /></a></p>
 <h2 id="log-in-iris">Log in <code>iris</code></h2>
-<p><a href="https://hpc-docs.uni.lu/systems/iris/"><code>iris</code></a> is one of the <a href="https://hpc.uni.lu">High Performance Computer (HPC) of the UNI</a>.</p>
+<p><a href="https://hpc-docs.uni.lu/systems/iris/"><code>iris</code></a> is one of the <a href="https://hpc.uni.lu">High Performance Computer (HPC) of the UNI</a>.
+The HPC team has prepared a <a href="https://hpc-docs.uni.lu/getting-started/">getting started</a> page if you wish learn about this.</p>
 <p>You should use your account or one the student account prepared for you.</p>
 <h3 id="connect-to-the-frontend">Connect to the frontend</h3>
 <p>To connect to it, you need an account and an authorized <code>ssh</code> key. Actually, a pair of keys, one public and one private.
 The public key is sent over when connecting to the remote and compared to the authorized private key.
 A match allows the sender to log in. No password required.</p>
+<h3 id="for-macoslinux">For MacOS/Linux</h3>
+<p>Instructions: follow <strong>step 1a</strong> of this <a href="https://ulhpc-tutorials.readthedocs.io/en/latest/preliminaries/#secure-shell-ssh">tutorial</a></p>
 <p>After the setting up of your account, the following should work if you are using mac or GNU/Linux:</p>
 <pre><code class="language-bash">ssh iris-cluster
 </code></pre>
+<h3 id="for-windows">For Windows</h3>
+<p>Instructions: follow <strong>step 1c</strong> of this <a href="https://ulhpc-tutorials.readthedocs.io/en/latest/preliminaries/#secure-shell-ssh">tutorial</a></p>
 <p>Otherwise, on Windows, use <code>xmobaterm</code>. In the terminal, log as your username, such as <code>student15</code>.</p>
 <p>You should see the following prompt of the <code>iris</code> frontend:</p>
 <pre><code class="language-console">==================================================================================
