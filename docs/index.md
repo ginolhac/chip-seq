@@ -177,7 +177,7 @@ Each node has
 On an interactive session, use the command `htop` to see if the memory is not full. If the system is swapping (using hard drives for memory storage)
 it becomes super slow and eventually stalled.
 
-For passive jobs, you can join a computing node by using the `sjoin nodeid jobid` command. Where `nodeid` and `jobid` can be autocomplemented by <key>TAB</key>
+For passive jobs, you can join a computing node by using the `sjoin nodeid jobid` command. Where `nodeid` and `jobid` can be autocomplemented by <key>TAB</key>. See page [help](https://hpc-docs.uni.lu/jobs/submit/#sjoin)
 
 ### Cores
 
