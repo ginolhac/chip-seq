@@ -311,6 +311,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#submit-passive-jobs" class="md-nav__link">
+    Submit passive jobs
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -427,6 +434,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#submit-passive-jobs" class="md-nav__link">
+    Submit passive jobs
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -460,10 +474,11 @@
 For more details see the lecture <a href="https://ulhpc-tutorials.readthedocs.io/en/latest/containers/singularity/">by HPC team</a></p>
 <p>Shortly, a container with all the necessary tools, softwares and all libraries are embeded. Hence, you need to book the HPC resources but not install those softwares. <strong>Snakemake</strong> will load the container for every  <strong>action</strong> it runs.</p>
 <h3 id="book-resources-on-iris">Book resources on iris</h3>
-<p><code>si</code> is a shortcut for booking a short interactive session (30 minutes, 1 core).</p>
+<p><code>si</code> is a shortcut for booking a short <strong>interactive</strong> session (30 minutes, 1 core).</p>
 <p>But, we can alter the time for one hour with <code>-t</code> and ask for more cores with <code>-c</code>. Example below:</p>
 <pre><code>si -t 1:00:00 -c 6
 </code></pre>
+<p>Interactive sessions are limited to maximum 2 hours. See at the bottom how to submitted <strong>passive</strong> jobs.</p>
 <h4 id="optional">(Optional)</h4>
 <p>Two nodes were reserved for this course. This will work if you have a student accounts or if you are part of the Department of Life Sciences.
 To access them you need to add the following parameter for Thursday:</p>
@@ -472,6 +487,38 @@ To access them you need to add the following parameter for Thursday:</p>
 <p>and for Friday:</p>
 <pre><code>si -t 1:0:0 -c 6 --reservation=aginolhac-teaching-20210903
 </code></pre>
+<h3 id="submit-passive-jobs">Submit passive jobs</h3>
+<p>It consists in two steps:</p>
+<ul>
+<li>create a file <code>launcher.sh</code> at the root of your snakemake that contains the following lines:</li>
+</ul>
+<pre><code class="language-bash">#!/bin/bash -l
+#SBATCH -N 1
+#SBATCH -J JOB_NAME
+#SBATCH --mail-type=begin,end,fail
+#SBATCH --mail-user=yours@mail.lu
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem-per-cpu=4096
+#SBATCH -c 12
+#SBATCH --time=0-06:00:00
+#SBATCH -p batch
+
+module load tools/Singularity
+conda activate snakemake
+
+srun snakemake --use-singularity --singularity-args &quot;-B /scratch/users/aginolhac:/scratch/users/aginolhac&quot; -j 12
+
+</code></pre>
+<p>You need to update the <code>JOB_NAME</code> and your email address. You can also delete those 3 lines (line 3 to 5) if you are interested into this monitoring.</p>
+<p>The duration (here 6 hours) and number of cores can be adapted to your needs.</p>
+<ul>
+<li>run the submission with </li>
+</ul>
+<pre><code class="language-bash">sbatch launcher.sh
+</code></pre>
+<p>your job will be queued and start whenever it's possible and according to the <a href="https://hpc-docs.uni.lu/slurm/fairsharing/">fairshare</a>.</p>
+<p>You can monitor your scheduling with <code>squeue -la -u $USER</code></p>
+<p>See also the HPC team <a href="https://ulhpc-tutorials.readthedocs.io/en/latest/basic/scheduling/">tutorial</a>.</p>
                 
               
               
