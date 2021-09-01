@@ -16,7 +16,7 @@
     
     
       
-        <title>Workflow - ChIP-seq tutorials</title>
+        <title>Chip seq - ChIP-seq tutorials</title>
       
     
     
@@ -93,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Workflow
+              Chip seq
             
           </span>
         </div>
@@ -246,87 +246,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Workflow
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Workflow
+    <li class="md-nav__item">
+      <a href="../workflow.md" class="md-nav__link">
+        Workflow ChIP-seq
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#workflow" class="md-nav__link">
-    Workflow
-  </a>
-  
-    <nav class="md-nav" aria-label="Workflow">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#singularity-containers" class="md-nav__link">
-    Singularity containers
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#book-resources-on-iris" class="md-nav__link">
-    Book resources on iris
-  </a>
-  
-    <nav class="md-nav" aria-label="Book resources on iris">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#optional" class="md-nav__link">
-    (Optional)
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#submit-passive-jobs" class="md-nav__link">
-    Submit passive jobs
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -435,6 +359,54 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#install-the-snakemake-template" class="md-nav__link">
+    Install the snakemake template
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetch-test-datasets" class="md-nav__link">
+    Fetch test datasets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#load-necessary-tools" class="md-nav__link">
+    Load necessary tools
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-the-workflow" class="md-nav__link">
+    Test the workflow
+  </a>
+  
+    <nav class="md-nav" aria-label="Test the workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#config-files" class="md-nav__link">
+    Config files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-the-test-data-workflow" class="md-nav__link">
+    Run the test-data workflow
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#submit-passive-jobs" class="md-nav__link">
     Submit passive jobs
   </a>
@@ -458,12 +430,12 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/ginolhac/chip-seq/edit/master/docs/workflow.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/ginolhac/chip-seq/edit/master/docs/chip-seq.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>Workflow</h1>
+                  <h1>Chip seq</h1>
                 
                 <h2 id="workflow">Workflow</h2>
 <p>The workflow of all steps is summarised below:</p>
@@ -475,10 +447,10 @@ For more details see the lecture <a href="https://ulhpc-tutorials.readthedocs.io
 <p>Shortly, a container with all the necessary tools, softwares and all libraries are embeded. Hence, you need to book the HPC resources but not install those softwares. <strong>Snakemake</strong> will load the container for every  <strong>action</strong> it runs.</p>
 <h3 id="book-resources-on-iris">Book resources on iris</h3>
 <p><code>si</code> is a shortcut for booking a short <strong>interactive</strong> session (30 minutes, 1 core).</p>
-<p>But, we can alter the time for one hour with <code>-t</code> and ask for more cores with <code>-c</code>. Example below:</p>
+<p>But, we can alter the time for one hour with <code>-t</code> and ask for more cores with <code>-c</code>. Example below where we ask for 1 jour and 6 cores:</p>
 <pre><code>si -t 1:00:00 -c 6
 </code></pre>
-<p>Interactive sessions are limited to maximum 2 hours. See at the bottom how to submitted <strong>passive</strong> jobs.</p>
+<p>Interactive sessions are limited to maximum 2 hours. See at the bottom how to submit <strong>passive</strong> jobs (max walltime: 48 hours).</p>
 <h4 id="optional">(Optional)</h4>
 <p>Two nodes were reserved for this course. This will work if you have a student accounts or if you are part of the Department of Life Sciences.
 To access them you need to add the following parameter for Thursday:</p>
@@ -487,6 +459,174 @@ To access them you need to add the following parameter for Thursday:</p>
 <p>and for Friday:</p>
 <pre><code>si -t 1:0:0 -c 6 --reservation=aginolhac-teaching-20210903
 </code></pre>
+<h3 id="install-the-snakemake-template">Install the snakemake template</h3>
+<p>We will work in the <code>scratch</code> partition.</p>
+<ul>
+<li>the alias to go there is: </li>
+</ul>
+<pre><code class="language-bash">cds
+</code></pre>
+<p>Type <code>pwd</code> to ensure you are in <code>/scratch/users/username</code></p>
+<ul>
+<li>create the directory and go inside:</li>
+</ul>
+<pre><code class="language-bash">mkdir snakemake-chip-seq
+cd snakemake-chip-seq
+</code></pre>
+<p>and run the following commands:</p>
+<pre><code class="language-bash">VERSION=&quot;v0.1.1&quot;
+wget -qO- https://gitlab.lcsb.uni.lu/aurelien.ginolhac/snakemake-chip-seq/-/archive/${VERSION}/snakemake-chip-seq-${VERSION}.tar.gz | tar xfz - --strip-components=1
+</code></pre>
+<p>this command will download, extract (without the root folder) the following files:</p>
+<pre><code>CHANGELOG.md
+config/
+Dockerfile
+LICENSE
+README.md
+resources/
+workflow/
+</code></pre>
+<p>You can check the list of files using <code>ll</code> (alias of long list: <code>ls -l</code>)</p>
+<p>you may want to delete the <code>LICENSE</code>, <code>Dockerfile</code>, <code>CHANGELOG.md</code> and <code>README.md</code> if you wish, 
+they are not used by <code>snakemake</code> for runtime.</p>
+<h3 id="fetch-test-datasets">Fetch test datasets</h3>
+<p>Using the <a href="https://github.com/nf-core/test-datasets">nextflow datasets</a>, clone it using <code>git</code>:</p>
+<pre><code class="language-bash">git clone -b chipseq --depth 1 https://github.com/nf-core/test-datasets.git
+</code></pre>
+<h3 id="load-necessary-tools">Load necessary tools</h3>
+<ul>
+<li>load <code>singularity</code></li>
+</ul>
+<p>the command once on a <code>node</code> is:</p>
+<pre><code class="language-bash">(base) user@access module load tools/Singularity
+</code></pre>
+<ul>
+<li>load the <code>snakemake</code> environment</li>
+</ul>
+<pre><code class="language-bash">(base) user@access $ conda activate snakemake
+</code></pre>
+<p>Of note, the 2 above steps can be replaced by the alias <code>smk</code> if you added the alias in your <code>.bashrc</code></p>
+<p>It should look like this from accessing the access machine to getting the resources and activating the environment:</p>
+<pre><code class="language-bash">(base) aginolhac@access1.iris-cluster.uni.lux(14:05:02)-&gt; 20:56): ~ $ si -c 6 -t 1:00:00
+# salloc -p interactive --qos debug -C batch 
+salloc: Pending job allocation 2424900
+salloc: job 2424900 queued and waiting for resources
+salloc: job 2424900 has been allocated resources
+salloc: Granted job allocation 2424900
+salloc: Waiting for resource configuration
+salloc: Nodes iris-139 are ready for job
+(base) aginolhac@iris-139(14:17:21)-&gt; 29:51)(2424900 1N/T/1CN): ~ $ smk
+(snakemake) aginolhac@iris-139(14:17:23)-&gt; 29:49)(2424900 1N/T/1CN): ~ $
+</code></pre>
+<h3 id="test-the-workflow">Test the workflow</h3>
+<h4 id="config-files">Config files</h4>
+<p>3 tabulated separated values file (<code>.tsv</code>) defined where are the data and how to process them. They are all in the <code>config</code> folder.
+Everything in the <code>workflow</code> contains the snakemake machinery and can be ignored if you are not interested into this.</p>
+<ul>
+<li>units</li>
+</ul>
+<p>This file has the key column in the first column, that must match the first colummn of <code>samples.tsv</code>.
+Then <code>unit</code> are for <strong>technical</strong> replicates. </p>
+<p><code>fq1</code> is the path the first pair of <code>FASTQ</code> or for single-end. In this last case, <code>fq2</code> needs to be empty.</p>
+<p>The 2 last columns, <code>sra_accession</code> and <code>platform</code> are not going to be used.</p>
+<p>Display the content of <code>config/units.tsv</code> (using <code>less config/units.tsv</code> for example) it should look like:</p>
+<pre><code>sample  unit    fq1 fq2 sra_accession   platform
+Spt5_IN 1   test-datasets/testdata/SRR5204809_Spt5-ChIP_Input1_SacCer_ChIP-Seq_ss100k_R1.fastq.gz   test-datasets/testdata/SRR5204809_Spt5-ChIP_Input1_SacCer_ChIP-Seq_ss100k_R2.fastq.gz       ILLUMINA
+Spt5_IN 2   test-datasets/testdata/SRR5204810_Spt5-ChIP_Input2_SacCer_ChIP-Seq_ss100k_R1.fastq.gz   test-datasets/testdata/SRR5204810_Spt5-ChIP_Input2_SacCer_ChIP-Seq_ss100k_R2.fastq.gz       ILLUMINA
+Spt5    1   test-datasets/testdata/SRR5204807_Spt5-ChIP_IP1_SacCer_ChIP-Seq_ss100k_R1.fastq.gz  test-datasets/testdata/SRR5204807_Spt5-ChIP_IP1_SacCer_ChIP-Seq_ss100k_R2.fastq.gz      ILLUMINA
+Spt5    2   test-datasets/testdata/SRR5204808_Spt5-ChIP_IP2_SacCer_ChIP-Seq_ss100k_R1.fastq.gz  test-datasets/testdata/SRR5204808_Spt5-ChIP_IP2_SacCer_ChIP-Seq_ss100k_R2.fastq.gz      ILLUMINA
+</code></pre>
+<ul>
+<li>samples</li>
+</ul>
+<p>Now look at <code>config/samples.tsv</code>:</p>
+<pre><code>sample  group   batch_effect    control antibody    peak-analysis
+Spt5_IN SptA    batch1      Spt 
+Spt5    SptA    batch1  Spt5_IN Spt narrow
+</code></pre>
+<p><code>sample</code> are ID that must match the <code>units.tsv</code> <code>sample</code> column. </p>
+<p><code>group</code> are for biological replicate, <code>batch_effect</code> is self-explanatory.</p>
+<p><code>control</code> allows to specify which <strong>input</strong> has to be used. Leave it empty for input DNA sample.</p>
+<p><code>antibody</code> is for antobody or histone mark used.</p>
+<p><code>peak-analysis</code> either <code>narrow</code> (for K4) or <code>broad</code> (K27 or K36). This will be used when running <code>macs2</code>.</p>
+<ul>
+<li>config</li>
+</ul>
+<p>The file <code>config.yaml</code> contains the generic parameters for the analysis.</p>
+<p>More specifically, it allows to specify the <strong>reference genome</strong> to use.</p>
+<p>Here the section is designed for the <strong>yeast</strong> genome, that fits the test-data</p>
+<pre><code>resources:
+  ref:
+    # Ensembl species name
+    species: saccharomyces_cerevisiae
+    # Ensembl release
+    release: 101
+    # Genome build
+    build: R64-1-1
+    # for testing data a single chromosome can be selected (leave empty for a regular analysis)
+    chromosome:
+    # specify release version number of igenomes list to use (see https://github.com/nf-core/chipseq/releases), e.g. 1.2.2
+    igenomes_release: 1.2.2
+    # if igenomes.yaml cannot be used, a value for the mappable or effective genome size can be specified here, e.g. macs-gsize: 2.7e9
+    macs-gsize:
+    # if igenomes.yaml cannot be used, a path to an own blacklist can be specified here
+    blacklist:
+</code></pre>
+<p>This section will need to be updated when we use the real human data</p>
+<h4 id="run-the-test-data-workflow">Run the test-data workflow</h4>
+<ol>
+<li>Check that your prompt is indicating that you are on a computing node, and with the snakemake environment loaded.</li>
+</ol>
+<p>Something like that:</p>
+<pre><code>(snakemake) 0 [student20@iris-114 student20](2469485 1N/T/1CN)$
+</code></pre>
+<ol>
+<li>Dry-run</li>
+</ol>
+<pre><code>snakemake -n
+</code></pre>
+<pre><code>[Wed Sep  1 10:53:50 2021]
+localrule all:
+    input: &lt;TBD&gt;
+    jobid: 0
+    resources: tmpdir=/tmp
+
+Job stats:
+job                  count    min threads    max threads
+-----------------  -------  -------------  -------------
+all                      1              1              1
+generate_igenomes        1              1              1
+get_gsize                1              1              1
+total                    3              1              1
+
+This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
+</code></pre>
+<ol>
+<li>Produce the Direct Acyclic Graph</li>
+</ol>
+<p>With the alias, it is <code>dag</code>. You can then fetch and look at the <code>dag.pdf</code>. All jobs are with a plain line, meaning they are not done.</p>
+<ol>
+<li>Run the real workflow</li>
+</ol>
+<pre><code class="language-bash">snakemake --use-singularity --singularity-args &quot;-B /scratch/users/aginolhac:/scratch/users/aginolhac&quot;  -j 6
+</code></pre>
+<p>First it download the <code>singularity</code> image (and will cache it). It takes a few minutes (feels long however).</p>
+<p>Then you can see the workflow moving on. <strong>107</strong> jobs are scheduled.</p>
+<p>Messages like</p>
+<pre><code>System has not been booted with systemd as init system (PID 1). Can't operate.
+Failed to create bus connection: Host is down
+</code></pre>
+<p>can be ignored. The whole workflow takes ~ 15 minutes with 6 cores. </p>
+<ol>
+<li>Create the report</li>
+</ol>
+<pre><code>snakemake --report
+</code></pre>
+<p>You can now fetch both <code>report.html</code> and <code>results/qc/multiqc/multiqc.html</code> that summarise the run.</p>
+<ol>
+<li>DAG again</li>
+</ol>
+<p>if you wish, the lines are now dashed.</p>
 <h3 id="submit-passive-jobs">Submit passive jobs</h3>
 <p>It consists in two steps:</p>
 <ul>
@@ -534,41 +674,6 @@ srun snakemake --use-singularity --singularity-args &quot;-B /scratch/users/agin
       
         
 <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../snakemake/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Setup snakemake" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Setup snakemake
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../mapping/" class="md-footer__link md-footer__link--next" aria-label="Next: Mapping" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Mapping
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

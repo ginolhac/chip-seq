@@ -291,6 +291,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#optional-add-useful-aliases" class="md-nav__link">
+    (Optional) Add useful aliases
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#optional-revert-the-changes-to-your-environment" class="md-nav__link">
     (Optional) Revert the changes to your environment
   </a>
@@ -318,8 +325,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../workflow/" class="md-nav__link">
-        Workflow
+      <a href="../workflow.md" class="md-nav__link">
+        Workflow ChIP-seq
       </a>
     </li>
   
@@ -423,6 +430,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#optional-add-useful-aliases" class="md-nav__link">
+    (Optional) Add useful aliases
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#optional-revert-the-changes-to-your-environment" class="md-nav__link">
     (Optional) Revert the changes to your environment
   </a>
@@ -500,13 +514,29 @@ If you are not comfortable with editing files, see this <a href="../cli/">page</
 <pre><code class="language-bash">(base) conda create -n snakemake
 (base) conda activate snakemake
 </code></pre>
-<p>Now the prompt becomes <code>(snakemake)</code> and we can install <code>snakemake</code> inside it</p>
+<p>Now the prompt becomes <code>(snakemake)</code> and we can install <code>snakemake</code> inside it.
+This step takes 2-3 minutes and is the longest one of this chapter.</p>
 <pre><code class="language-bash">(snakemake) mamba install -c conda-forge -c bioconda snakemake
 </code></pre>
 <p>Check that the snakemake is now installed</p>
 <pre><code class="language-bash">(snakemake) snakemake --version
 </code></pre>
 <p>Should return <code>6.7.0</code></p>
+<h3 id="optional-add-useful-aliases">(Optional) Add useful aliases</h3>
+<p>The following lines can be added to your <code>.bashrc</code>.
+The 3 first ones are handy shortcuts:</p>
+<pre><code class="language-bash">alias dag='snakemake --dag | dot -Tpdf &gt; dag.pdf'
+alias smk='conda activate snakemake &amp;&amp; module load tools/Singularity'
+complete -o bashdefault -C snakemake-bash-completion snakemake
+</code></pre>
+<ul>
+<li><code>dag</code> is often run to see which steps are to be re-run or not</li>
+<li><code>smk</code> to load the necessary tools on ULHPC in interactive sessions.</li>
+<li><code>complete</code> command loads the auto-completion for snakemake</li>
+</ul>
+<p>Again, your need source the <code>.bashrc</code> to get those lines in the current session.</p>
+<pre><code class="language-bash">source ~/.bashrc
+</code></pre>
 <h3 id="optional-revert-the-changes-to-your-environment">(Optional) Revert the changes to your environment</h3>
 <p>From <strong>Sarah Peter</strong>, if you want to stop <code>conda</code> from always being active:</p>
 <pre><code class="language-bash">(base) conda init --reverse
@@ -547,13 +577,13 @@ If you are not comfortable with editing files, see this <a href="../cli/">page</
       
       
         
-        <a href="../workflow/" class="md-footer__link md-footer__link--next" aria-label="Next: Workflow" rel="next">
+        <a href="../mapping/" class="md-footer__link md-footer__link--next" aria-label="Next: Mapping" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Workflow
+              Mapping
             </div>
           </div>
           <div class="md-footer__button md-icon">
