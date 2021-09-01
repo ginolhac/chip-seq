@@ -71,7 +71,8 @@ Create a new conda environment and activate it:
 (base) conda activate snakemake
 ```
 
-Now the prompt becomes `(snakemake)` and we can install `snakemake` inside it
+Now the prompt becomes `(snakemake)` and we can install `snakemake` inside it.
+This step takes 2-3 minutes and is the longest one of this chapter.
 
 ```bash
 (snakemake) mamba install -c conda-forge -c bioconda snakemake
@@ -85,6 +86,26 @@ Check that the snakemake is now installed
 
 Should return `6.7.0`
 
+### (Optional) Add useful aliases
+
+The following lines can be added to your `.bashrc`.
+The 3 first ones are handy shortcuts:
+
+```bash
+alias dag='snakemake --dag | dot -Tpdf > dag.pdf'
+alias smk='conda activate snakemake && module load tools/Singularity'
+complete -o bashdefault -C snakemake-bash-completion snakemake
+```
+
+- `dag` is often run to see which steps are to be re-run or not
+- `smk` to load the necessary tools on ULHPC in interactive sessions.
+- `complete` command loads the auto-completion for snakemake
+
+Again, your need source the `.bashrc` to get those lines in the current session.
+
+```bash
+source ~/.bashrc
+```
 
 ### (Optional) Revert the changes to your environment
 
