@@ -1,5 +1,3 @@
-## Workflow
-
 
 The workflow of all steps is summarised below:
 
@@ -17,7 +15,7 @@ Shortly, a container with all the necessary tools, softwares and all libraries a
 
 
 
-### Book resources on iris
+## Book resources on iris
 
 `si` is a shortcut for booking a short **interactive** session (30 minutes, 1 core).
 
@@ -29,7 +27,7 @@ si -t 1:00:00 -c 6
 
 Interactive sessions are limited to maximum 2 hours. See at the bottom how to submit **passive** jobs (max walltime: 48 hours).
 
-#### (Optional) 
+### (Optional) Reservations
 
 Two nodes were reserved for this course. This will work if you have a student accounts or if you are part of the Department of Life Sciences.
 To access them you need to add the following parameter for Thursday:
@@ -44,7 +42,7 @@ and for Friday:
 si -t 1:0:0 -c 6 --reservation=aginolhac-teaching-20210903
 ```
 
-### Install the snakemake template
+## Install the snakemake template
 
 We will work in the `scratch` partition.
 
@@ -87,7 +85,7 @@ You can check the list of files using `ll` (alias of long list: `ls -l`)
 you may want to delete the `LICENSE`, `Dockerfile`, `CHANGELOG.md` and `README.md` if you wish, 
 they are not used by `snakemake` for runtime.
 
-### Fetch test datasets
+## Fetch test datasets
 
 Using the [nextflow datasets](https://github.com/nf-core/test-datasets), clone it using `git`:
 
@@ -95,7 +93,7 @@ Using the [nextflow datasets](https://github.com/nf-core/test-datasets), clone i
 git clone -b chipseq --depth 1 https://github.com/nf-core/test-datasets.git
 ```
 
-### Load necessary tools
+## Load necessary tools
 
 - load `singularity`
 
@@ -129,21 +127,21 @@ salloc: Nodes iris-139 are ready for job
 ```
 
 
-### Test the workflow 
+# Test the workflow 
 
-#### Config files
+## Config files
 
 3 tabulated separated values file (`.tsv`) defined where are the data and how to process them. They are all in the `config` folder.
 Everything in the `workflow` contains the snakemake machinery and can be ignored if you are not interested into this.
 
-- units
+### units
 
 This file has the key column in the first column, that must match the first colummn of `samples.tsv`.
-Then `unit` are for **technical** replicates. 
 
-`fq1` is the path the first pair of `FASTQ` or for single-end. In this last case, `fq2` needs to be empty.
+- `unit` are for **technical** replicates. 
+- `fq1` is the path the first pair of `FASTQ` or for single-end. In this last case, `fq2` needs to be empty.
 
-The 2 last columns, `sra_accession` and `platform` are not going to be used.
+The 2 last columns, `sra_accession` and `platform` are not going to be used (and are empty for `sra_accession`).
 
 Display the content of `config/units.tsv` (using `less config/units.tsv` for example) it should look like:
 
@@ -155,7 +153,7 @@ Spt5	1	test-datasets/testdata/SRR5204807_Spt5-ChIP_IP1_SacCer_ChIP-Seq_ss100k_R1
 Spt5	2	test-datasets/testdata/SRR5204808_Spt5-ChIP_IP2_SacCer_ChIP-Seq_ss100k_R1.fastq.gz	test-datasets/testdata/SRR5204808_Spt5-ChIP_IP2_SacCer_ChIP-Seq_ss100k_R2.fastq.gz		ILLUMINA
 ```
 
-- samples
+### samples
 
 Now look at `config/samples.tsv`:
 
@@ -165,17 +163,13 @@ Spt5_IN	SptA	batch1		Spt
 Spt5	SptA	batch1	Spt5_IN	Spt	narrow
 ```
 
-`sample` are ID that must match the `units.tsv` `sample` column. 
+- `sample` are ID that must match the `units.tsv` `sample` column. 
+- `group` are for biological replicate, `batch_effect` is self-explanatory.
+- `control` allows to specify which **input** has to be used. Leave it empty for input DNA sample.
+- `antibody` is for antobody or histone mark used.
+- `peak-analysis` either `narrow` (for K4) or `broad` (K27 or K36). This will be used when running `macs2`.
 
-`group` are for biological replicate, `batch_effect` is self-explanatory.
-
-`control` allows to specify which **input** has to be used. Leave it empty for input DNA sample.
-
-`antibody` is for antobody or histone mark used.
-
-`peak-analysis` either `narrow` (for K4) or `broad` (K27 or K36). This will be used when running `macs2`.
-
-- config
+### config
 
 The file `config.yaml` contains the generic parameters for the analysis.
 
@@ -183,28 +177,28 @@ More specifically, it allows to specify the **reference genome** to use.
 
 Here the section is designed for the **yeast** genome, that fits the test-data
 
-```
+```yaml
 resources:
   ref:
-    # Ensembl species name
-    species: saccharomyces_cerevisiae
-    # Ensembl release
-    release: 101
-    # Genome build
-    build: R64-1-1
-    # for testing data a single chromosome can be selected (leave empty for a regular analysis)
-    chromosome:
-    # specify release version number of igenomes list to use (see https://github.com/nf-core/chipseq/releases), e.g. 1.2.2
-    igenomes_release: 1.2.2
-    # if igenomes.yaml cannot be used, a value for the mappable or effective genome size can be specified here, e.g. macs-gsize: 2.7e9
-    macs-gsize:
-    # if igenomes.yaml cannot be used, a path to an own blacklist can be specified here
-    blacklist:
+	# Ensembl species name
+	species: saccharomyces_cerevisiae
+	# Ensembl release
+	release: 101
+	# Genome build
+	build: R64-1-1
+	# for testing data a single chromosome can be selected (leave empty for a regular analysis)
+	chromosome:
+	# specify release version number of igenomes list to use (see https://github.com/nf-core/chipseq/releases), e.g. 1.2.2
+	igenomes_release: 1.2.2
+	# if igenomes.yaml cannot be used, a value for the mappable or effective genome size can be specified here, e.g. macs-gsize: 2.7e9
+	macs-gsize:
+	# if igenomes.yaml cannot be used, a path to an own blacklist can be specified here
+	blacklist:
 ```
 
-This section will need to be updated when we use the real human data
+This section will need to be updated when we use the real **human** data
 
-#### Run the test-data workflow
+## Run the test-data workflow
 
 1. Check that your prompt is indicating that you are on a computing node, and with the snakemake environment loaded.
 
@@ -223,9 +217,9 @@ snakemake -n
 ```
 [Wed Sep  1 10:53:50 2021]
 localrule all:
-    input: <TBD>
-    jobid: 0
-    resources: tmpdir=/tmp
+	input: <TBD>
+	jobid: 0
+	resources: tmpdir=/tmp
 
 Job stats:
 job                  count    min threads    max threads
@@ -271,9 +265,133 @@ You can now fetch both `report.html` and `results/qc/multiqc/multiqc.html` that 
 
 6. DAG again
 
-if you wish, the lines are now dashed.
+if you wish, regenerate the `dag.pdf`, the lines are now dashed.
 
-### Submit passive jobs
+# Run on human data
+
+
+> **Disclaimer**: those sequence files are of human origin. You **must not** copy them except for this teaching exercise.
+
+## Cleanup test data
+
+To avoid mingling with the test data results, remove `results` entirely, it will be created again with the human results.
+
+```bash
+rm -rf results
+```
+
+## Fetch data
+
+Make sure you are in `/scratch/users/username/snakemake-chip-seq/`, then copy the  4fastq files:
+
+```bash
+mkdir data
+rsync -v /scratch/users/aginolhac/tmp/K7/data/*gz data/
+```
+
+## Adapt config files
+
+The machinery in `workflow` is agnostic of the data origin. However, we need to set-up that we use new files.
+
+### config, the human reference
+
+The following lines (lines 9-18) must be changed for the following ones:
+
+```yaml
+resources:
+  ref:
+	# Ensembl species name
+	species: homo_sapiens
+	# Ensembl release
+	release: 101
+	# Genome build
+	build: GRCh38
+	# for testing data a single chromosome can be selected (leave empty for a regular analysis)
+	chromosome: 1
+```
+
+Meaning that we work with the human genome genome, and only the chromosome 1 (this can be changed later).
+This, for the sake of computation time.
+
+To run the workflow with all genome, you remove the **1** and 
+
+### samples
+
+```
+sample	group	batch_effect	control	antibody	peak-analysis
+K7_K27	K7	batch1	K7_IN	K27Ac	broad
+K7_K36	K7	batch1	K7_IN	K36me3	broad
+K7_K4 	K7	batch1	K7_IN	K4me3	narrow
+K7_IN 	K7	batch1		IN	
+```
+
+All histone marks will use the INPUT sample as control. And K4me3 are narrow peaks and the rest are broad.
+
+### units
+
+```
+sample	unit	fq1	fq2	sra_accession	platform
+K7_K27	1	data/C8MN9ACXX_K7-WT-H3K27Ac.fastq.gz		ILLUMINA
+K7_K36	1	data/C8MN9ACXX_K7-WT-H3K36me3.fastq.gz		ILLUMINA
+K7_K4	1	data/C8MN9ACXX_K7-WT-H3K4me3.fastq.gz		ILLUMINA
+K7_IN	1	data/C8MN9ACXX_K7-WT-I.fastq.gz		ILLUMINA
+```
+
+`fq2` is empty as this is a single-end run. And we don't have technical replicates so all unit as `1`.
+
+
+## Run the workflow
+
+makes sure to have resources booked for 2 hours:
+
+```
+si -c 6 -t 2:00:00
+```
+
+and loaded `singularity` and `snakemake`.
+
+### Set-up the cache
+
+To avoid spending too much time fetching the same reference genome and indexing it for mapping, we will share our work for these parts.
+
+```bash
+export SNAKEMAKE_OUTPUT_CACHE=/scratch/users/aginolhac/snakecache
+```
+
+### Disable MACS modelling for one chromosome only data
+
+MACS2 is inferring the shift value from data normally. However, as we use only one chromosome, the number of peaks is not enough.
+For this peculiar case, we need to adjust the code manually. We won't need that with all genome, but it takes longer to run.
+You can still run it overnight if you are interested.
+
+Edit the file `workflow/rules/peak_analysis.smk` for both the broad and narrow peak calling.
+
+, so we add `--nomodel --extsize 147` to both line 61 and 90. They then should look like this respectively:
+
+```
+    lambda w, input:"--broad-cutoff 0.1 -f {bam_format} {gsize} -B --nomodel --extsize 147 --SPMR --keep-dup all {pvalue} {qvalue}".format(
+    lambda w, input: "-f {bam_format} {gsize} -B --SPMR --nomodel --extsize 147 --keep-dup all {pvalue} {qvalue}".format(
+```
+
+
+### Dry-run
+
+First a dry-run as we did before:
+
+```bash
+snakemake -j 6 -n
+```
+
+### Run
+
+If all correct, run the workflow with `cache` activated. Of note, my scratch is shared for fetching the databases of `fastq_screen`.
+
+```bash
+snakemake --use-singularity --singularity-args "-B /scratch/users/aginolhac:/scratch/users/aginolhac"  --cache -j 6
+```
+
+
+## Submit passive jobs
 
 It consists in two steps:
 
