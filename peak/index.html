@@ -16,7 +16,7 @@
     
     
       
-        <title>Peak calling - ChIP-seq tutorials</title>
+        <title>Peak - ChIP-seq tutorials</title>
       
     
     
@@ -93,7 +93,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Peak calling
+              Peak
             
           </span>
         </div>
@@ -263,169 +263,9 @@
   
   
     <li class="md-nav__item">
-      <a href="../mapping/" class="md-nav__link">
-        Mapping
+      <a href="../atac-seq.md" class="md-nav__link">
+        Workflow ATAC-seq
       </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Peak calling
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Peak calling
-      </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#peak-calling" class="md-nav__link">
-    Peak calling
-  </a>
-  
-    <nav class="md-nav" aria-label="Peak calling">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#retrieve-the-bam-files-with-all-chromosomes" class="md-nav__link">
-    Retrieve the BAM files with all chromosomes
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#perform-peak-calling" class="md-nav__link">
-    Perform peak calling
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#check-model-inferred-by-macs2" class="md-nav__link">
-    check model inferred by MACS2
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sort-per-chromosomes-and-coordinates" class="md-nav__link">
-    sort per chromosomes and coordinates
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#convert-to-bigwig" class="md-nav__link">
-    convert to bigwig
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#fetch-the-files-and-display-them-in-igv" class="md-nav__link">
-    Fetch the files and display them in IGV
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#perform-peak-calling-with-broad-option" class="md-nav__link">
-    Perform peak calling with broad option
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#great-analysis" class="md-nav__link">
-    GREAT analysis
-  </a>
-  
-    <nav class="md-nav" aria-label="GREAT analysis">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#predict-functions-of-cis-regulatory-regions" class="md-nav__link">
-    predict functions of cis-regulatory regions
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#alternative-with-ngsplot" class="md-nav__link">
-    alternative with ngsplot
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#differential-peak-calling" class="md-nav__link">
-    Differential peak calling
-  </a>
-  
-    <nav class="md-nav" aria-label="Differential peak calling">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#visualization" class="md-nav__link">
-    visualization
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#meta-analysis-using-great" class="md-nav__link">
-    meta-analysis using GREAT
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -601,7 +441,7 @@
                   </a>
                 
                 
-                  <h1>Peak calling</h1>
+                  <h1>Peak</h1>
                 
                 <h2 id="peak-calling">Peak calling</h2>
 <p>Using <a href="https://github.com/taoliu/MACS/">MACS2</a></p>
@@ -777,41 +617,6 @@ thor_splitted %&gt;%
       
         
 <footer class="md-footer">
-  
-    <nav class="md-footer__inner md-grid" aria-label="Footer">
-      
-        
-        <a href="../mapping/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Mapping" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Mapping
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../contact/" class="md-footer__link md-footer__link--next" aria-label="Next: Contact" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Contact
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
