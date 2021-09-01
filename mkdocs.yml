@@ -3,7 +3,7 @@ nav:
 - Home: index.md
 - "Command line, basics": cli.md
 - Setup snakemake: snakemake.md
-- Workflow ChIP-seq: workflow.md
+- Workflow ChIP-seq: chip-seq.md
 - Mapping: mapping.md
 - Peak calling: peak.md
 - Contact: contact.md
