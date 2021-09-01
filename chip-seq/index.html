@@ -450,13 +450,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#disable-macs-modelling-for-one-chromosome-only-data" class="md-nav__link">
-    Disable MACS modelling for one chromosome only data
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#dry-run" class="md-nav__link">
     Dry-run
   </a>
@@ -717,13 +710,6 @@
           <li class="md-nav__item">
   <a href="#set-up-the-cache" class="md-nav__link">
     Set-up the cache
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#disable-macs-modelling-for-one-chromosome-only-data" class="md-nav__link">
-    Disable MACS modelling for one chromosome only data
   </a>
   
 </li>
@@ -1018,15 +1004,6 @@ K7_IN   1   data/C8MN9ACXX_K7-WT-I.fastq.gz     ILLUMINA
 <h3 id="set-up-the-cache">Set-up the cache</h3>
 <p>To avoid spending too much time fetching the same reference genome and indexing it for mapping, we will share our work for these parts.</p>
 <pre><code class="language-bash">export SNAKEMAKE_OUTPUT_CACHE=/scratch/users/aginolhac/snakecache
-</code></pre>
-<h3 id="disable-macs-modelling-for-one-chromosome-only-data">Disable MACS modelling for one chromosome only data</h3>
-<p>MACS2 is inferring the shift value from data normally. However, as we use only one chromosome, the number of peaks is not enough.
-For this peculiar case, we need to adjust the code manually. We won't need that with all genome, but it takes longer to run.
-You can still run it overnight if you are interested.</p>
-<p>Edit the file <code>workflow/rules/peak_analysis.smk</code> for both the broad and narrow peak calling.</p>
-<p>, so we add <code>--nomodel --extsize 147</code> to both line 61 and 90. They then should look like this respectively:</p>
-<pre><code>    lambda w, input:&quot;--broad-cutoff 0.1 -f {bam_format} {gsize} -B --nomodel --extsize 147 --SPMR --keep-dup all {pvalue} {qvalue}&quot;.format(
-    lambda w, input: &quot;-f {bam_format} {gsize} -B --SPMR --nomodel --extsize 147 --keep-dup all {pvalue} {qvalue}&quot;.format(
 </code></pre>
 <h3 id="dry-run">Dry-run</h3>
 <p>First a dry-run as we did before:</p>
