@@ -374,6 +374,7 @@ If all correct, run the workflow with `cache` activated. Of note, my scratch is 
 snakemake --use-singularity --singularity-args "-B /scratch/users/aginolhac:/scratch/users/aginolhac"  --cache -j 6
 ```
 
+The whole run should fit within the 2 hours walltime.
 
 ### Report
 

@@ -55,7 +55,7 @@ cd snakemake-atac-seq
 and run the following commands:
 
 ```bash
-VERSION="v0.0.1"
+VERSION="v0.0.2"
 wget -qO- https://gitlab.lcsb.uni.lu/aurelien.ginolhac/snakemake-atac-seq/-/archive/${VERSION}/snakemake-atac-seq-${VERSION}.tar.gz | tar xfz - --strip-components=1
 ```
 
@@ -109,13 +109,6 @@ salloc: Nodes iris-139 are ready for job
 
 > **Disclaimer**: those sequence files are of human origin. You **must not** copy them except for this teaching exercise.
 
-## Cleanup test data
-
-To avoid mingling with the test data results, remove `results` entirely, it will be created again with the human results.
-
-```bash
-rm -rf results
-```
 
 ## Fetch data
 
