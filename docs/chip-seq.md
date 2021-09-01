@@ -1,7 +1,7 @@
 
 The workflow of all steps is summarised below:
 
-![](https://rawgit.com/ginolhac/chip-seq/master/workflow.png)
+![](https://rawgit.com/ginolhac/chip-seq/main/workflow.png)
 
 and the template is hosted on the [LCSB Gitlab](https://gitlab.lcsb.uni.lu/aurelien.ginolhac/snakemake-chip-seq)
 
@@ -282,7 +282,7 @@ rm -rf results
 
 ## Fetch data
 
-Make sure you are in `/scratch/users/username/snakemake-chip-seq/`, then copy the  4fastq files:
+Make sure you are in `/scratch/users/username/snakemake-chip-seq/`, then copy the 4 fastq files:
 
 ```bash
 mkdir data
@@ -358,22 +358,6 @@ To avoid spending too much time fetching the same reference genome and indexing 
 export SNAKEMAKE_OUTPUT_CACHE=/scratch/users/aginolhac/snakecache
 ```
 
-### Disable MACS modelling for one chromosome only data
-
-MACS2 is inferring the shift value from data normally. However, as we use only one chromosome, the number of peaks is not enough.
-For this peculiar case, we need to adjust the code manually. We won't need that with all genome, but it takes longer to run.
-You can still run it overnight if you are interested.
-
-Edit the file `workflow/rules/peak_analysis.smk` for both the broad and narrow peak calling.
-
-, so we add `--nomodel --extsize 147` to both line 61 and 90. They then should look like this respectively:
-
-```
-    lambda w, input:"--broad-cutoff 0.1 -f {bam_format} {gsize} -B --nomodel --extsize 147 --SPMR --keep-dup all {pvalue} {qvalue}".format(
-    lambda w, input: "-f {bam_format} {gsize} -B --SPMR --nomodel --extsize 147 --keep-dup all {pvalue} {qvalue}".format(
-```
-
-
 ### Dry-run
 
 First a dry-run as we did before:
@@ -390,6 +374,14 @@ If all correct, run the workflow with `cache` activated. Of note, my scratch is 
 snakemake --use-singularity --singularity-args "-B /scratch/users/aginolhac:/scratch/users/aginolhac"  --cache -j 6
 ```
 
+
+### Report
+
+Generate it using:
+
+```bash
+snakemake --report
+```
 
 ## Submit passive jobs
 
