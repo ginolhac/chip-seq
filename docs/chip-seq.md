@@ -277,7 +277,7 @@ if you wish, regenerate the `dag.pdf`, the lines are now dashed.
 To avoid mingling with the test data results, remove `results` entirely, it will be created again with the human results.
 
 ```bash
-rm -rf results
+rm -rf results resources/ref
 ```
 
 ## Fetch data
