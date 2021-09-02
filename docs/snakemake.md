@@ -19,6 +19,16 @@ chmod u+x Miniconda3-latest-Linux-x86_64.sh
 
 Follow the instructions prompted (use spacebar to scrool down the license), of note you need to specify your installation destination, e.g. `/home/users/username/miniconda3`. You must use the full path and cannot use `$HOME/miniconda3`. Answer `yes` to initialize Miniconda3.
 
+
+For `permission denied` issues
+
+```bash
+chmod +x miniconda3/bin/python3.9
+chmod +x miniconda3/bin/conda
+miniconda3/bin/conda init
+```
+
+
 Activate `conda` by reloading your BASH configuration
 
 ```bash
