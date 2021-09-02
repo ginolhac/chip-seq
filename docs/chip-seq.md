@@ -295,6 +295,8 @@ The machinery in `workflow` is agnostic of the data origin. However, we need to 
 
 ### config, the human reference
 
+Edit `config/config.yaml`
+
 The following lines (lines 9-18) must be changed for the following ones:
 
 ```yaml
@@ -317,6 +319,8 @@ To run the workflow with all genome, you remove the **1** and
 
 ### samples
 
+Edit `config/samples.tsv`
+
 ```
 sample	group	batch_effect	control	antibody	peak-analysis
 K7_K27	K7	batch1	K7_IN	K27Ac	broad
@@ -328,6 +332,8 @@ K7_IN 	K7	batch1		IN
 All histone marks will use the INPUT sample as control. And K4me3 are narrow peaks and the rest are broad.
 
 ### units
+
+Edit `config/units.tsv`
 
 ```
 sample	unit	fq1	fq2	sra_accession	platform
