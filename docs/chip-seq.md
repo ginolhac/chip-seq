@@ -280,7 +280,7 @@ To avoid mingling with the test data results, remove `results` entirely, it will
 rm -rf results resources/ref
 ```
 
-## Fetch data
+## Fetch sequencing data
 
 Make sure you are in `/scratch/users/username/snakemake-chip-seq/`, then copy the 4 fastq files:
 
@@ -389,6 +389,29 @@ Generate it using:
 ```bash
 snakemake --report
 ```
+
+### Fetch data back on your computer
+
+On MacOS and GNU/Linux, use `scp` or `rsync`.
+
+On Windows, with MobaXterm, your files are displayed on the left part, on SFTP. Type `/scratch/users/username` like below:
+
+![mobaxterm](mobaxterm.png)
+
+The needed files are:
+
+```
+report.html
+results/qc/multiqc/multiqc.html
+results/bigwig/K7_IN.bigWig
+results/bigwig/K7_K27.bigWig
+results/bigwig/K7_K36.bigWig
+results/bigwig/K7_K4.bigWig
+results/macs2_callpeak/K7_K27-K7_IN.broad_peaks.broadPeak
+results/macs2_callpeak/K7_K36-K7_IN.broad_peaks.broadPeak
+results/macs2_callpeak/K7_K4-K7_IN.broad_peaks.narrowPeak
+```
+
 
 ## Submit passive jobs
 

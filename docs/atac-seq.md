@@ -142,3 +142,19 @@ If all correct, run the workflow with `cache` activated. Of note, my scratch is 
 ```bash
 snakemake --use-singularity --singularity-args "-B /scratch/users/aginolhac:/scratch/users/aginolhac"  --cache -j 6
 ```
+
+
+### Fetch data back on your computer
+
+The needed files are:
+
+```
+report.html
+results/qc/multiqc/multiqc.html
+results/big_wig/mDAN_D30_1.bigWig
+results/big_wig/mDAN_D30_2.bigWig
+results/big_wig/mDAN_D30_3.bigWig
+results/big_wig/smNPC_1.bigWig
+results/big_wig/smNPC_2.bigWig
+results/big_wig/smNPC_3.bigWig
+```

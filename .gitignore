@@ -10,6 +10,8 @@ old/
 *.gz
 *.xml
 *.tgz
+ATAC-seq/
+chip-bigwig/
 ChIP-seq_course_student_accounts/
 Advanced_course*/
 2018/
