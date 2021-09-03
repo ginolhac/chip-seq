@@ -362,6 +362,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#fetch-data-back-on-your-computer" class="md-nav__link">
+    Fetch data back on your computer
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -489,6 +496,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#fetch-data-back-on-your-computer" class="md-nav__link">
+    Fetch data back on your computer
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -604,6 +618,17 @@ rsync -v /scratch/users/aginolhac/snakemake-atac-seq/data/*gz data/
 <h3 id="run">Run</h3>
 <p>If all correct, run the workflow with <code>cache</code> activated. Of note, my scratch is shared for fetching the databases of <code>fastq_screen</code>.</p>
 <pre><code class="language-bash">snakemake --use-singularity --singularity-args &quot;-B /scratch/users/aginolhac:/scratch/users/aginolhac&quot;  --cache -j 6
+</code></pre>
+<h3 id="fetch-data-back-on-your-computer">Fetch data back on your computer</h3>
+<p>The needed files are:</p>
+<pre><code>report.html
+results/qc/multiqc/multiqc.html
+results/big_wig/mDAN_D30_1.bigWig
+results/big_wig/mDAN_D30_2.bigWig
+results/big_wig/mDAN_D30_3.bigWig
+results/big_wig/smNPC_1.bigWig
+results/big_wig/smNPC_2.bigWig
+results/big_wig/smNPC_3.bigWig
 </code></pre>
                 
               

@@ -394,8 +394,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fetch-data" class="md-nav__link">
-    Fetch data
+  <a href="#fetch-sequencing-data" class="md-nav__link">
+    Fetch sequencing data
   </a>
   
 </li>
@@ -466,6 +466,13 @@
           <li class="md-nav__item">
   <a href="#report" class="md-nav__link">
     Report
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetch-data-back-on-your-computer" class="md-nav__link">
+    Fetch data back on your computer
   </a>
   
 </li>
@@ -666,8 +673,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fetch-data" class="md-nav__link">
-    Fetch data
+  <a href="#fetch-sequencing-data" class="md-nav__link">
+    Fetch sequencing data
   </a>
   
 </li>
@@ -738,6 +745,13 @@
           <li class="md-nav__item">
   <a href="#report" class="md-nav__link">
     Report
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetch-data-back-on-your-computer" class="md-nav__link">
+    Fetch data back on your computer
   </a>
   
 </li>
@@ -971,7 +985,7 @@ Failed to create bus connection: Host is down
 <p>To avoid mingling with the test data results, remove <code>results</code> entirely, it will be created again with the human results.</p>
 <pre><code class="language-bash">rm -rf results resources/ref
 </code></pre>
-<h2 id="fetch-data">Fetch data</h2>
+<h2 id="fetch-sequencing-data">Fetch sequencing data</h2>
 <p>Make sure you are in <code>/scratch/users/username/snakemake-chip-seq/</code>, then copy the 4 fastq files:</p>
 <pre><code class="language-bash">mkdir data
 rsync -v /scratch/users/aginolhac/tmp/K7/data/*gz data/
@@ -1034,6 +1048,21 @@ K7_IN   1   data/C8MN9ACXX_K7-WT-I.fastq.gz     ILLUMINA
 <h3 id="report">Report</h3>
 <p>Generate it using:</p>
 <pre><code class="language-bash">snakemake --report
+</code></pre>
+<h3 id="fetch-data-back-on-your-computer">Fetch data back on your computer</h3>
+<p>On MacOS and GNU/Linux, use <code>scp</code> or <code>rsync</code>.</p>
+<p>On Windows, with MobaXterm, your files are displayed on the left part, on SFTP. Type <code>/scratch/users/username</code> like below:</p>
+<p><img alt="mobaxterm" src="mobaxterm.png" /></p>
+<p>The needed files are:</p>
+<pre><code>report.html
+results/qc/multiqc/multiqc.html
+results/bigwig/K7_IN.bigWig
+results/bigwig/K7_K27.bigWig
+results/bigwig/K7_K36.bigWig
+results/bigwig/K7_K4.bigWig
+results/macs2_callpeak/K7_K27-K7_IN.broad_peaks.broadPeak
+results/macs2_callpeak/K7_K36-K7_IN.broad_peaks.broadPeak
+results/macs2_callpeak/K7_K4-K7_IN.broad_peaks.narrowPeak
 </code></pre>
 <h2 id="submit-passive-jobs">Submit passive jobs</h2>
 <p>It consists in two steps:</p>
